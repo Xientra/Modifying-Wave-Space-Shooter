@@ -12,13 +12,14 @@ public class Player : MonoBehaviour, IDamagable
 
 	private void Awake() 
 	{
-		if (instance != null)
+		if (Instance == null)
 		{
-			Destroy(gameObject);
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
 		else
 		{
-			i
+			Destroy(gameObject);
 		}
 	}
 
