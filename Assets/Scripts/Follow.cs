@@ -3,6 +3,8 @@
 public class Follow : MonoBehaviour
 {
 	public Transform target;
+	public float smoothFactor = 2;
+
 	private Vector3 offset;
 
 	private void Start()
@@ -10,8 +12,8 @@ public class Follow : MonoBehaviour
 		offset = transform.position - target.position;
 	}
 
-	private void Update()
+	private void LateUpdate()
 	{
-		transform.position = target.position + offset;
+		transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothFactor * Time.deltaTime);
 	}
 }
