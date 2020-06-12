@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5133470405708430859}
   - component: {fileID: 6541684631294952765}
   - component: {fileID: 7461578638825808803}
+  - component: {fileID: 7354319131232872309}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Untagged
@@ -112,3 +113,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7354319131232872309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646534950295478238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Projectile
+  m_particleSystem: {fileID: 0}
+  m_index: 7
