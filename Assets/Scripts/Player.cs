@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
 	[SerializeField]
 	private int health;
 
-	public void TakeDamage(int dmg)
+	public bool TakeDamage(int dmg)
 	{
 		health -= dmg;
 		if (health <= 0)
+		{
 			Die();
+			return true;
+		}
+		return false;
 	}
 
 	public void Die()
