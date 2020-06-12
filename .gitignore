@@ -71,3 +71,6 @@ crashlytics-build.properties
 [Aa]ssets[Ss]treamingAssetsaa
 Modifying-Wave-Space-Shooter.sln
 Assembly-CSharp.csproj
+*.csproj
+*.csproj
+*.sln

@@ -20,4 +20,15 @@ public class RammingEnemy : Enemy
 		// move towards player
 		rb.MovePosition(transform.position + transform.forward * speed);
 	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			// player.dealDamage();
+
+			// self destruct
+			this.TakeDamage(health);
+		}
+	}
 }

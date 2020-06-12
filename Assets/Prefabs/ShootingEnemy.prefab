@@ -75,12 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f41fdd86d66c24f89673420e34c827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   acceleration: 0.01
   maxSpeed: 0.2
   rotationSpeed: 0.1
   minPreferredDistance: 10
   maxPreferredDistance: 12
+  projectilePrefab: {fileID: 0}
+  cooldown: 3
 --- !u!1 &1802998169552107486
 GameObject:
   m_ObjectHideFlags: 0
