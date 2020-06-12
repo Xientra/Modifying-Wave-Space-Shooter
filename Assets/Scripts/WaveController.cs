@@ -38,6 +38,7 @@ public class WaveController : MonoBehaviour
 			if (waveActive == false)
 			{
 				SpawnWave();
+				waveActive = true;
 			}
 			else
 			{
