@@ -11,14 +11,13 @@ public class RammingEnemy : Enemy
 
 	private void FixedUpdate()
 	{
+		// rotate towards Player
+		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed, 0);
+
 		// accelerate
 		if (speed < maxSpeed) speed += acceleration;
 
-		// move
-		transform.Translate(transform.forward * speed, null);
-
-		// rotate towards Player
-		//transform.forward = Vector3.Lerp(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed);
-		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed, 0);
+		// move towards player
+		rb.MovePosition(transform.position + transform.forward * speed);
 	}
 }
