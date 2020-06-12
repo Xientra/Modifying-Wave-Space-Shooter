@@ -378,8 +378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 14053476}
-  enemy1Prefab: {fileID: 0}
-  isActive: 0
+  enemy1Prefab: {fileID: 3652564232561651078, guid: 473cc6bf1f5d5154cac80f7eb6ff4eea,
+    type: 3}
+  isActive: 1
   minSpawnDistanceToPlayer: 10
   maxSpawnDistanceToPlayer: 20
 --- !u!1 &1716719136
@@ -486,6 +487,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShootingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1802998168665364645, guid: 00be488f8007daf4aaf16e60fbfd5241,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1802998168665364647, guid: 00be488f8007daf4aaf16e60fbfd5241,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -558,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 3652564232561651076, guid: 473cc6bf1f5d5154cac80f7eb6ff4eea,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3652564232561651079, guid: 473cc6bf1f5d5154cac80f7eb6ff4eea,
         type: 3}
