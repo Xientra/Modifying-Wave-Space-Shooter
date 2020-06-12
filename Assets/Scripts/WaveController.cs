@@ -5,7 +5,12 @@ using UnityEngine;
 public class WaveController : MonoBehaviour
 {
 
+	public GameObject playerObject;
+	public static GameObject player;
+
 	public Enemy enemy1Prefab;
+
+	public bool isActive = true;
 
 	public float minSpawnDistanceToPlayer = 10f;
 	public float maxSpawnDistanceToPlayer = 20f;
@@ -15,21 +20,29 @@ public class WaveController : MonoBehaviour
 
 	private GameObject[] activeEnemies;
 
+	private void Awake()
+	{
+		player = playerObject;
+	}
+
 	void Start()
 	{
-
+		
 	}
 
 	void Update()
 	{
-		if (waveActive == false)
+		if (isActive)
 		{
-			SpawnWave();
-		}
-		else
-		{
-			if (NoActiveEnemies()) {
-				waveActive = false;
+
+			if (waveActive == false)
+			{
+				SpawnWave();
+			}
+			else
+			{
+				if (NoActiveEnemies())
+					waveActive = false;
 			}
 		}
 	}
