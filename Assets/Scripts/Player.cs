@@ -1,12 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other) {
-        if (other.tag.Equals("Modification")) {
-            // TODO: insert modification into inventory here
-        }
-    }
+	[SerializeField]
+	private int health;
+
+	public void TakeDamage(int dmg)
+	{
+		health -= dmg;
+		if (health <= 0)
+			Die();
+	}
+
+	public void Die()
+	{
+		Destroy(gameObject);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Modification"))
+		{
+			// TODO: insert modification into inventory here
+		}
+	}
 }
