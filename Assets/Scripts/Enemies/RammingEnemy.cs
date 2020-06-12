@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class RammingEnemy : Enemy
 {
-
-	public float acceleration = 0.1f;
-	public float maxSpeed = 1f;
-	private float speed = 0;
-
-	public float rotationSpeed = 0.1f;
-
-	/*
-    protected override void Start()
-    {
-        base.Start();
-    }
-    */
-
 	void Update()
 	{
 
