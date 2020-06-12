@@ -5,10 +5,11 @@ using UnityEngine;
 public class WaveController : MonoBehaviour
 {
 
-	public GameObject playerObject;
-	public static GameObject player;
+	public Player playerObject;
+	//public static Player player;
 
-	public Enemy enemy1Prefab;
+	public Enemy rammingEnemyPrefab;
+	public Enemy shootingEnemyPrefab;
 
 	public bool isActive = true;
 
@@ -19,11 +20,6 @@ public class WaveController : MonoBehaviour
 	private bool waveActive = false;
 
 	private GameObject[] activeEnemies;
-
-	private void Awake()
-	{
-		player = playerObject;
-	}
 
 	void Start()
 	{
@@ -63,8 +59,12 @@ public class WaveController : MonoBehaviour
 			// scale vector
 			rndPos *= rndDistance;
 
-			GameObject enemyGO = Instantiate(enemy1Prefab.gameObject, rndPos, enemy1Prefab.transform.rotation);
+			// create enemy
+			GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, rndPos, shootingEnemyPrefab.transform.rotation);
+			//GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, rndPos, rammingEnemyPrefab.transform.rotation);
+			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
 
+			// set enemy to current wave
 			activeEnemies[i] = enemyGO;
 		}
 	}

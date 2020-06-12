@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamagable
 {
 
 	public int health;
@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour
 
 	public float rotationSpeed = 0.1f;
 
+	protected Player target;
+
 	protected Rigidbody rb;
 
 	private void Awake()
@@ -21,7 +23,12 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		transform.LookAt(WaveController.player.transform.position);
+		transform.LookAt(target.transform.position);
+	}
+
+	public void SetTarget(Player target)
+	{
+		this.target = target;
 	}
 
 	/// <summary>
@@ -41,7 +48,7 @@ public abstract class Enemy : MonoBehaviour
 		return false;
 	}
 
-	private void Die()
+	public void Die()
 	{
 		Destroy(this.gameObject);
 	}

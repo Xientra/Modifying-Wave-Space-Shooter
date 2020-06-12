@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3652564232561651078}
   m_Layer: 0
   m_Name: RammingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,3 +160,4 @@ MonoBehaviour:
   acceleration: 0.01
   maxSpeed: 0.2
   rotationSpeed: 0.05
+  rammingDamage: 1

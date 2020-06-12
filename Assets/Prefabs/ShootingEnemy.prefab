@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1802998168665364646}
   m_Layer: 0
   m_Name: ShootingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,8 @@ MonoBehaviour:
   rotationSpeed: 0.1
   minPreferredDistance: 10
   maxPreferredDistance: 12
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4412787295861057012, guid: 56e338cc33866c144b96fcf4197cb786,
+    type: 3}
   cooldown: 3
 --- !u!1 &1802998169552107486
 GameObject:

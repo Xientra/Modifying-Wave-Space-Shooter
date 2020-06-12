@@ -2,14 +2,12 @@
 
 public class ShootingEnemy : Enemy
 {
+	[Header("Shooting Enemy Moving Behavior:")]
 
 	public float minPreferredDistance = 10f;
 	public float maxPreferredDistance = 12f;
 
 	private float sidewaySpeed = 0;
-
-	// if the enemy will rotate left or right
-	private int leftOrRight = 1;
 
 	[Header("Shooting:")]
 
@@ -21,7 +19,6 @@ public class ShootingEnemy : Enemy
 	protected override void Start()
 	{
 		base.Start();
-		leftOrRight = Random.Range(0, 2) == 0 ? -1 : 1;
 
 		currentCooldown = cooldown;
 	}
@@ -46,7 +43,7 @@ public class ShootingEnemy : Enemy
 		speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
 
 		// Rotate towards point before player
-		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed, 0);
+		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
 
 		// move to prefferedDistance in player direction
 		Vector3 toMove = transform.position + (transform.forward * speed);
@@ -58,7 +55,7 @@ public class ShootingEnemy : Enemy
 			if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
 
 			// move sideways
-			toMove += (leftOrRight * transform.right) * sidewaySpeed;
+			toMove += transform.right * sidewaySpeed;
 
 			CheckShoot();
 		}
@@ -69,22 +66,26 @@ public class ShootingEnemy : Enemy
 
 	private float DistanceToPlayer()
 	{
-		return (-transform.position + WaveController.player.transform.position).magnitude;
+		return (-transform.position + target.transform.position).magnitude;
 	}
 
 	private void CheckShoot()
 	{
 		currentCooldown -= Time.fixedDeltaTime;
 
-		if (currentCooldown <= 0) {
+		if (currentCooldown <= 0)
+		{
 			currentCooldown = cooldown;
 
 			Shoot();
 		}
 	}
 
-	private void Shoot() {
-		Debug.Log("pew");
-		//Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(-transform.position + WaveController.player.transform.position));
+	private void Shoot()
+	{
+		Projectile prjt =  Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(-transform.position + target.transform.position)).GetComponent<Projectile>();
+		prjt.isPlayerProjectile = false;
+
+		Physics.IgnoreCollision(prjt.GetComponent<Collider>(), GetComponent<Collider>());
 	}
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RammingEnemy : Enemy
 {
+
+	[Header("Ramming Variables:")]
+	public int rammingDamage = 1;
+
+
 	void Update()
 	{
 
@@ -12,7 +17,7 @@ public class RammingEnemy : Enemy
 	private void FixedUpdate()
 	{
 		// rotate towards Player
-		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed, 0);
+		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
 
 		// accelerate
 		if (speed < maxSpeed) speed += acceleration;
@@ -25,7 +30,8 @@ public class RammingEnemy : Enemy
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
-			// player.dealDamage();
+			// deal dmg to player
+			target.TakeDamage(rammingDamage);
 
 			// self destruct
 			this.TakeDamage(health);
