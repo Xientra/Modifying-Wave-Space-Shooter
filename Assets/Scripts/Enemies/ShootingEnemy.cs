@@ -6,11 +6,21 @@ public class ShootingEnemy : Enemy
 	public float minPreferredDistance = 10f;
 	public float maxPreferredDistance = 12f;
 
-
 	private float sidewaySpeed = 0;
+
+	// if the enemy will rotate left or right
+	private int leftOrRight = 1;
+
+	protected override void Start()
+	{
+		base.Start();
+		leftOrRight = Random.Range(0, 2) == 0 ? -1 : 1;
+	}
 
 	private void FixedUpdate()
 	{
+
+		// accelerate if to far away accelerate backwarts if to close
 		if (DistanceToPlayer() > maxPreferredDistance)
 		{
 			speed += acceleration;
@@ -18,33 +28,35 @@ public class ShootingEnemy : Enemy
 		else if (DistanceToPlayer() < minPreferredDistance)
 		{
 			speed -= acceleration / 2;
+			Debug.Log("Move back pls");
 		}
-		else {
+		else
+		{
 			if (speed > 0) speed -= acceleration;
 			if (speed < 0) speed += acceleration;
 		}
+		Debug.Log(speed);
 
 		speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
-
-		// move towards player
-		transform.Translate(transform.forward * speed, null);
 
 		// Rotate towards point before player
 		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + WaveController.player.transform.position).normalized, rotationSpeed, 0);
 
+		// move to prefferedDistance in player direction
+		Vector3 toMove = transform.position + (transform.forward * speed);
 
-
+		// start circling if close enougth
 		if (DistanceToPlayer() < maxPreferredDistance)
 		{
 			if (sidewaySpeed > maxSpeed / 2) sidewaySpeed -= acceleration;
 			if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
 
 			// move sideways
-			transform.Translate(transform.right * sidewaySpeed, null);
-
-			// Rotate 90 to player
-			//transform.forward = Vector3.RotateTowards(transform.forward, Quaternion.AngleAxis(90, Vector3.up) * (-transform.position + targetPosition).normalized, rotationSpeed, 0);
+			toMove += (leftOrRight * transform.right) * sidewaySpeed;
 		}
+
+		// apply movement
+		rb.MovePosition(toMove);
 	}
 
 	private float DistanceToPlayer()
