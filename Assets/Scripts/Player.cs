@@ -2,12 +2,32 @@
 
 public class Player : MonoBehaviour, IDamagable
 {
+	public static Player Instance { get; private set; }
+	
 	[SerializeField]
 	private int health;
+
+	public delegate void OnLifePointsChange(int lifepoints);
+	public OnLifePointsChange onLifePointsChange;
+
+	private void Awake() 
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
 	public bool TakeDamage(int dmg)
 	{
 		health -= dmg;
+		onLifePointsChange?.Invoke(health);
+
 		if (health <= 0)
 		{
 			Die();
