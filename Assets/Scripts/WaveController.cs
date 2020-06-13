@@ -24,6 +24,11 @@ public class WaveController : MonoBehaviour
 	private bool waveActive = false;
 	private float activeWaveUptime = 0;
 
+	[Header("Wave Calculation Function:")]
+
+	public float factor = 10;
+	public float exponent = 1;
+
 	private GameObject[] activeEnemies;
 
 	private void Awake()
@@ -81,7 +86,7 @@ public class WaveController : MonoBehaviour
 	{
 		waveActive = true;
 
-		int enemyCount = 10 * waveNumber;
+		int enemyCount = (int)(factor * Mathf.Pow(waveNumber, exponent));
 
 		activeEnemies = new GameObject[10 * waveNumber];
 
@@ -137,11 +142,14 @@ public class WaveController : MonoBehaviour
 
 		yield return new WaitForSeconds(delay);
 
-		// create enemy
-		GameObject enemyGO = Instantiate(enemyPrefab.gameObject, GetRandomPositionAroundPlayer(), enemyPrefab.transform.rotation);
-		enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
+		if (playerObject != null)
+		{
+			// create enemy
+			GameObject enemyGO = Instantiate(enemyPrefab.gameObject, GetRandomPositionAroundPlayer(), enemyPrefab.transform.rotation);
+			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
 
-		// set enemy to current wave
-		activeEnemies[arrayIndex] = enemyGO;
+			// set enemy to current wave
+			activeEnemies[arrayIndex] = enemyGO;
+		}
 	}
 }

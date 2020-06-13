@@ -73,6 +73,7 @@ public class Player : ModificationObject, IDamagable
 		if (other.CompareTag("Modification"))
 		{
 			onModPickup?.Invoke(other.gameObject.GetComponent<ModPrefab>());
+			Destroy(other.gameObject);
 		}
 	}
 

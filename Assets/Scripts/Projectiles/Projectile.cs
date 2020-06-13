@@ -23,7 +23,7 @@ public class Projectile : ModificationObject
         // Define base Motion
         // ------------------
         BaseMotionModifier baseMotionModifier = new BaseMotionModifier();
-        baseMotionModifier.SetSpeed(25);
+        baseMotionModifier.SetSpeed(1);
         baseMotionModifier.SetJitterStrength(1);
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
@@ -47,10 +47,10 @@ public class Projectile : ModificationObject
         hommingModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(hommingModifier);
         */
-        //SpeedModifier speedModifier = new SpeedModifier();
-        //speedModifier.SetModificationTarget(this.transform);
-        //speedModifier.SetAdditionalSpeed(1);
-        //AddModification(speedModifier);
+        SpeedModifier speedModifier = new SpeedModifier();
+        speedModifier.SetModificationTarget(this);
+        speedModifier.SetAdditionalSpeed(1);
+        m_modificationManager.AddModification(speedModifier);
 
         SetPlayerProjectile(isPlayerProjectile);
     }
@@ -70,6 +70,10 @@ public class Projectile : ModificationObject
 			IDamagable target = hit.gameObject.GetComponent<IDamagable>();
 			target.TakeDamage(damage);
 		}
+
+        // create effect
+        if (hitEffectPrefab != null)
+            Instantiate(hitEffectPrefab, transform.position, hitEffectPrefab.transform.rotation);
 
         onHitCallback?.Invoke();
         if (hitAmount == 0)
@@ -110,6 +114,7 @@ public class Projectile : ModificationObject
         |*   Input Memory   *|
         \*==================*/
 
+        public GameObject hitEffectPrefab;
         protected Rigidbody body;
 	    protected string targetTag;
 

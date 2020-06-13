@@ -70,7 +70,7 @@ public class ModGenerator : MonoBehaviour
 
 public enum ModType
 {
-    HommingMotion, Piercing, Speed, ZickZack
+    HommingMotion, Piercing, Speed, ZickZack, Shield
 }
 
 [System.Serializable]

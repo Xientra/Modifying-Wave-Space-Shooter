@@ -30,7 +30,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             Debug.Log("RightClick detected");
             if (mod.IsRemovable())
             {
-                // TODO: depending on type: remove from player or projectile
+                Player.Instance.GetModificationManager().RemoveModiciation(mod);
 
                // reset slot
                mod = null;
