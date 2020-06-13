@@ -28,15 +28,20 @@ public class Projectile : ModificationObject
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
 
+
+
+
         /*
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);
         */
 
+        /*
         ChainHitModifier cm = new ChainHitModifier();
         cm.SetModificationTarget(this);
         m_modificationManager.AddModification(cm);
+        */
 
         /*
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();
@@ -47,10 +52,19 @@ public class Projectile : ModificationObject
         hommingModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(hommingModifier);
         */
-        //SpeedModifier speedModifier = new SpeedModifier();
-        //speedModifier.SetModificationTarget(this.transform);
-        //speedModifier.SetAdditionalSpeed(1);
-        //AddModification(speedModifier);
+
+        /*
+        SpeedModifier speedModifier = new SpeedModifier();
+        speedModifier.SetModificationTarget(this);
+        speedModifier.SetAdditionalSpeed(1);
+        m_modificationManager.AddModification(speedModifier);
+        */
+
+        /*
+        StartSlowSpeedUpMotionModifier sssumm = new StartSlowSpeedUpMotionModifier();
+        sssumm.SetModificationTarget(this);
+        m_modificationManager.AddModification(sssumm);
+        */
 
         SetPlayerProjectile(isPlayerProjectile);
     }
