@@ -25,8 +25,8 @@ public abstract class MotionModifier : Modification
         {
             // Apply Transformation and rotation modifications
             // -----------------------------------------------
-            m_modificationTarget.transform.Translate(ComputeDirection() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
-            m_modificationTarget.transform.Rotate(Vector3.up, ComputeRotation() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Translate(ComputeDirection() * AccumulateSpeeds() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Rotate(Vector3.up, ComputeRotation() * AccumulateSpeeds() * Time.deltaTime, Space.Self);
             m_modificationTarget.transform.Translate(ComputeJitter() * m_jitterStrength * Time.deltaTime, Space.Self);
         }
 
