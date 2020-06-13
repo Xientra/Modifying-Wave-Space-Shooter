@@ -28,10 +28,15 @@ public class Projectile : ModificationObject
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
 
+        /*
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);
-        
+        */
+
+        ChainHitModifier cm = new ChainHitModifier();
+        cm.SetModificationTarget(this);
+        m_modificationManager.AddModification(cm);
 
         /*
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();
@@ -65,6 +70,8 @@ public class Projectile : ModificationObject
 			IDamagable target = hit.gameObject.GetComponent<IDamagable>();
 			target.TakeDamage(damage);
 		}
+
+        onHitCallback?.Invoke();
         if (hitAmount == 0)
             Destroy(gameObject);
         else hitAmount--;
@@ -77,15 +84,18 @@ public class Projectile : ModificationObject
 	public delegate void OnStartCallback();
 	public OnStartCallback onStartCallback;
 
+    public delegate void OnHitCallback();
+    public OnHitCallback onHitCallback;
+
     /*=============================*\
     |*   Public Member Functions   *|
     \*=============================*/
 
-        /*===============*\
-        |*   Utilities   *|
-        \*===============*/
+    /*===============*\
+    |*   Utilities   *|
+    \*===============*/
 
-        public void SetPlayerProjectile(bool isPlayer)
+    public void SetPlayerProjectile(bool isPlayer)
 	    {
 		    isPlayerProjectile = isPlayer;
 		    targetTag = isPlayerProjectile ? "Enemy" : "Player";
