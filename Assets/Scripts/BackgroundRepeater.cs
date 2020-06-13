@@ -27,6 +27,12 @@ public class BackgroundRepeater : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (!player)
+		{
+			enabled = false;
+			return;
+		}
+
 		int i = 0;
 		for (int y = -1; y <= 1; y += 2)
 		{
