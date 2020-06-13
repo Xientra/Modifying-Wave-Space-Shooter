@@ -56,7 +56,7 @@ public class ModificationManager : MonoBehaviour
 	|*   Setter   *|
 	\*============*/
 
-		public void AddModification(Modification modification)   
+		public void AddModification(Modification modification)
         {
             modification.SetModificationTarget(m_modificationObject);
             m_modifications.Add(modification);

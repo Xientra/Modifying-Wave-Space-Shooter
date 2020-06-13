@@ -209,7 +209,7 @@ MonoBehaviour:
     type: 3}
   projectilePrefab: {fileID: 4412787295861057012, guid: 56e338cc33866c144b96fcf4197cb786,
     type: 3}
-  shotsPerSecond: 2
+  shotsPerSecond: 6
   maxHealth: 100
 --- !u!114 &8008776064130603754
 MonoBehaviour:
