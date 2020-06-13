@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -11,11 +12,19 @@ public class Projectile : MonoBehaviour
 	protected Rigidbody body;
 	protected string targetTag;
 
+	public delegate void OnStartCallback();
+	public OnStartCallback onStartCallback;
+
 	private void Awake()
 	{
 		body = GetComponent<Rigidbody>();
 		Destroy(gameObject, 10f); // Destroy after some time for cleanup
 		SetPlayerProjectile(isPlayerProjectile);
+	}
+
+	private void Start()
+	{
+		onStartCallback?.Invoke();
 	}
 
 	public void SetPlayerProjectile(bool isPlayer)
