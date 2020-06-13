@@ -24,16 +24,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("RightClick detected");
-            if (mod != null && mod.IsRemovable())
-            {
-				Player.Instance.GetModificationManager().RemoveModiciation(mod);
-
-				// reset slot
-				SetMod(null);
-				SetIcon(null);
-				iconHolder.enabled = false;
-            }
+			Remove();
         }
         /*if (eventData.button == PointerEventData.InputButton.Left)
         {
@@ -42,6 +33,20 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             background.color = equippedColor;
         }*/
     }
+
+	public void Remove()
+	{
+		if (mod != null && mod.IsRemovable())
+		{
+			Player.Instance.GetModificationManager().RemoveModiciation(mod);
+
+			// reset slot
+			SetMod(null);
+			SetIcon(null);
+			iconHolder.enabled = false;
+		}
+	}
+	
 
     public void ColorNonRemovable()
     {
@@ -52,6 +57,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         return mod == null && icon == null;
     }
+
+	public Modification GetMod()
+	{
+		return mod;
+	}
 
     public void SetMod(Modification content) 
     {

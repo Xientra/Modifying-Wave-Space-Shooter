@@ -28,5 +28,5 @@ public class ShieldModifier : Modification
         |*   Input Memory   *|
         \*==================*/
 
-        private int m_shieldValue = 1; 
+        private int m_shieldValue = 100; 
 }

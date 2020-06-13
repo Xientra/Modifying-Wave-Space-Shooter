@@ -239,9 +239,28 @@ public class Player : ModificationObject, IDamagable
             // ----------------------
             List<ShieldModifier> shields = m_modificationManager.CollectModifiers<ShieldModifier>();
 
-            // Decrease initial damage by shield value
-            // ---------------------------------------
-            foreach(ShieldModifier shield in shields) dmg -= shield.GetShieldValue();
+			// Decrease initial damage by shield value
+			// ---------------------------------------
+			List<ShieldModifier> exhaustedShields = new List<ShieldModifier>();
+			foreach (ShieldModifier shield in shields)
+			{
+			int val = shield.GetShieldValue();
+				if (dmg  < val)
+				{
+					// Shield did absorb all damage
+					shield.SetShieldValue(val - dmg);
+					return 0;
+				} else
+				{
+					// Too much damage, shield exhausted
+					dmg -= val;
+					exhaustedShields.Add(shield);
+				}
+			}
+			foreach (ShieldModifier shield in shields)
+			{
+				inventory.RemoveMod(shield);
+			}
 
             // Return resulting damage or zero
             // -------------------------------
