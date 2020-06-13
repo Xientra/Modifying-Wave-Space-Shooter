@@ -6,7 +6,8 @@ public class Player : MonoBehaviour, IDamagable
 	public static Player Instance { get; private set; }
 	
 	[SerializeField]
-	private int health = 100;
+	private int maxHealth = 100;
+	private int health;
 	public float shotsPerSecond = 2;
 	public GameObject projectilePrefab;
 
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour, IDamagable
 			Destroy(gameObject);
 		}
 		coll = GetComponent<Collider>();
+	}
+	private void Start()
+	{
+		health = maxHealth;
 	}
 
 	public bool TakeDamage(int dmg)
@@ -72,5 +77,10 @@ public class Player : MonoBehaviour, IDamagable
 		{
 			// TODO: insert modification into inventory here
 		}
+	}
+
+	public int getMaxHealth()
+	{
+		return maxHealth;
 	}
 }
