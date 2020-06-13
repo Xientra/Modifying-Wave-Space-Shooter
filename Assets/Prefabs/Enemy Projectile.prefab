@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_modifications: []
+  m_modificationObject: {fileID: -4544630952133106881}
 --- !u!1001 &5563820560104039574
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -217,10 +217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   rb: {fileID: 5114810901190869108}
-  dropChance: 0.1
-  onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
-    type: 3}
-  health: 100
   acceleration: 0.05
   maxSpeed: 0.3
   rotationSpeed: 0.1
