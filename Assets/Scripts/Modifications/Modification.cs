@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Modification<T> : MonoBehaviour
 {
-	public bool isRemoveable;
+	public bool IsRemovable { get; set; }
 
 	public T target;
 

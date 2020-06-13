@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IPointerClickHandler
 {
-    private Modification content;
+    private Modification<Object> content;
 
     private Image background;
     [SerializeField]
@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Right) 
         {
             Debug.Log("RightClick detected");
-            if (content.isRemovable())
+            if (content.IsRemovable)
             {
                 // depending on type: remove from player or projectile
 
@@ -44,10 +44,10 @@ public class Inventory : MonoBehaviour, IPointerClickHandler
         }*/
     }
 
-    public void insertModification(Modification mod) 
+    public void insertModification(Modification<Object> mod) 
     {
         this.content = mod;
-        if (!mod.isRemovable())
+        if (!mod.IsRemovable)
         {
             background.color = nonRemoveableColor;
         }
