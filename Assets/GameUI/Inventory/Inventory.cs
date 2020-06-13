@@ -21,7 +21,9 @@ public class Inventory : MonoBehaviour
             
             if (slots[i].IsEmpty()) {
 
-				mod.SetModificationTarget(Player.Instance); // TODO: maybe player should add himself to ModificationManager as target
+				if (mod.IsPlayerMod())
+					mod.SetModificationTarget(Player.Instance); // TODO: maybe player should add himself to ModificationManager as target
+
                 Player.Instance.GetModificationManager().AddModification(mod);
 
                 slots[i].SetMod(mod);
