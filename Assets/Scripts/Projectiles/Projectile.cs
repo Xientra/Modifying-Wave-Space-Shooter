@@ -30,11 +30,11 @@ public class Projectile : ModificationObject
 
 
 
-        
+        /*
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);
-        
+        */
 
         /*
         ChainHitModifier cm = new ChainHitModifier();
