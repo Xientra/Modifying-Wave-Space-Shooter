@@ -24,6 +24,11 @@ public class WaveController : MonoBehaviour
 	private bool waveActive = false;
 	private float activeWaveUptime = 0;
 
+	[Header("Wave Calculation Function:")]
+
+	public float factor = 10;
+	public float exponent = 1;
+
 	private GameObject[] activeEnemies;
 
 	private void Awake()
@@ -81,7 +86,7 @@ public class WaveController : MonoBehaviour
 	{
 		waveActive = true;
 
-		int enemyCount = 10 * waveNumber;
+		int enemyCount = (int)(factor * Mathf.Pow(waveNumber, exponent));
 
 		activeEnemies = new GameObject[10 * waveNumber];
 
