@@ -96,8 +96,9 @@ public class Player : ModificationObject, IDamagable
 		if (other.CompareTag("Modification"))
 		{
 			ModPrefab prefab = other.gameObject.GetComponent<ModPrefab>();
-			inventory.InsertModification(prefab.GetMod(), prefab.GetIcon());
-			Destroy(other.gameObject);
+			if (inventory.InsertModification(prefab.GetMod(), prefab.GetIcon())) {
+				Destroy(other.gameObject);
+			}
 		}
 	}
 

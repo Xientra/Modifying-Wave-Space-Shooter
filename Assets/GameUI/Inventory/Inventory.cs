@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     }
 
     // won't do anything for a full inventory
-    public void InsertModification(Modification mod, Sprite icon) 
+    public bool InsertModification(Modification mod, Sprite icon) 
     {
         for (int i = 0; i < slots.Length; i++) {
             
@@ -32,8 +32,10 @@ public class Inventory : MonoBehaviour
                     slots[i].ColorNonRemovable();
                 }
 
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 }
