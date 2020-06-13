@@ -24,7 +24,6 @@ public class Projectile : ModificationObject
         // ------------------
         BaseMotionModifier baseMotionModifier = new BaseMotionModifier();
         baseMotionModifier.SetSpeed(25);
-        baseMotionModifier.SetJitterStrength(1);
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
 

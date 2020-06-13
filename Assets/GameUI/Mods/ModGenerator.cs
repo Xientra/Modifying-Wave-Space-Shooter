@@ -58,6 +58,7 @@ public class ModGenerator : MonoBehaviour
         {
 			case ModType.HommingMotion:
                 mod = new HommingMotionModifier();
+                (mod as HommingMotionModifier).SetDriftAngle(10);
                 mod.SetPlayerMod(false);
                 break;
 			case ModType.Piercing:
@@ -70,6 +71,7 @@ public class ModGenerator : MonoBehaviour
                 break;
             case ModType.ZickZack:
                 mod = new ZickZackMotionModifier();
+                (mod as ZickZackMotionModifier).SetJitterStrength(10);
                 mod.SetPlayerMod(false);
                 break;
 			case ModType.Shield:

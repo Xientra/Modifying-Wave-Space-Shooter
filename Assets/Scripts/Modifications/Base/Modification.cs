@@ -13,6 +13,15 @@ using UnityEngine;
 [Serializable]
 public class Modification
 {
+    /*==================*\
+    |*   Constructors   *|
+    \*==================*/
+
+    public Modification()
+    {
+        m_name = GetType().Name;
+    }
+
     /*=============================*\
     |*   Public Member Functions   *|
     \*=============================*/
@@ -55,6 +64,9 @@ public class Modification
         \*==================*/
 
         [SerializeField] protected ModificationObject m_modificationTarget;
+        [SerializeField] protected bool m_removeable = true;
+        [SerializeField] protected bool m_isEquipped = true;
+		[SerializeField] protected bool m_isPlayerMod = false;
 
     /*==============================*\
     |*   Private Member Variables   *|
@@ -64,7 +76,6 @@ public class Modification
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] protected bool m_removeable = true;
-        [SerializeField] protected bool m_isEquipped = true;
-		[SerializeField] protected bool m_isPlayerMod = false;
+        [SerializeField] private string m_name = "";
+
 }

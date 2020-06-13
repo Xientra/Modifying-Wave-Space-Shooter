@@ -19,11 +19,4 @@ public class PiercingModifier : Modification
 			applied = true;
 		}
 	}
-
-	public override void SetEquipped(bool equipped)
-	{
-		base.SetEquipped(equipped);
-
-		applied = false;
-	}
 }

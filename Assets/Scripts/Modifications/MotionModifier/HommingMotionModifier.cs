@@ -58,7 +58,7 @@ public class HommingMotionModifier : MotionModifier
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private float m_driftAngle         = 10;
+        [SerializeField] private float m_driftAngle         = 40;
         [SerializeField] private Transform m_hommingTarget  = null;
 }
 

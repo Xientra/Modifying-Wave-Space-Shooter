@@ -62,7 +62,7 @@ public class ZickZackMotionModifier : MotionModifier
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private float m_zickZackTime = 0.5f;
+        [SerializeField] private float m_zickZackTime = 2f;
         
         /*====================*\
         |*   Runtime memory   *|

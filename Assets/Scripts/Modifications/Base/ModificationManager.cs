@@ -26,6 +26,10 @@ public class ModificationManager : MonoBehaviour
         // --------------------------
         foreach (Modification mod in m_modifications)
         {
+            // Set target
+            // ----------
+            mod.SetModificationTarget(m_modificationObject);
+
             // Skip (Mod not equipped)
             // -----------------------
             if (!mod.IsEquipped()) continue;
