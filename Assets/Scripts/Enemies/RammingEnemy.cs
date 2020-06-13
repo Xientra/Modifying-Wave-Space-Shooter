@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class RammingEnemy : Enemy
 {
-
-	[Header("Ramming Variables:")]
-	public int rammingDamage = 1;
-
-
-	void Update()
-	{
-
-	}
-
 	private void FixedUpdate()
 	{
 		// rotate towards Player
@@ -24,17 +14,5 @@ public class RammingEnemy : Enemy
 
 		// move towards player
 		rb.MovePosition(transform.position + transform.forward * speed);
-	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			// deal dmg to player
-			target.TakeDamage(rammingDamage);
-
-			// self destruct
-			this.TakeDamage(health);
-		}
 	}
 }

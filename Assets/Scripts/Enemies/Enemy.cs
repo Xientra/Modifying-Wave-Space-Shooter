@@ -3,7 +3,6 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
-
 	public int health;
 
 	public float acceleration = 0.1f;
@@ -11,6 +10,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	protected float speed = 0;
 
 	public float rotationSpeed = 0.1f;
+
+	public int collisionDamage;
 
 	protected Player target;
 
@@ -51,5 +52,17 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	public void Die()
 	{
 		Destroy(this.gameObject);
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			// deal dmg to player
+			target.TakeDamage(collisionDamage);
+
+			// self destruct
+			this.TakeDamage(health);
+		}
 	}
 }
