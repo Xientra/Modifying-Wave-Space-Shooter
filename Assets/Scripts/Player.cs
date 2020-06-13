@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour, IDamagable
 {
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour, IDamagable
 	private float cooldown;
 	private Collider coll;
 
+	private AudioSource audioSource;
+
 	[SerializeField]
 	private Inventory inventory;
 	private bool inventoryVisible = false;
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour, IDamagable
 			Destroy(gameObject);
 		}
 		coll = GetComponent<Collider>();
+		audioSource = GetComponent<AudioSource>();
 	}
 	private void Start()
 	{
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour, IDamagable
 	public bool TakeDamage(int dmg)
 	{
 		health -= dmg;
+		audioSource.Play();
 		onHealthChange?.Invoke(health);
 
 		if (health <= 0)
