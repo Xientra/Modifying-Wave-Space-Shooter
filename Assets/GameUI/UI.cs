@@ -17,6 +17,17 @@ public class UI : MonoBehaviour
         Player.Instance.onDeath += switchCanvas;
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Close")) {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+		    Application.Quit();
+#endif
+        }
+    }
+
     private void switchCanvas()
     {
         gameUICanvas.SetActive(false);

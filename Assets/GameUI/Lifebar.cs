@@ -15,6 +15,6 @@ public class Lifebar : MonoBehaviour
 
     public void UpdateLifebarUI(int amount) {
 		// Floor on first decimal place: 0.62 -> 0.6, 0.88888 -> 0.8, 0.2123 -> 0.2
-		image.fillAmount = Mathf.Clamp01(Mathf.Floor(amount / (float)maxValue * 10) / 10);
+		image.fillAmount = Mathf.Clamp01(Mathf.Ceil(amount / (float)maxValue * 10) / 10);
     }
 }

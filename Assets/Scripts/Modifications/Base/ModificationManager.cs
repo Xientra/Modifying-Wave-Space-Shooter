@@ -41,20 +41,31 @@ public class ModificationManager : MonoBehaviour
         }
     }
 
-    /*=============================*\
+	/*=============================*\
     |*   Public Member Functions   *|
     \*=============================*/
 
-        /*============*\
-        |*   Setter   *|
-        \*============*/
+	/*===============*\
+	|*   Delegates   *|
+	\*===============*/
 
-        public void AddModification(Modification modification)   
+		public delegate void ModAdded(Modification mod);
+		public delegate void ModRemoved(Modification mod);
+
+	/*============*\
+	|*   Setter   *|
+	\*============*/
+
+		public void AddModification(Modification modification)   
         {
             modification.SetModificationTarget(m_modificationObject);
-            m_modifications.Add(modification); 
+            m_modifications.Add(modification);
+			modAdded?.Invoke(modification);
         }
-        public void RemoveModiciation(Modification modification) { m_modifications.Remove(modification); }
+        public void RemoveModiciation(Modification modification) {
+			m_modifications.Remove(modification);
+			modRemoved?.Invoke(modification);
+		}
 
         /*============*\
         |*   Getter   *|
@@ -89,15 +100,25 @@ public class ModificationManager : MonoBehaviour
             // ------------------
             return modifiers;
         }
+	/*=============================*\
+    |*   Public Member Variables   *|
+    \*=============================*/
 
-    /*==============================*\
+	/*==================*\
+	|*   Input Memory   *|
+	\*==================*/
+
+		public ModAdded modAdded = null;
+		public ModRemoved modRemoved = null;
+
+	/*==============================*\
     |*   Private Member Variables   *|
     \*==============================*/
 
-        /*==================*\
-        |*   Input Memory   *|
-        \*==================*/
+	/*==================*\
+	|*   Input Memory   *|
+	\*==================*/
 
-        [SerializeField] private List<Modification> m_modifications      = new List<Modification>();
+	[SerializeField] private List<Modification> m_modifications      = new List<Modification>();
         [SerializeField] private ModificationObject m_modificationObject = null; 
 }

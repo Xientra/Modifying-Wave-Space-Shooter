@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChainHitModifier : Modification
 {
-	private int additionalHits = 2;
+	private int additionalHits = 1;
 
 	private Projectile target;
 

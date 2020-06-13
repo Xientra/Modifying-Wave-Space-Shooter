@@ -215,7 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f41fdd86d66c24f89673420e34c827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   rb: {fileID: 5114810901190869108}
   acceleration: 0.05
   maxSpeed: 0.3
@@ -224,6 +223,7 @@ MonoBehaviour:
     type: 3}
   dropChance: 0.1
   collisionDamage: 1
+  health: 60
   minPreferredDistance: 10
   maxPreferredDistance: 12
   projectilePrefab: {fileID: 4412787295861057012, guid: 298bdeab5c59b2b428f3e14a40a0160c,

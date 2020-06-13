@@ -84,7 +84,7 @@ MonoBehaviour:
   hitEffectPrefab: {fileID: 1418784707684763380, guid: 285e1cad226bd3047a9ea34569306c74,
     type: 3}
   hitAmount: 0
-  damage: 10
+  damage: 34
   isPlayerProjectile: 0
 --- !u!114 &2484256607059695305
 MonoBehaviour:

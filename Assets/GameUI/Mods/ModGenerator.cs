@@ -76,6 +76,9 @@ public class ModGenerator : MonoBehaviour
 			case ModType.Shield:
 				mod = new ShieldModifier();
                 break;
+            case ModType.ChainHit:
+                mod = new ChainHitModifier();
+                break;
             default:
 				Debug.LogError("No modifier for "+type+" found!");
                 return null;
@@ -89,7 +92,7 @@ public class ModGenerator : MonoBehaviour
 
 public enum ModType
 {
-    HommingMotion, Piercing, Speed, ZickZack, Shield
+    HommingMotion, Piercing, Speed, ZickZack, Shield, ChainHit
 }
 
 [System.Serializable]

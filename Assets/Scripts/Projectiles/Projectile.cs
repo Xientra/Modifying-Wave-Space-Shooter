@@ -30,11 +30,11 @@ public class Projectile : ModificationObject
 
 
 
-        /*
+        
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);
-        */
+        
 
         /*
         ChainHitModifier cm = new ChainHitModifier();
@@ -90,7 +90,10 @@ public class Projectile : ModificationObject
 
         // create effect
         if (hitEffectPrefab != null)
-            Instantiate(hitEffectPrefab, transform.position, hitEffectPrefab.transform.rotation);
+        {
+            GameObject go = Instantiate(hitEffectPrefab, transform.position, hitEffectPrefab.transform.rotation);
+            Destroy(go, 2);
+        }
 
         onHitCallback?.Invoke();
         if (hitAmount == 0)
