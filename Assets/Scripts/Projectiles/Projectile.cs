@@ -71,6 +71,10 @@ public class Projectile : ModificationObject
 			target.TakeDamage(damage);
 		}
 
+        // create effect
+        if (hitEffectPrefab != null)
+            Instantiate(hitEffectPrefab, transform.position, hitEffectPrefab.transform.rotation);
+
         onHitCallback?.Invoke();
         if (hitAmount == 0)
             Destroy(gameObject);
@@ -110,6 +114,7 @@ public class Projectile : ModificationObject
         |*   Input Memory   *|
         \*==================*/
 
+        public GameObject hitEffectPrefab;
         protected Rigidbody body;
 	    protected string targetTag;
 

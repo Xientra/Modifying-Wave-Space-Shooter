@@ -229,6 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652564232561651079}
   - component: {fileID: 6664829779081436308}
+  - component: {fileID: 3630193543898496655}
   - component: {fileID: 8412287613573770018}
   - component: {fileID: 3652564232561651078}
   m_Layer: 8
@@ -269,6 +270,19 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3630193543898496655
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652564232561651076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!54 &8412287613573770018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -297,6 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be0fe89a17e534d85b88bc3cf1174d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropChance: 0.1
   onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
   health: 100
