@@ -28,7 +28,6 @@ public class Projectile : ModificationObject
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
 
-        
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);

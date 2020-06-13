@@ -63,5 +63,5 @@ public class Modification
         \*==================*/
 
         [SerializeField] protected bool m_removeable = true;
-        [SerializeField] protected bool m_isEquipped = false;
+        [SerializeField] protected bool m_isEquipped = true;
 }
