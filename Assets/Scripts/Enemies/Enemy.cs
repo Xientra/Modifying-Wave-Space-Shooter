@@ -34,7 +34,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	/// <summary>
 	/// Returns true if the damage kills.
 	/// </summary>
-	public bool TakeDamage(int dmg)
+	public bool TakeDamage(int dmg) // TODO: move TakeDamage, Shoot, health, and cooldown in superclass with Player?
 	{
 		health -= dmg;
 		if (health <= 0)

@@ -15,7 +15,14 @@ public class Projectile : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody>();
 		Destroy(gameObject, 10f); // Destroy after some time for cleanup
+		SetPlayerProjectile(isPlayerProjectile);
+	}
+
+	public void SetPlayerProjectile(bool isPlayer)
+	{
+		isPlayerProjectile = isPlayer;
 		targetTag = isPlayerProjectile ? "Enemy" : "Player";
+		gameObject.layer = LayerMask.NameToLayer(isPlayerProjectile ? "Default" : "EnemyBullets"); // TODO: improve this design
 	}
 
 	protected virtual void FixedUpdate()

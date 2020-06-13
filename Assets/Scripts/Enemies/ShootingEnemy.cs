@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class ShootingEnemy : Enemy
 {
 	[Header("Shooting Enemy Moving Behavior:")]
@@ -16,11 +17,14 @@ public class ShootingEnemy : Enemy
 	public float cooldown = 3f;
 	private float currentCooldown;
 
+	private Collider coll;
+
 	protected override void Start()
 	{
 		base.Start();
 
 		currentCooldown = cooldown;
+		coll = GetComponent<Collider>();
 	}
 
 	private void FixedUpdate()
@@ -84,8 +88,8 @@ public class ShootingEnemy : Enemy
 	private void Shoot()
 	{
 		Projectile prjt =  Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(-transform.position + target.transform.position)).GetComponent<Projectile>();
-		prjt.isPlayerProjectile = false;
+		prjt.SetPlayerProjectile(false);
 
-		Physics.IgnoreCollision(prjt.GetComponent<Collider>(), GetComponent<Collider>());
+		Physics.IgnoreCollision(prjt.GetComponent<Collider>(), coll);
 	}
 }

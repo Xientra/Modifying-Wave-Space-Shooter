@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3620285968614452431}
   - component: {fileID: 5114810901190869108}
   - component: {fileID: 1802998168665364646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1802998169552107487}
   - component: {fileID: 1802998169552107426}
   - component: {fileID: 1802998169552107425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

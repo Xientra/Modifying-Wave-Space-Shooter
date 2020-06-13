@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3652564231648996282}
   - component: {fileID: 3652564231648996263}
   - component: {fileID: 3652564231648996260}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 468519548034886874}
   - component: {fileID: 8412287613573770018}
   - component: {fileID: 3652564232561651078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RammingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
