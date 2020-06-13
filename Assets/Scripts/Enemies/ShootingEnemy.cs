@@ -60,18 +60,19 @@ public class ShootingEnemy : Enemy
 				if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
 
 
-				// shoot if cooldown is 0
+				// make cooldown go down faster if in range
 				currentCooldown -= Time.fixedDeltaTime;
-				if (currentCooldown <= 0)
-				{
-					currentCooldown = cooldown;
-
-					Shoot();
-				}
 			}
 
 			// always reduce cooldown a little bit
 			currentCooldown -= Time.fixedDeltaTime;
+			// shoot if cooldown 0
+			if (currentCooldown <= 0)
+			{
+				currentCooldown = cooldown;
+
+				Shoot();
+			}
 		}
 
 		// move to prefferedDistance in player direction

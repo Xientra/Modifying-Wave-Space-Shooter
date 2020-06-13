@@ -1,42 +1,110 @@
-﻿using UnityEngine;
+﻿/*==================*\
+|*   Unity Usings   *|
+\*==================*/
+
+using UnityEngine;
+
+/*===========================*\
+|*   CLASS: PlayerMovement   *|
+\*===========================*/
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementModifier : Modification
 {
-	public float speedFactor = 10;
-	public float maxSpeed = 10;
-	public float drag = 1;
-
-	private Rigidbody rbody;
-	private Vector3 velocity;
-	private Camera cam;
-	private Quaternion lookDirection;
-
-	private void Awake()
-	{
-		rbody = GetComponent<Rigidbody>();
-		cam = Camera.main;
-		lookDirection = transform.rotation;
-	}
+    /*=====================*\
+    |*   Unity Functions   *|
+    \*=====================*/
 
 	private void Update()
 	{
+        // Get inputs
+        // ----------
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		input = Vector2.ClampMagnitude(input, 1f);
+		
+        // Clamp direction to max 1
+        // ------------------------
+        input = Vector2.ClampMagnitude(input, 1f);
 
-		velocity += new Vector3(input.x, 0, input.y) * Time.deltaTime * speedFactor;
+        // Compute velocity
+        // ----------------
+		velocity += new Vector3(input.x, 0, input.y) * Time.deltaTime * m_speed;
 
+        // Convert mouseVector to 3D
+        // -------------------------
 		Vector3 mouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-		Vector3 lookTarget = cam.ScreenToWorldPoint(mouse);
-		lookTarget.y = transform.position.y;
-		lookDirection = Quaternion.LookRotation(lookTarget - transform.position);
+		
+        // VecTowards mouse
+        // ----------------
+        Vector3 lookTarget = cam.ScreenToWorldPoint(mouse);
+		
+        lookTarget.y  = m_modificationTarget.transform.position.y;
+		lookDirection = Quaternion.LookRotation(lookTarget - m_modificationTarget.transform.position);
 	}
 
 	private void FixedUpdate()
 	{
-		velocity = velocity * (1 - Time.fixedDeltaTime * drag);
+		// Update velocity
+        // ---------------
+        velocity = velocity * (1 - Time.fixedDeltaTime * drag);
 		velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-		rbody.velocity = velocity;
+		
+        // Apply velocity
+        // --------------
+        rbody.velocity = velocity;
 		rbody.MoveRotation(lookDirection);
 	}
+
+    /*==============================*\
+    |*   Private Member Variables   *|
+    \*==============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        [SerializeField] private Rigidbody rbody    = null;
+	    [SerializeField] private Camera cam         = null;
+	    
+        [SerializeField] private float m_speed      = 10;
+	    [SerializeField] private float maxSpeed     = 10;
+	    [SerializeField] private float drag         = 1;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        private Vector3 velocity;
+	    private Quaternion lookDirection;
+
+    /*==============================*\
+    |*   Private Member Functions   *|
+    \*==============================*/
+
+        /*=================*\
+        |*   Auxiliaries   *|
+        \*=================*/
+
+        private float CollectSpeedModifiers()
+        {
+            // Define return value
+            // -------------------
+            float finalSpeed = m_speed;
+
+            // Iterate over ModificationManager
+            // --------------------------------
+            foreach(Modification modification in m_modificationTarget.GetModificationManager().GetModifications())
+            {
+                // Skip (No SpeedModifier)
+                // -----------------------
+                if(!(modification is SpeedModifier)) continue;
+
+                // Multiply speedModifier with finalSpeed
+                // --------------------------------------
+                finalSpeed *= (modification as SpeedModifier).GetSpeed();
+            }
+
+            // Return final speed
+            // ------------------
+            return finalSpeed;
+        }
 }

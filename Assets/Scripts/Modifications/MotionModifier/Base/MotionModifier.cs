@@ -6,17 +6,6 @@ using UnityEngine;
 
 public abstract class MotionModifier : Modification
 {
-    /*=====================*\
-    |*   Unity Functions   *|
-    \*=====================*/
-
-    private void Awake() 
-    {
-        // Define runtime
-        // --------------
-        m_formerPosition = m_modificationTarget.position;
-    }
-
     /*=============================*\
     |*   Public Member Functions   *|
     \*=============================*/
@@ -36,9 +25,9 @@ public abstract class MotionModifier : Modification
         {
             // Apply Transformation and rotation modifications
             // -----------------------------------------------
-            m_modificationTarget.Translate(ComputeDirection() * m_speed * Time.deltaTime, Space.Self);
-            m_modificationTarget.Rotate(Vector3.up, ComputeRotation() * m_speed * Time.deltaTime, Space.Self);
-            m_modificationTarget.Translate(ComputeJitter() * m_jitterStrength * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Translate(ComputeDirection() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Rotate(Vector3.up, ComputeRotation() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Translate(ComputeJitter() * m_jitterStrength * Time.deltaTime, Space.Self);
         }
 
     /*================================*\
@@ -52,12 +41,6 @@ public abstract class MotionModifier : Modification
         [SerializeField] protected float m_speed            = 1;
         [SerializeField] protected float m_jitterStrength   = 1;
 
-        /*====================*\
-        |*   Runtime memory   *|
-        \*====================*/
-
-        private Vector3 m_formerPosition = default;
-        
     /*================================*\
     |*   Protected Member Functions   *|
     \*================================*/
@@ -70,4 +53,36 @@ public abstract class MotionModifier : Modification
         protected abstract float ComputeRotation();
 
         protected abstract Vector3 ComputeJitter();
+
+    /*==============================*\
+    |*   Private Member Functions   *|
+    \*==============================*/
+
+        /*=================*\
+        |*   Auxiliaries   *|
+        \*=================*/
+
+        private float CollectSpeedModifiers()
+        {
+            // Define return value
+            // -------------------
+            float finalSpeed = m_speed;
+
+            // Iterate over ModificationManager
+            // --------------------------------
+            foreach(Modification modification in m_modificationTarget.GetModificationManager().GetModifications())
+            {
+                // Skip (No SpeedModifier)
+                // -----------------------
+                if(!(modification is SpeedModifier)) continue;
+
+                // Multiply speedModifier with finalSpeed
+                // --------------------------------------
+                finalSpeed *= (modification as SpeedModifier).GetSpeed();
+            }
+
+            // Return final speed
+            // ------------------
+            return finalSpeed;
+        }
 }

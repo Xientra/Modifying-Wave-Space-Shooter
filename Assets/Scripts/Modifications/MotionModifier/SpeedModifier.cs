@@ -1,14 +1,8 @@
-﻿/*==================*\
-|*   Unity Usings   *|
-\*==================*/
-
-using UnityEngine;
-
-/*==========================*\
+﻿/*==========================*\
 |*   CLASS: SpeedModifier   *|
 \*==========================*/
 
-public class SpeedModifier : MotionModifier
+public class SpeedModifier : Modification
 {
     /*=============================*\
     |*   Public Member Functions   *|
@@ -20,18 +14,12 @@ public class SpeedModifier : MotionModifier
 
         public void SetAdditionalSpeed(float additionalSpeed) { m_additionalSpeed = additionalSpeed; }
 
-    /*================================*\
-    |*   Protected Member Functions   *|
-    \*================================*/
+        /*============*\
+        |*   Getter   *|
+        \*============*/
 
-        /*===============*\
-        |*   Overrides   *|
-        \*===============*/
-
-        protected override Vector3 ComputeDirection() { return Vector3.forward * m_additionalSpeed; }
-        protected override Vector3 ComputeJitter()    { return Vector3.zero; }
-        protected override float ComputeRotation()    { return 0; }
-
+        public float GetSpeed() { return m_additionalSpeed; }
+        
     /*==============================*\
     |*   Private Member Variables   *|
     \*==============================*/

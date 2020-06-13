@@ -21,15 +21,15 @@ public class Modification
         |*   Getter   *|
         \*============*/
 
-        public Transform GetModificationTarget() { return m_modificationTarget; }
+        public ModificationObject GetModificationTarget() { return m_modificationTarget; }
 
         /*============*\
         |*   Setter   *|
         \*============*/
 
-        public void SetRemovable(bool removeable)                       { m_removeable = removeable; }
-        public void SetEquipped(bool equipped)                          { m_isEquipped = equipped; }
-        public void SetModificationTarget(Transform modificationTarget) { m_modificationTarget = modificationTarget; }
+        public void SetRemovable(bool removeable)                                { m_removeable = removeable; }
+        public virtual void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
+        public void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
 
         /*==============*\
         |*   Virtuals   *|
@@ -52,7 +52,7 @@ public class Modification
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] protected Transform m_modificationTarget;
+        [SerializeField] protected ModificationObject m_modificationTarget;
 
     /*==============================*\
     |*   Private Member Variables   *|
@@ -62,6 +62,6 @@ public class Modification
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private bool m_removeable = true;
-        [SerializeField] private bool m_isEquipped = false;
+        [SerializeField] protected bool m_removeable = true;
+        [SerializeField] protected bool m_isEquipped = false;
 }
