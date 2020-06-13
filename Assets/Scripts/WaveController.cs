@@ -28,9 +28,11 @@ public class WaveController : MonoBehaviour
 
 	void Update()
 	{
+		if (playerObject == null)
+			isActive = false;
+
 		if (isActive)
 		{
-
 			if (waveActive == false)
 			{
 				SpawnWave();
@@ -59,9 +61,12 @@ public class WaveController : MonoBehaviour
 			// scale vector
 			rndPos *= rndDistance;
 
+			// rndPos relative to Player
+			rndPos += playerObject.transform.position;
+
 			// create enemy
-			GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, rndPos, shootingEnemyPrefab.transform.rotation);
-			//GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, rndPos, rammingEnemyPrefab.transform.rotation);
+			//GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, rndPos, shootingEnemyPrefab.transform.rotation);
+			GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, rndPos, rammingEnemyPrefab.transform.rotation);
 			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
 
 			// set enemy to current wave
