@@ -16,14 +16,17 @@ public class WaveController : MonoBehaviour
 	public float minSpawnDistanceToPlayer = 10f;
 	public float maxSpawnDistanceToPlayer = 20f;
 
+	public float maxSpawnDelay = 5f;
+
 	private int waveNumber = 1;
 	private bool waveActive = false;
+	private float activeWaveUptime = 0;
 
 	private GameObject[] activeEnemies;
 
 	void Start()
 	{
-		
+
 	}
 
 	void Update()
@@ -36,42 +39,46 @@ public class WaveController : MonoBehaviour
 			if (waveActive == false)
 			{
 				SpawnWave();
-				waveActive = true;
 			}
 			else
 			{
-				if (NoActiveEnemies())
+				activeWaveUptime += Time.deltaTime;
+				if (NoActiveEnemies() && activeWaveUptime > maxSpawnDelay)
+				{
 					waveActive = false;
+					activeWaveUptime = 0;
+				}
 			}
 		}
 	}
 
 	private void SpawnWave()
 	{
+		waveActive = true;
+
+		int enemyCount = 10 * waveNumber;
+
 		activeEnemies = new GameObject[10 * waveNumber];
 
-		for (int i = 0; i < 10 * waveNumber; i++)
+		int rammingEnemyCount = Random.Range(0, enemyCount + 1);
+
+		int arrIndex = 0;
+
+		// spawn all ramming enemies
+		for (int i = 0; i < rammingEnemyCount; i++)
 		{
-			float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
-			float rndRotation = Random.Range(0f, 360f);
-
-			// get randomly rotated vector
-			Vector3 rndPos = Quaternion.AngleAxis(rndRotation, Vector3.up) * Vector3.forward;
-
-			// scale vector
-			rndPos *= rndDistance;
-
-			// rndPos relative to Player
-			rndPos += playerObject.transform.position;
-
-			// create enemy
-			//GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, rndPos, shootingEnemyPrefab.transform.rotation);
-			GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, rndPos, rammingEnemyPrefab.transform.rotation);
-			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
-
-			// set enemy to current wave
-			activeEnemies[i] = enemyGO;
+			StartCoroutine(SpawnEnemy(rammingEnemyPrefab, Random.Range(0f, maxSpawnDelay), arrIndex));
+			arrIndex++;
 		}
+
+		// spawn all shooting enemies
+		for (int i = 0; i < enemyCount - rammingEnemyCount; i++)
+		{
+			StartCoroutine(SpawnEnemy(shootingEnemyPrefab, Random.Range(0f, maxSpawnDelay), arrIndex));
+			arrIndex++;
+		}
+
+		waveNumber++;
 	}
 
 	private bool NoActiveEnemies()
@@ -83,5 +90,33 @@ public class WaveController : MonoBehaviour
 		}
 
 		return true;
+	}
+
+	private Vector3 GetRandomPositionAroundPlayer() {
+		float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
+		float rndRotation = Random.Range(0f, 360f);
+
+		// get randomly rotated vector
+		Vector3 rndPos = Quaternion.AngleAxis(rndRotation, Vector3.up) * Vector3.forward;
+
+		// scale vector
+		rndPos *= rndDistance;
+
+		// rndPos relative to Player
+		rndPos += playerObject.transform.position;
+
+		return rndPos;
+	}
+
+	private IEnumerator SpawnEnemy(Enemy enemyPrefab, float delay, int arrayIndex) {
+
+		yield return new WaitForSeconds(delay);
+
+		// create enemy
+		GameObject enemyGO = Instantiate(enemyPrefab.gameObject, GetRandomPositionAroundPlayer(), enemyPrefab.transform.rotation);
+		enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
+
+		// set enemy to current wave
+		activeEnemies[arrayIndex] = enemyGO;
 	}
 }

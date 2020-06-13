@@ -6,13 +6,15 @@ public class RammingEnemy : Enemy
 {
 	private void FixedUpdate()
 	{
-		// rotate towards Player
-		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
+		if (target != null)
+		{
+			// rotate towards Player
+			transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
 
-		// accelerate
-		if (speed < maxSpeed) speed += acceleration;
-
-		// move towards player
+			// accelerate
+			if (speed < maxSpeed) speed += acceleration;
+		}
+		// apply movement
 		rb.MovePosition(transform.position + transform.forward * speed);
 	}
 }

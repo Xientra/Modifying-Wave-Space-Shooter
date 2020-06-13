@@ -3,10 +3,13 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
+	public GameObject onDeathEffect;
+
 	public int health;
 
 	public float acceleration = 0.1f;
 	public float maxSpeed = 1f;
+	private float defaultMaxSpeed;
 	protected float speed = 0;
 
 	public float rotationSpeed = 0.1f;
@@ -25,11 +28,17 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	protected virtual void Start()
 	{
 		transform.LookAt(target.transform.position);
+		defaultMaxSpeed = maxSpeed;
 	}
 
 	public void SetTarget(Player target)
 	{
 		this.target = target;
+	}
+
+	protected float DistanceToPlayer()
+	{
+		return (-transform.position + target.transform.position).magnitude;
 	}
 
 	/// <summary>
@@ -51,6 +60,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
 	public void Die()
 	{
+		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
+		Destroy(temp, 4);
 		Destroy(this.gameObject);
 	}
 

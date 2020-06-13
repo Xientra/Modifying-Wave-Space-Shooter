@@ -63,29 +63,27 @@ public class ShootingEnemy : Enemy
 				// move sideways
 				toMove += transform.right * sidewaySpeed;
 
-				CheckShoot();
+				// shoot if cooldown is 0
+				currentCooldown -= Time.fixedDeltaTime;
+				if (currentCooldown <= 0)
+				{
+					currentCooldown = cooldown;
+
+					Shoot();
+				}
 			}
+
+			// always reduce cooldown a little bit
+			currentCooldown -= Time.fixedDeltaTime;
 
 			// apply movement
 			rb.MovePosition(toMove);
 		}
 	}
 
-	private float DistanceToPlayer()
-	{
-		return (-transform.position + target.transform.position).magnitude;
-	}
-
 	private void CheckShoot()
 	{
-		currentCooldown -= Time.fixedDeltaTime;
 
-		if (currentCooldown <= 0)
-		{
-			currentCooldown = cooldown;
-
-			Shoot();
-		}
 	}
 
 	private void Shoot()

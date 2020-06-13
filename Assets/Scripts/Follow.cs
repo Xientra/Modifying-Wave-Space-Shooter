@@ -14,6 +14,7 @@ public class Follow : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothFactor * Time.deltaTime);
+		if (target != null)
+			transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothFactor * Time.deltaTime);
 	}
 }
