@@ -29,7 +29,7 @@ public class Modification
 
         public void SetRemovable(bool removeable)                                { m_removeable = removeable; }
         public virtual void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
-        public void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
+        public virtual void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
 
         /*==============*\
         |*   Virtuals   *|
