@@ -5,6 +5,8 @@ using UnityEngine;
 public class WaveController : MonoBehaviour
 {
 
+	public static WaveController Instance { get; private set; }
+
 	public Player playerObject;
 	//public static Player player;
 
@@ -23,6 +25,19 @@ public class WaveController : MonoBehaviour
 	private float activeWaveUptime = 0;
 
 	private GameObject[] activeEnemies;
+
+	private void Awake()
+	{
+		if (Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
 	void Start()
 	{
