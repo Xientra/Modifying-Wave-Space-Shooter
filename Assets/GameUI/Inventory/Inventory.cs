@@ -19,10 +19,13 @@ public class Inventory : MonoBehaviour
             
             if (slots[i].isEmpty()) {
 
-                slots[i].setMod(prefab.getMod());
+                Modification mod = prefab.getMod();
+                Player.Instance.GetModificationManager().AddModification(mod);
+
+                slots[i].setMod(mod);
                 slots[i].setIcon(prefab.getIcon());
 
-                if (!prefab.getMod().IsRemovable())
+                if (!mod.IsRemovable())
                 {
                     slots[i].colorNonRemovable();
                 }
