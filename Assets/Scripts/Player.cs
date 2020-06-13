@@ -85,7 +85,8 @@ public class Player : ModificationObject, IDamagable
 
     public delegate void OnHealthChange(int health);
 	public delegate void OnModPickup(ModPrefab mod);
-
+    public delegate void OnDeath();
+	
     /*=============================*\
     |*   Public Member Variables   *|
     \*=============================*/
@@ -96,7 +97,8 @@ public class Player : ModificationObject, IDamagable
 
         public OnHealthChange onHealthChange  = null;
 	    public OnModPickup onModPickup        = null;
-        
+        public OnDeath onDeath                = null;
+    
     /*=============================*\
     |*   Public Member Functions   *|
     \*=============================*/
@@ -127,8 +129,11 @@ public class Player : ModificationObject, IDamagable
             // Destory this
             // ------------
 		    Destroy(gameObject);
-	    }
 
+            // Invoke onDeath events
+            // ---------------------
+		    onDeath?.Invoke();
+	    }
         /*===============*\
         |*   Utilities   *|
         \*===============*/

@@ -216,10 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a4e736b35d6bd4cbd9321dac3171a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  m_modificationManager: {fileID: 5656825090681105542}
+  hitEffectPrefab: {fileID: 0}
+  hitAmount: 0
   damage: 10
   isPlayerProjectile: 0
-  m_modificationManager: {fileID: 5656825090681105542}
 --- !u!114 &5656825090681105542
 MonoBehaviour:
   m_ObjectHideFlags: 0
