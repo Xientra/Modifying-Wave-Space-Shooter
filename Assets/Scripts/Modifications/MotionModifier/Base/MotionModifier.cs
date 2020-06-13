@@ -49,10 +49,10 @@ public abstract class MotionModifier : Modification
         |*   Abstracts   *|
         \*===============*/
 
-        protected abstract Vector3 ComputeDirection();
-        protected abstract float ComputeRotation();
+        protected virtual Vector3 ComputeDirection() { return Vector3.forward; }
+        protected virtual float ComputeRotation() { return 0; }
 
-        protected abstract Vector3 ComputeJitter();
+        protected virtual Vector3 ComputeJitter() { return Vector3.zero; }
 
     /*==============================*\
     |*   Private Member Functions   *|
