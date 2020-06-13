@@ -26,8 +26,9 @@ public class WaveController : MonoBehaviour
 
 	[Header("Wave Calculation Function:")]
 
-	public float factor = 10;
-	public float exponent = 1;
+	public float factor = 0.05f;
+	public float exponent = 3;
+	public float summand = 1.2f;
 
 	private GameObject[] activeEnemies;
 
@@ -97,7 +98,8 @@ public class WaveController : MonoBehaviour
 		// add points for last wave
 		AddWaveScore(waveNumber - 1);
 
-		int enemyCount = (int)(factor * Mathf.Pow(waveNumber, exponent));
+		int enemyCount = Mathf.RoundToInt(factor * Mathf.Pow(waveNumber, exponent) + summand);
+		Debug.Log(enemyCount);
 
 		activeEnemies = new GameObject[10 * waveNumber];
 

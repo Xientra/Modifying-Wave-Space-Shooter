@@ -39,7 +39,10 @@ public class Player : ModificationObject, IDamagable
         // Define runtime
         // --------------
 		health = maxHealth;
+		m_modificationManager.modAdded += ModWasAdded;
+		m_modificationManager.modRemoved += ModWasRemoved;
 	}
+
 	void Update()
 	{
         // Update timer
@@ -98,6 +101,7 @@ public class Player : ModificationObject, IDamagable
         public OnHealthChange onHealthChange  = null;
 	    public OnModPickup onModPickup        = null;
         public OnDeath onDeath                = null;
+		public GameObject shield;
     
     /*=============================*\
     |*   Public Member Functions   *|
@@ -137,6 +141,29 @@ public class Player : ModificationObject, IDamagable
         /*===============*\
         |*   Utilities   *|
         \*===============*/
+
+		public void ModWasAdded(Modification mod)
+		{
+			if (mod is ShieldModifier)
+			{
+				ShowShield(true);
+			}
+		}
+
+		public void ModWasRemoved(Modification mod)
+		{
+			if (mod is ShieldModifier)
+			{
+				var shieldCount = m_modificationManager.CollectModifiers<ShieldModifier>().Count;
+				if (shieldCount == 0)
+					ShowShield(false);
+			}
+		}
+
+		public void ShowShield(bool show)
+		{
+			shield.SetActive(show);
+		}
 
 	    public bool TakeDamage(int dmg)
 	    {
@@ -220,6 +247,7 @@ public class Player : ModificationObject, IDamagable
             // -------------------------------
             return Mathf.Max(dmg, 0);
         }
+
         private void Shoot()
 	    {
             // Create projectile
