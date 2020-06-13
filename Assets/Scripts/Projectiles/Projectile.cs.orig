@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 	public int damage = 10;
 	public bool isPlayerProjectile; // does it hit enemies or the player?
 
+<<<<<<< HEAD
     private void Awake() { Destroy(gameObject, 10f); } // Destroy after some time for cleanup 
 
     void OnCollisionEnter(Collision hit)
@@ -17,6 +18,7 @@ public class Projectile : MonoBehaviour
         }
         Destroy(gameObject);
     }
+=======
 	protected Rigidbody body;
 	protected string targetTag;
 
@@ -56,4 +58,5 @@ public class Projectile : MonoBehaviour
 		}
 		Destroy(gameObject);
 	}
+>>>>>>> 4ca66cac0b578ab4ac5c821ea2ec3bc2508f9a60
 }
