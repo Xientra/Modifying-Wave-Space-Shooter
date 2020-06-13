@@ -30,11 +30,11 @@ public class Projectile : ModificationObject
 
 
 
-        
+        /*
         PiercingModifier pm = new PiercingModifier();
         pm.SetModificationTarget(this);
         m_modificationManager.AddModification(pm);
-        
+        */
 
         /*
         ChainHitModifier cm = new ChainHitModifier();
@@ -50,9 +50,9 @@ public class Projectile : ModificationObject
         */
 
         
-        HommingMotionModifier hommingModifier = new HommingMotionModifier();
-        hommingModifier.SetModificationTarget(this);
-        m_modificationManager.AddModification(hommingModifier);
+        //HommingMotionModifier hommingModifier = new HommingMotionModifier();
+        //hommingModifier.SetModificationTarget(this);
+        //m_modificationManager.AddModification(hommingModifier);
         
 
         /*
