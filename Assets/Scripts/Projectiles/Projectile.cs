@@ -50,9 +50,9 @@ public class Projectile : ModificationObject
         */
 
         
-        HommingMotionModifier hommingModifier = new HommingMotionModifier();
-        hommingModifier.SetModificationTarget(this);
-        m_modificationManager.AddModification(hommingModifier);
+        //HommingMotionModifier hommingModifier = new HommingMotionModifier();
+        //hommingModifier.SetModificationTarget(this);
+        //m_modificationManager.AddModification(hommingModifier);
         
 
         /*
