@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour, IDamagable
@@ -16,6 +17,10 @@ public class Player : MonoBehaviour, IDamagable
 
 	private float cooldown;
 	private Collider coll;
+
+	[SerializeField]
+	private Inventory inventory;
+	private bool inventoryVisible = false;
 
 	private void Awake() 
 	{
@@ -61,6 +66,12 @@ public class Player : MonoBehaviour, IDamagable
 			Shoot();
 			cooldown = 1 / shotsPerSecond;
 		}
+
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			inventoryVisible ^= true;
+			inventory.gameObject.SetActive(inventoryVisible);
+		}
 	}
 
 	private void Shoot()
@@ -75,7 +86,8 @@ public class Player : MonoBehaviour, IDamagable
 	{
 		if (other.CompareTag("Modification"))
 		{
-			// TODO: insert modification into inventory here
+			// TODO insert modification into inventory here
+			// TODO automatic equip? 
 		}
 	}
 
