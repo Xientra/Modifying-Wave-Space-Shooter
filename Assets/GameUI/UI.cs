@@ -19,15 +19,12 @@ public class UI : MonoBehaviour
 
     private void Update()
     {
-        if (gameOverCanvas.activeSelf) 
-        {
-            if (Input.GetButtonDown("Close")) {
+        if (Input.GetButtonDown("Close")) {
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
-		        Application.Quit();
+		    Application.Quit();
 #endif
-            }
         }
     }
 
