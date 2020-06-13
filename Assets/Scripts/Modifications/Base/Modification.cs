@@ -30,6 +30,7 @@ public class Modification
         public void SetRemovable(bool removeable)                                { m_removeable = removeable; }
         public virtual void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
         public virtual void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
+		public void SetPlayerMod(bool isPlayerMod) { m_isPlayerMod = isPlayerMod; }
 
         /*==============*\
         |*   Virtuals   *|
@@ -43,6 +44,7 @@ public class Modification
 
         public bool IsRemovable() { return m_removeable; }
         public bool IsEquipped() { return m_isEquipped; }
+		public bool IsPlayerMod() { return m_isPlayerMod; }
 
     /*================================*\
     |*   Protected Member Variables   *|
@@ -64,4 +66,5 @@ public class Modification
 
         [SerializeField] protected bool m_removeable = true;
         [SerializeField] protected bool m_isEquipped = true;
+		[SerializeField] protected bool m_isPlayerMod = false;
 }
