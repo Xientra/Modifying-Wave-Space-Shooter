@@ -27,14 +27,14 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log("RightClick detected");
-            if (mod.IsRemovable())
+            if (mod != null && mod.IsRemovable())
             {
-                Player.Instance.GetModificationManager().RemoveModiciation(mod);
+				Player.Instance.GetModificationManager().RemoveModiciation(mod);
 
-               // reset slot
-               mod = null;
-               icon = null;
-               background.color = baseColor;
+				// reset slot
+				SetMod(null);
+				SetIcon(null);
+				background.color = baseColor;
             }
         }
         /*if (eventData.button == PointerEventData.InputButton.Left)
