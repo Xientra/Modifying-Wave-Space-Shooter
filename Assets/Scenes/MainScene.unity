@@ -1076,19 +1076,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
         type: 3}
-      propertyPath: shotsPerSecond
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
-        type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 64963495}
-    - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 8008776064130603754, guid: ccecd87761a93df419752083a6bde1d4,
         type: 3}
       propertyPath: m_modificationObject
