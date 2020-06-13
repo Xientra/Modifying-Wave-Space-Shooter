@@ -31,7 +31,8 @@ public class WaveController : MonoBehaviour
 
 	private GameObject[] activeEnemies;
 
-	public int Score { get => Score; private set { Score = value; onScoreChange?.Invoke(); } }
+	private int score;
+	public int Score { get => score; private set { score = value; onScoreChange?.Invoke(); } }
 	public void AddEnemyKillScore() { Score += 10; }
 	public void AddWaveScore(int waveNumber) { Score += 100 * waveNumber; }
 
