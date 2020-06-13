@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PiercingModifier : Modification
 {
-	private int additionalHits = 5;
+	private int additionalHits = 2;
 
 	private bool applied = false;
 
