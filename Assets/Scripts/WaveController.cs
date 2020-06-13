@@ -135,10 +135,12 @@ public class WaveController : MonoBehaviour
 
 	private IEnumerator SpawnEnemy(Enemy enemyPrefab, float delay, int arrayIndex) {
 
+		Vector3 rndPosition = GetRandomPositionAroundPlayer();
+
 		yield return new WaitForSeconds(delay);
 
 		// create enemy
-		GameObject enemyGO = Instantiate(enemyPrefab.gameObject, GetRandomPositionAroundPlayer(), enemyPrefab.transform.rotation);
+		GameObject enemyGO = Instantiate(enemyPrefab.gameObject, rndPosition, enemyPrefab.transform.rotation);
 		enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
 
 		// set enemy to current wave
