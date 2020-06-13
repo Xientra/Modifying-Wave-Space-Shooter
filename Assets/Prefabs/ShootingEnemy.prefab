@@ -83,7 +83,7 @@ MonoBehaviour:
   collisionDamage: 1
   minPreferredDistance: 10
   maxPreferredDistance: 12
-  projectilePrefab: {fileID: 4412787295861057012, guid: 56e338cc33866c144b96fcf4197cb786,
+  projectilePrefab: {fileID: 4412787295861057012, guid: 298bdeab5c59b2b428f3e14a40a0160c,
     type: 3}
   cooldown: 3
 --- !u!1 &1802998169552107486

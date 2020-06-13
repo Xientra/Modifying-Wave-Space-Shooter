@@ -288,6 +288,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2560619768858165100, guid: ccecd87761a93df419752083a6bde1d4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560619768858165100, guid: ccecd87761a93df419752083a6bde1d4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560619768858165100, guid: ccecd87761a93df419752083a6bde1d4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
         type: 3}
       propertyPath: shotsPerSecond
@@ -356,8 +371,8 @@ MonoBehaviour:
   shootingEnemyPrefab: {fileID: 1802998168665364646, guid: 00be488f8007daf4aaf16e60fbfd5241,
     type: 3}
   isActive: 1
-  minSpawnDistanceToPlayer: 20
-  maxSpawnDistanceToPlayer: 30
+  minSpawnDistanceToPlayer: 30
+  maxSpawnDistanceToPlayer: 40
 --- !u!4 &1031848630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2560619768858165100, guid: ccecd87761a93df419752083a6bde1d4,

@@ -76,9 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a4e736b35d6bd4cbd9321dac3171a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  damage: 34
-  isPlayerProjectile: 1
+  speed: 25
+  damage: 10
+  isPlayerProjectile: 0
 --- !u!1001 &5563820560104039574
 PrefabInstance:
   m_ObjectHideFlags: 0
