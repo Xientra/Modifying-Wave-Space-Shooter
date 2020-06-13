@@ -29,43 +29,46 @@ public class ShootingEnemy : Enemy
 
 	private void FixedUpdate()
 	{
-		// accelerate if to far away accelerate backwarts if to close
-		if (DistanceToPlayer() > maxPreferredDistance)
+		if (target != null)
 		{
-			speed += acceleration;
+			// accelerate if to far away accelerate backwarts if to close
+			if (DistanceToPlayer() > maxPreferredDistance)
+			{
+				speed += acceleration;
+			}
+			else if (DistanceToPlayer() < minPreferredDistance)
+			{
+				speed -= acceleration / 2;
+			}
+			else
+			{
+				if (speed > 0) speed -= acceleration;
+				if (speed < 0) speed += acceleration;
+			}
+
+			speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
+
+			// Rotate towards point before player
+			transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
+
+			// move to prefferedDistance in player direction
+			Vector3 toMove = transform.position + (transform.forward * speed);
+
+			// start circling if close enougth
+			if (DistanceToPlayer() < maxPreferredDistance)
+			{
+				if (sidewaySpeed > maxSpeed / 2) sidewaySpeed -= acceleration;
+				if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
+
+				// move sideways
+				toMove += transform.right * sidewaySpeed;
+
+				CheckShoot();
+			}
+
+			// apply movement
+			rb.MovePosition(toMove);
 		}
-		else if (DistanceToPlayer() < minPreferredDistance)
-		{
-			speed -= acceleration / 2;
-		}
-		else
-		{
-			if (speed > 0) speed -= acceleration;
-			if (speed < 0) speed += acceleration;
-		}
-
-		speed = Mathf.Clamp(speed, -maxSpeed, maxSpeed);
-
-		// Rotate towards point before player
-		transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
-
-		// move to prefferedDistance in player direction
-		Vector3 toMove = transform.position + (transform.forward * speed);
-
-		// start circling if close enougth
-		if (DistanceToPlayer() < maxPreferredDistance)
-		{
-			if (sidewaySpeed > maxSpeed / 2) sidewaySpeed -= acceleration;
-			if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
-
-			// move sideways
-			toMove += transform.right * sidewaySpeed;
-
-			CheckShoot();
-		}
-
-		// apply movement
-		rb.MovePosition(toMove);
 	}
 
 	private float DistanceToPlayer()
@@ -87,7 +90,7 @@ public class ShootingEnemy : Enemy
 
 	private void Shoot()
 	{
-		Projectile prjt =  Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(-transform.position + target.transform.position)).GetComponent<Projectile>();
+		Projectile prjt = Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(-transform.position + target.transform.position)).GetComponent<Projectile>();
 		prjt.SetPlayerProjectile(false);
 
 		Physics.IgnoreCollision(prjt.GetComponent<Collider>(), coll);
