@@ -26,8 +26,7 @@ public class ModificationManager : MonoBehaviour
         // --------------------------
         foreach (Modification mod in m_modifications)
         {
-            //if (mod.IsEquipped())
-                mod.ApplyModification();
+            if (mod.IsEquipped()) { mod.ApplyModification(); }
         }
     }
 
@@ -39,7 +38,7 @@ public class ModificationManager : MonoBehaviour
         |*   Setter   *|
         \*============*/
 
-    public void AddModification(Modification modification)   { m_modifications.Add(modification); }
+        public void AddModification(Modification modification)   { m_modifications.Add(modification); }
         public void RemoveModiciation(Modification modification) { m_modifications.Remove(modification); }
 
         /*============*\
@@ -47,6 +46,34 @@ public class ModificationManager : MonoBehaviour
         \*============*/
 
         public List<Modification> GetModifications() { return m_modifications; }
+
+        /*===============*\
+        |*   Utilities   *|
+        \*===============*/
+
+        public List<TModifier> CollectModifiers<TModifier>() where TModifier : Modification
+        {
+            // Define return value
+            // -------------------
+            List<TModifier> modifiers = new List<TModifier>();
+
+            // Iterate over ModificationManager
+            // --------------------------------
+            foreach(Modification modification in m_modifications)
+            {
+                // Skip (No SpeedModifier)
+                // -----------------------
+                if(!(modification is TModifier)) continue;
+
+                // Add modifier
+                // ------------
+                modifiers.Add(modification as TModifier);
+            }
+
+            // Return final speed
+            // ------------------
+            return modifiers;
+        }
 
     /*==============================*\
     |*   Private Member Variables   *|

@@ -25,8 +25,8 @@ public abstract class MotionModifier : Modification
         {
             // Apply Transformation and rotation modifications
             // -----------------------------------------------
-            m_modificationTarget.transform.Translate(ComputeDirection() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
-            m_modificationTarget.transform.Rotate(Vector3.up, ComputeRotation() * CollectSpeedModifiers() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Translate(ComputeDirection() * AccumulateSpeeds() * Time.deltaTime, Space.Self);
+            m_modificationTarget.transform.Rotate(Vector3.up, ComputeRotation() * AccumulateSpeeds() * Time.deltaTime, Space.Self);
             m_modificationTarget.transform.Translate(ComputeJitter() * m_jitterStrength * Time.deltaTime, Space.Self);
         }
 
@@ -62,7 +62,7 @@ public abstract class MotionModifier : Modification
         |*   Auxiliaries   *|
         \*=================*/
 
-        private float CollectSpeedModifiers()
+        private float AccumulateSpeeds()
         {
             // Define return value
             // -------------------
@@ -70,15 +70,11 @@ public abstract class MotionModifier : Modification
 
             // Iterate over ModificationManager
             // --------------------------------
-            foreach(Modification modification in m_modificationTarget.GetModificationManager().GetModifications())
+            foreach(SpeedModifier modification in m_modificationTarget.GetModificationManager().CollectModifiers<SpeedModifier>())
             {
-                // Skip (No SpeedModifier)
-                // -----------------------
-                if(!(modification is SpeedModifier)) continue;
-
                 // Multiply speedModifier with finalSpeed
                 // --------------------------------------
-                finalSpeed *= (modification as SpeedModifier).GetSpeed();
+                finalSpeed *= modification.GetSpeed();
             }
 
             // Return final speed
