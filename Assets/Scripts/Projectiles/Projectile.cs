@@ -8,7 +8,7 @@ using UnityEngine;
 |*   CLASS:  Projectile   *|
 \*========================*/
 
-public class Projectile : MonoBehaviour
+public class Projectile : ModificationObject
 {
     /*=====================*\
     |*   Unity Functions   *|
@@ -25,17 +25,17 @@ public class Projectile : MonoBehaviour
         BaseMotionModifier baseMotionModifier = new BaseMotionModifier();
         baseMotionModifier.SetSpeed(1);
         baseMotionModifier.SetJitterStrength(1);
-        baseMotionModifier.SetModificationTarget(this.transform);
-        AddModification(baseMotionModifier);
+        baseMotionModifier.SetModificationTarget(this);
+        m_modificationManager.AddModification(baseMotionModifier);
 
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();
-        zickzackModifier.SetModificationTarget(this.transform);
-        AddModification(zickzackModifier);
+        zickzackModifier.SetModificationTarget(this);
+        m_modificationManager.AddModification(zickzackModifier);
 
         HommingMotionModifier hommingModifier = new HommingMotionModifier();
-        hommingModifier.SetModificationTarget(this.transform);
+        hommingModifier.SetModificationTarget(this);
         hommingModifier.SetHommingTarget(target);
-        AddModification(hommingModifier);
+        m_modificationManager.AddModification(hommingModifier);
 
         //SpeedModifier speedModifier = new SpeedModifier();
         //speedModifier.SetModificationTarget(this.transform);
@@ -86,8 +86,7 @@ public class Projectile : MonoBehaviour
 		    targetTag = isPlayerProjectile ? "Enemy" : "Player";
 		    gameObject.layer = LayerMask.NameToLayer(isPlayerProjectile ? "Default" : "EnemyBullets"); // TODO: improve this design
 	    }
-        public void AddModification(Modification modification) { m_modificationManager.AddModification(modification); }
-
+        
     /*================================*\
     |*   Protected Member Functions   *|
     \*================================*/
@@ -109,5 +108,4 @@ public class Projectile : MonoBehaviour
         
 	    [SerializeField] private int damage = 10;
 	    [SerializeField] private bool isPlayerProjectile; // does it hit enemies or the player?
-        [SerializeField] private ModificationManager m_modificationManager = null;
 }

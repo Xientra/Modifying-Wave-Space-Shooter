@@ -38,6 +38,12 @@ public class ModificationManager : MonoBehaviour
         public void AddModification(Modification modification)   { m_modifications.Add(modification); }
         public void RemoveModiciation(Modification modification) { m_modifications.Remove(modification); }
 
+        /*============*\
+        |*   Getter   *|
+        \*============*/
+
+        public List<Modification> GetModifications() { return m_modifications; }
+
     /*==============================*\
     |*   Private Member Variables   *|
     \*==============================*/

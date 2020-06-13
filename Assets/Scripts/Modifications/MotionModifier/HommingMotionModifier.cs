@@ -30,16 +30,16 @@ public class HommingMotionModifier : MotionModifier
         \*===============*/
 
         protected override Vector3 ComputeDirection() { return Vector3.zero; }
-        protected override Vector3 ComputeJitter() { return Vector3.zero; }
+        protected override Vector3 ComputeJitter()    { return Vector3.zero; }
         protected override float ComputeRotation() 
         {
             // Compute vecToTarget
             // -------------------
-        	Vector3 vecToTarget = m_hommingTarget.position - m_modificationTarget.position;
+        	Vector3 vecToTarget = m_hommingTarget.position - m_modificationTarget.transform.position;
             
             // Compute angle between forward and vecToTarget
             // ---------------------------------------------
-            float angleToTarget = Vector3.Angle(m_modificationTarget.forward, vecToTarget);
+            float angleToTarget = Vector3.Angle(m_modificationTarget.transform.forward, vecToTarget);
 
             // Return min of Angles
             // --------------------
