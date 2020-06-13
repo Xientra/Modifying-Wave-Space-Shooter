@@ -34,7 +34,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 				// reset slot
 				SetMod(null);
 				SetIcon(null);
-				background.color = baseColor;
+				iconHolder.enabled = false;
             }
         }
         /*if (eventData.button == PointerEventData.InputButton.Left)
@@ -64,5 +64,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         this.icon = icon;
 		iconHolder.sprite = icon;
+		iconHolder.enabled = true;
     }
 }
