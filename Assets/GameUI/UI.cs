@@ -19,7 +19,7 @@ public class UI : MonoBehaviour
 
     private void switchCanvas()
     {
-        inGameUI.SetActive(false);
+        gameUICanvas.SetActive(false);
         showScore();
         gameOverCanvas.SetActive(true);
     }
