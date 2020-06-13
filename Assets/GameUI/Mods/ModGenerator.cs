@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ModGenerator : MonoBehaviour
 {
@@ -17,7 +15,6 @@ public class ModGenerator : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,7 +45,8 @@ public class ModGenerator : MonoBehaviour
             }
         }
 
-        // default
+		// default
+		Debug.LogError("No sprite for " + type + " found!");
         return null;
     }
 
@@ -56,13 +54,18 @@ public class ModGenerator : MonoBehaviour
     {
         switch (type)
         {
-            case ModType.Speed:
+			case ModType.HommingMotion:
+				return new HommingMotionModifier();
+			case ModType.Piercing:
+				return new PiercingModifier();
+			case ModType.Speed:
                 return new SpeedModifier();
-            case ModType.HommingMotion:
-                return new HommingMotionModifier();
             case ModType.ZickZack:
                 return new ZickZackMotionModifier();
+			case ModType.Shield:
+				return new ShieldModifier();
             default:
+				Debug.LogError("No modifier for "+type+" found!");
                 return null;
         }
     }
