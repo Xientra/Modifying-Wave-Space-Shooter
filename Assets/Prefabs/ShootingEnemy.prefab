@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  acceleration: 0.01
-  maxSpeed: 0.2
+  acceleration: 0.05
+  maxSpeed: 0.3
   rotationSpeed: 0.1
   collisionDamage: 1
   minPreferredDistance: 10
