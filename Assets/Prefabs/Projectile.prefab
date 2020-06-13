@@ -176,7 +176,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
->>>>>>> 43f7616c4ae91a506b979a6f4d1c5d1752d90200
 --- !u!1001 &5563820560104039574
 PrefabInstance:
   m_ObjectHideFlags: 0
