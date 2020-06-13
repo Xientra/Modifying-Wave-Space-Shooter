@@ -59,7 +59,7 @@ public class ModGenerator : MonoBehaviour
         {
 			case ModType.HommingMotion:
                 mod = new HommingMotionModifier();
-                (mod as HommingMotionModifier).SetDriftAngle(10);
+                (mod as HommingMotionModifier).SetDriftAngle(180);
                 mod.SetPlayerMod(false);
                 break;
 			case ModType.Piercing:

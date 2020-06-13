@@ -49,11 +49,11 @@ public class Projectile : ModificationObject
         m_modificationManager.AddModification(zickzackModifier);
         */
 
-        /*
+        
         HommingMotionModifier hommingModifier = new HommingMotionModifier();
         hommingModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(hommingModifier);
-        */
+        
 
         /*
         SpeedModifier speedModifier = new SpeedModifier();

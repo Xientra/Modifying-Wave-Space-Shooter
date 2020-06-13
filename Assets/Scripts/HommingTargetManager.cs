@@ -55,7 +55,7 @@ public class HommingTargetManager : MonoBehaviour
         |*   Runtime memory   *|
         \*====================*/
 
-        private GameObject m_nextTarget = null;
+        [SerializeField] private GameObject m_nextTarget = null;
 
     /*==============================*\
     |*   Private Member Functions   *|
