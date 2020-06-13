@@ -8,7 +8,7 @@ using UnityEngine;
 |*   CLASS: ModificationObject   *|
 \*===============================*/
 
-public abstract class ModificationObject : MonoBehaviour
+public class ModificationObject : MonoBehaviour
 {
     /*=============================*\
     |*   Public Member Functions   *|

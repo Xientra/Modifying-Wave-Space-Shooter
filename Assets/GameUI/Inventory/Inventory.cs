@@ -2,10 +2,12 @@
 
 public class Inventory : MonoBehaviour
 {
-    InventorySlot[] slots = new InventorySlot[8];
+	private Animator anim;
+    private InventorySlot[] slots = new InventorySlot[8];
 
     private void Start()
     {
+		anim = GetComponent<Animator>();
 		var childs = GetComponentsInChildren<InventorySlot>();
 		if (slots.Length != childs.Length)
 			Debug.LogWarning("Inventory slots not matching inventory childs");
@@ -13,6 +15,11 @@ public class Inventory : MonoBehaviour
 		for (int i = 0; i < slots.Length; i++)
 			slots[i] = childs[i];
     }
+
+	public void Show(bool show)
+	{
+		anim.SetBool("Show", show);
+	}
 
     // won't do anything for a full inventory
     public bool InsertModification(Modification mod, Sprite icon) 

@@ -63,7 +63,7 @@ public class Player : ModificationObject, IDamagable
 		if (Input.GetButtonUp("Inventory"))
 		{
 			inventoryVisible ^= true;
-			inventory.gameObject.SetActive(inventoryVisible);
+			inventory.Show(inventoryVisible);
 		}
 	}
 
@@ -221,7 +221,7 @@ public class Player : ModificationObject, IDamagable
         |*   Runtime memory   *|
         \*====================*/
 
-        private bool inventoryVisible = false;
+        private bool inventoryVisible = true;
 	    private int health;
     	private float cooldown;
 	

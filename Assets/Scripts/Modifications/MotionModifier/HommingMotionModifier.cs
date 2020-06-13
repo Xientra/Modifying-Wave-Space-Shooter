@@ -1,4 +1,10 @@
-﻿/*==================*\
+﻿/*===================*\
+|*   System Usings   *|
+\*===================*/
+
+using System.Collections.Generic;
+
+/*==================*\
 |*   Unity Usings   *|
 \*==================*/
 
@@ -8,7 +14,7 @@ using UnityEngine;
 |*   CLASS: HommingMotionModifier   *|
 \*==================================*/
 
-public class HommingMotionModifier : MotionModifier
+public class HommingMotionModifier : Modification
 {
     /*=============================*\
     |*   Public Member Functions   *|
@@ -21,33 +27,25 @@ public class HommingMotionModifier : MotionModifier
         public void SetDriftAngle(float driftAngle)           { m_driftAngle    = driftAngle; }
         public void SetHommingTarget(Transform hommingTarget) { m_hommingTarget = hommingTarget; }
 
-    /*================================*\
-    |*   Protected Member Functions   *|
-    \*================================*/
-
         /*===============*\
         |*   Overrides   *|
         \*===============*/
 
-        protected override Vector3 ComputeDirection() { return Vector3.zero; }
-        protected override Vector3 ComputeJitter()    { return Vector3.zero; }
-        protected override float ComputeRotation() 
+        public override void ApplyModification()
         {
-            // Early exit (No target specified)
-            // --------------------------------
-            if (m_hommingTarget == null) return 0;
+            // Early exit (No hommingTarget)
+            // -----------------------------
+            if (m_hommingTarget == null) return;
 
-            // Compute vecToTarget
-            // -------------------
-        	Vector3 vecToTarget = m_hommingTarget.position - m_modificationTarget.transform.position;
+            // Compute vec to target
+            // ---------------------
+            Vector3 vecToTarget = m_hommingTarget.transform.position - m_modificationTarget.transform.position;
             
-            // Compute angle between forward and vecToTarget
-            // ---------------------------------------------
-            float angleToTarget = Vector3.Angle(m_modificationTarget.transform.forward, vecToTarget);
-
-            // Return min of Angles
-            // --------------------
-            return Mathf.Abs(angleToTarget) < m_driftAngle ? angleToTarget : (m_driftAngle * Mathf.Sign(angleToTarget)); 
+            Vector3 newDirection = Vector3.RotateTowards(m_modificationTarget.transform.forward, vecToTarget, m_driftAngle * Mathf.Deg2Rad * Time.deltaTime, 0.0f);
+            
+            // Rotate towards hommingTarget
+            // ----------------------------
+            m_modificationTarget.transform.transform.rotation = Quaternion.LookRotation(newDirection);
         }
 
     /*==============================*\
@@ -58,7 +56,13 @@ public class HommingMotionModifier : MotionModifier
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private float m_driftAngle         = 40;
+        [SerializeField] private float m_driftAngle         = 180;
         [SerializeField] private Transform m_hommingTarget  = null;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        private float dir = 1;
 }
 

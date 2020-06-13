@@ -11,8 +11,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     private Image background;
 
     [SerializeField]
-    private Color baseColor = new Color(14, 30, 46, 180);
-    [SerializeField]
     public Color nonRemovableColor = new Color(219, 168, 57, 180); // orange
     /*[SerializeField]
     public Color equippedColor = new Color(140, 212, 57, 180); // green*/
