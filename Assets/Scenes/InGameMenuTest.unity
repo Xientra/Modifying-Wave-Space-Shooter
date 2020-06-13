@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 366291690}
   - component: {fileID: 366291689}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Livebar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,15 +423,15 @@ RectTransform:
   m_GameObject: {fileID: 366291687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 339937863}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -50}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 225, y: -50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &366291689
 MonoBehaviour:
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ee09376d3ad1974fa6492fe2d18c6d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2174224955f4dfe4a8542ce56908c749, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
