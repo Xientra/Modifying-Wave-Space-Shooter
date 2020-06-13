@@ -28,7 +28,7 @@ public class Modification
         \*============*/
 
         public void SetRemovable(bool removeable)                                { m_removeable = removeable; }
-        public void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
+        public virtual void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
         public void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
 
         /*==============*\
@@ -62,6 +62,6 @@ public class Modification
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private bool m_removeable = true;
-        [SerializeField] private bool m_isEquipped = false;
+        [SerializeField] protected bool m_removeable = true;
+        [SerializeField] protected bool m_isEquipped = false;
 }

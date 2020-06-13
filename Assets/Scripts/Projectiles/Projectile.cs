@@ -23,11 +23,18 @@ public class Projectile : ModificationObject
         // Define base Motion
         // ------------------
         BaseMotionModifier baseMotionModifier = new BaseMotionModifier();
-        baseMotionModifier.SetSpeed(1);
+        baseMotionModifier.SetSpeed(25);
         baseMotionModifier.SetJitterStrength(1);
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
 
+        
+        PiercingModifier pm = new PiercingModifier();
+        pm.SetModificationTarget(this);
+        m_modificationManager.AddModification(pm);
+        
+
+        /*
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();
         zickzackModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(zickzackModifier);
@@ -36,7 +43,7 @@ public class Projectile : ModificationObject
         hommingModifier.SetModificationTarget(this);
         hommingModifier.SetHommingTarget(target);
         m_modificationManager.AddModification(hommingModifier);
-
+        */
         //SpeedModifier speedModifier = new SpeedModifier();
         //speedModifier.SetModificationTarget(this.transform);
         //speedModifier.SetAdditionalSpeed(1);
@@ -62,7 +69,9 @@ public class Projectile : ModificationObject
 			IDamagable target = hit.gameObject.GetComponent<IDamagable>();
 			target.TakeDamage(damage);
 		}
-		Destroy(gameObject);
+        if (hitAmount == 0)
+            Destroy(gameObject);
+        else hitAmount--;
     }
 
     /*===============*\
@@ -97,6 +106,9 @@ public class Projectile : ModificationObject
 
         protected Rigidbody body;
 	    protected string targetTag;
+
+    /// <summary> How often the projectile can hit something bevore it destroys itself. </summary>
+    public int hitAmount = 0;
 
     /*==============================*\
     |*   Private Member Variables   *|
