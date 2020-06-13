@@ -24,7 +24,11 @@ public class ModificationManager : MonoBehaviour
     {
         // Iterate over Modifications
         // --------------------------
-        foreach(Modification mod in m_modifications) mod.ApplyModification();
+        foreach (Modification mod in m_modifications)
+        {
+            //if (mod.IsEquipped())
+                mod.ApplyModification();
+        }
     }
 
     /*=============================*\
@@ -35,7 +39,7 @@ public class ModificationManager : MonoBehaviour
         |*   Setter   *|
         \*============*/
 
-        public void AddModification(Modification modification)   { m_modifications.Add(modification); }
+    public void AddModification(Modification modification)   { m_modifications.Add(modification); }
         public void RemoveModiciation(Modification modification) { m_modifications.Remove(modification); }
 
         /*============*\
