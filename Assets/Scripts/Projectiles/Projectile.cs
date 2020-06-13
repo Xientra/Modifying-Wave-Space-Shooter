@@ -23,7 +23,7 @@ public class Projectile : ModificationObject
         // Define base Motion
         // ------------------
         BaseMotionModifier baseMotionModifier = new BaseMotionModifier();
-        baseMotionModifier.SetSpeed(1);
+        baseMotionModifier.SetSpeed(25);
         baseMotionModifier.SetJitterStrength(1);
         baseMotionModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(baseMotionModifier);
@@ -47,10 +47,10 @@ public class Projectile : ModificationObject
         hommingModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(hommingModifier);
         */
-        SpeedModifier speedModifier = new SpeedModifier();
-        speedModifier.SetModificationTarget(this);
-        speedModifier.SetAdditionalSpeed(1);
-        m_modificationManager.AddModification(speedModifier);
+        //SpeedModifier speedModifier = new SpeedModifier();
+        //speedModifier.SetModificationTarget(this.transform);
+        //speedModifier.SetAdditionalSpeed(1);
+        //AddModification(speedModifier);
 
         SetPlayerProjectile(isPlayerProjectile);
     }

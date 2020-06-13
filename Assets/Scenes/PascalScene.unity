@@ -300,28 +300,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6283a7ef562a31c46af0bb87109c9763, type: 3}
---- !u!1 &532258723 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8539508476557259946, guid: 6283a7ef562a31c46af0bb87109c9763,
-    type: 3}
-  m_PrefabInstance: {fileID: 532258722}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &532258724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532258723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Projectile
-  m_explosion: {fileID: 4012331270809606605, guid: e72960cb6f6ee934b92bead24125ee76,
-    type: 3}
-  m_index: 7
 --- !u!1001 &644479968
 PrefabInstance:
   m_ObjectHideFlags: 0
