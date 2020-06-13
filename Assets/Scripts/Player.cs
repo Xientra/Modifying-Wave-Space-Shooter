@@ -17,6 +17,8 @@ public class Player : ModificationObject, IDamagable
 
 	public delegate void OnHealthChange(int health);
 	public OnHealthChange onHealthChange;
+	public delegate void OnModPickup(ModPrefab mod);
+	public OnModPickup onModPickup;
 
 	private float cooldown;
 	private Collider coll;
@@ -95,8 +97,7 @@ public class Player : ModificationObject, IDamagable
 	{
 		if (other.CompareTag("Modification"))
 		{
-			// TODO insert modification into inventory here
-			// TODO automatic equip? 
+			onModPickup?.Invoke(other.gameObject.GetComponent<ModPrefab>());
 		}
 	}
 

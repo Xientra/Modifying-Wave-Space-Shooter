@@ -14,4 +14,7 @@ public class ModPrefab : MonoBehaviour
 
         this.mod = mod;
     }
+
+    public Sprite getIcon() { return icon; }
+    public Modification getMod() { return mod; }
 }

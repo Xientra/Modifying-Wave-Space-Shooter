@@ -6,14 +6,17 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    private Modification content = null;
+    private Modification mod = null;
     private Sprite icon = null;
 
     private Image background;
+
     [SerializeField]
     private Color baseColor = new Color(14, 30, 46, 180);
     [SerializeField]
-    public Color equippedColor = new Color(140, 212, 57, 180); // green
+    public Color nonRemovableColor = new Color(219, 168, 57, 180); // orange
+    /*[SerializeField]
+    public Color equippedColor = new Color(140, 212, 57, 180); // green*/
 
     void Awake()
     {
@@ -25,12 +28,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log("RightClick detected");
-            if (content.IsRemovable())
+            if (mod.IsRemovable())
             {
-               // TODO: depending on type: remove from player or projectile
+                // TODO: depending on type: remove from player or projectile
 
                // reset slot
-               content = null;
+               mod = null;
                icon = null;
                background.color = baseColor;
             }
@@ -43,15 +46,23 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }*/
     }
 
-    public void setContent(Modification content) {
-        this.content = content;
+    public void colorNonRemovable()
+    {
+        background.color = nonRemovableColor;
     }
 
-    public void setIcon(Sprite icon) {
+    public bool isEmpty()
+    {
+        return mod == null && icon == null;
+    }
+
+    public void setMod(Modification content) 
+    {
+        this.mod = content;
+    }
+
+    public void setIcon(Sprite icon) 
+    {
         this.icon = icon;
-    }
-
-    public void setColor(Color color) {
-        background.color = color;
     }
 }

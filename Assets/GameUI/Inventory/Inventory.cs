@@ -7,19 +7,24 @@ public class Inventory : MonoBehaviour
 {
     InventorySlot[] slots = new InventorySlot[8];
 
-    [SerializeField]
-    public Color nonRemovableColor = new Color(219, 168, 57, 180); // orange
+    private void Awake()
+    {
+        Player.Instance.onModPickup += insertModification;
+    }
 
-    public void insertModification(Modification mod, Sprite icon) 
+    // won't do anything for a full inventory
+    public void insertModification(ModPrefab prefab) 
     {
         for (int i = 0; i < slots.Length; i++) {
-            if (slots[i] == null) {
-                slots[i].setContent(mod);
-                slots[i].setIcon(icon);
+            
+            if (slots[i].isEmpty()) {
 
-                if (!mod.IsRemovable())
+                slots[i].setMod(prefab.getMod());
+                slots[i].setIcon(prefab.getIcon());
+
+                if (!prefab.getMod().IsRemovable())
                 {
-                    slots[i].setColor(nonRemovableColor);
+                    slots[i].colorNonRemovable();
                 }
 
                 break;
