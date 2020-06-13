@@ -23,6 +23,10 @@ public abstract class MotionModifier : Modification
 
         public override void ApplyModification()
         {
+            // Skip no modificationTarget available
+            // ------------------------------------
+            if (m_modificationTarget == null) return;
+            
             // Apply Transformation and rotation modifications
             // -----------------------------------------------
             m_modificationTarget.transform.Translate(ComputeDirection() * AccumulateSpeeds() * Time.deltaTime, Space.Self);

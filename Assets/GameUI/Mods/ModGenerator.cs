@@ -26,10 +26,9 @@ public class ModGenerator : MonoBehaviour
 
     public ModPrefab GetRandomPrefab()
     {
-		ModDrop drop = drops[Random.Range(0, drops.Length)];
+		ModDrop drop     = drops[Random.Range(0, drops.Length)];
 		ModPrefab prefab = Instantiate(basePrefab, transform);
 		Modification mod = GetModification(drop.typ);
-		mod.SetPlayerMod(drop.playerMod);
 		prefab.InitPrefab(drop.icon, mod);
         return prefab;
     }
@@ -51,22 +50,40 @@ public class ModGenerator : MonoBehaviour
 
     public Modification GetModification(ModType type)
     {
+        // Define return value
+        // -------------------
+        Modification mod;
+
         switch (type)
         {
 			case ModType.HommingMotion:
-				return new HommingMotionModifier();
+                mod = new HommingMotionModifier();
+                mod.SetPlayerMod(false);
+                break;
 			case ModType.Piercing:
-				return new PiercingModifier();
+                mod = new PiercingModifier();
+                mod.SetPlayerMod(false);
+                break;
 			case ModType.Speed:
-                return new SpeedModifier();
+                mod = new SpeedModifier();
+                mod.SetPlayerMod(true);
+                break;
             case ModType.ZickZack:
-                return new ZickZackMotionModifier();
+                mod = new ZickZackMotionModifier();
+                mod.SetPlayerMod(false);
+                break;
 			case ModType.Shield:
-				return new ShieldModifier();
+				mod = new ShieldModifier();
+                mod.SetPlayerMod(true);
+                break;
             default:
 				Debug.LogError("No modifier for "+type+" found!");
                 return null;
         }
+
+        // Return mod
+        // ----------
+        return mod;
     }
 }
 

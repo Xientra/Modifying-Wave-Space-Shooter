@@ -107,6 +107,10 @@ public class HommingTargetManager : MonoBehaviour
         }
         private void ApplyTarget()
         {
+            // Skip (No next target)
+            // ---------------------
+            if (m_nextTarget == null) return;
+
             // Iterate over modifications
             // --------------------------
             foreach(Modification mod in m_modificationObject.GetModificationManager().GetModifications())
@@ -114,7 +118,7 @@ public class HommingTargetManager : MonoBehaviour
                 // Skip (No homming modifier)
                 // --------------------------
                 if (!(mod is HommingMotionModifier)) continue;
-
+                
                 // Apply new target
                 // ----------------
                 (mod as HommingMotionModifier).SetHommingTarget(m_nextTarget.transform);

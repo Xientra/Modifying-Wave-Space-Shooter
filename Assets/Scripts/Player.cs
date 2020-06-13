@@ -225,6 +225,19 @@ public class Player : ModificationObject, IDamagable
             // ------------------------------------
             prjt.SetPlayerProjectile(true);
 
+            // Add modifiers to projectile
+            // ---------------------------
+            foreach(Modification mod in m_modificationManager.GetModifications())
+            {
+                // Skip (Player mod)
+                // -----------------
+                if (mod.IsPlayerMod()) continue;
+
+                // Write modifier to projectile
+                // ----------------------------
+                prjt.GetModificationManager().AddModification(mod);
+            }
+
             // Disable player collision
             // ------------------------
 		    Physics.IgnoreCollision(prjt.GetComponent<Collider>(), coll);
