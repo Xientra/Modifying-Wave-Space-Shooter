@@ -6,7 +6,9 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamagable
 {
 	public static Player Instance { get; private set; }
-	
+
+	public GameObject onDeathEffect;
+
 	[SerializeField]
 	private int maxHealth = 100;
 	private int health;
@@ -60,6 +62,8 @@ public class Player : MonoBehaviour, IDamagable
 
 	public void Die()
 	{
+		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
+		Destroy(temp, 4);
 		Destroy(gameObject);
 	}
 

@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f41fdd86d66c24f89673420e34c827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
   health: 100
   acceleration: 0.05
   maxSpeed: 0.3

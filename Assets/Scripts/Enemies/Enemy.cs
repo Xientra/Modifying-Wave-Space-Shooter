@@ -3,6 +3,8 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
+	public GameObject onDeathEffect;
+
 	public int health;
 
 	public float acceleration = 0.1f;
@@ -58,6 +60,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
 	public void Die()
 	{
+		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
+		Destroy(temp, 4);
 		Destroy(this.gameObject);
 	}
 

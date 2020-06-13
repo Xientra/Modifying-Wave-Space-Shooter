@@ -197,6 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200ac4905fb0f59498e4eb738be46cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
   maxHealth: 100
   shotsPerSecond: 2
   projectilePrefab: {fileID: 4412787295861057012, guid: 56e338cc33866c144b96fcf4197cb786,
