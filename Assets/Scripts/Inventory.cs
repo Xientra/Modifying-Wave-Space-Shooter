@@ -8,9 +8,19 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour, IPointerClickHandler
 {
-    private bool visible = false;
     private Modification content;
+
+    private Image background;
+    [SerializeField]
     private Color baseColor = new Color(14, 30, 46, 180);
+    [SerializeField]
+    public Color nonRemoveableColor = new Color(219, 168, 57, 180); // orange
+    [SerializeField]
+    public Color equippedColor = new Color(140, 212, 57, 180); // green
+
+    void Awake() {
+        this.background = this.gameObject.GetComponent<Image>();
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -23,24 +33,15 @@ public class Inventory : MonoBehaviour, IPointerClickHandler
 
                 // reset
                 content = null;
-                this.gameObject.GetComponent<Image>().color = baseColor;
+                background.color = baseColor;
             }
         }
         /*if (eventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("LeftClick detected");
             content.SetEquipped(true);
-            this.gameObject.GetComponent<Image>().color = Color.green;
+            background.color = equippedColor;
         }*/
-    }
-
-    //TODO move this somewhere outside -> game controller?
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            visible ^= true;
-            // TODO replace with an Inventory variable / method
-            this.gameObject.SetActive(visible);
-        }
     }
 
     public void insertModification(Modification mod) 
@@ -48,11 +49,11 @@ public class Inventory : MonoBehaviour, IPointerClickHandler
         this.content = mod;
         if (!mod.isRemovable())
         {
-            this.gameObject.GetComponent<Image>().color = new Color(219, 168, 57, 180); // orange
+            background.color = nonRemoveableColor;
         }
         else 
         {
-            this.gameObject.GetComponent<Image>().color = baseColor;
+            background.color = baseColor;
         }
     }
 }

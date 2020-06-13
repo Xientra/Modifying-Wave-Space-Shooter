@@ -67,7 +67,7 @@ public class Player : MonoBehaviour, IDamagable
 			cooldown = 1 / shotsPerSecond;
 		}
 
-		if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetButtonUp("Inventory"))
 		{
 			inventoryVisible ^= true;
 			inventory.gameObject.SetActive(inventoryVisible);
