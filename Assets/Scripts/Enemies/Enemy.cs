@@ -77,7 +77,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         |*   Input Memory   *|
         \*==================*/
 
-	    [SerializeField] protected float speed = 0;
+	    protected float speed = 0;
 	    [SerializeField] protected Rigidbody rb = null;
         [SerializeField] protected float acceleration  = 0.1f;
 	    [SerializeField] protected float maxSpeed      = 1f;
@@ -102,17 +102,17 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
         public bool TakeDamage(int dmg)
 	    {
-      //      // Decrease help by damage
-      //      // -----------------------
-		    //health -= dmg;
-		    
-      //      // Early exit (Still alive)
-      //      // -----------------------
-		    //if (health > 0) return false;
-		    
+            // Decrease help by damage
+            // -----------------------
+            health -= dmg;
+
+            // Early exit (Still alive)
+            // -----------------------
+            if (health > 0) return false;
+
             // Call Die
             // --------
-			Die();
+            Die();
 
             // Return true
             // -----------
@@ -136,6 +136,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         |*   Runtime memory   *|
         \*====================*/
 
+        [SerializeField]
         private float health = 0;
         // private float defaultMaxSpeed;
 }
