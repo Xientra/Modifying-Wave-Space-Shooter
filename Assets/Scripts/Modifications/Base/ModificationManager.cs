@@ -46,5 +46,5 @@ public class ModificationManager : MonoBehaviour
         |*   Input Memory   *|
         \*==================*/
 
-        private List<Modification> m_modifications = null;
+        [SerializeField] private List<Modification> m_modifications = new List<Modification>();
 }

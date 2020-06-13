@@ -1,0 +1,78 @@
+﻿/*==================*\
+|*   Unity Usings   *|
+\*==================*/
+
+using UnityEngine;
+
+/*===================================*\
+|*   CLASS: ZickZackMotionModifier   *|
+\*===================================*/
+
+public class ZickZackMotionModifier : MotionModifier
+{
+    /*=====================*\
+    |*   Unity Functions   *|
+    \*=====================*/
+
+    protected void Start() { t = m_zickTime / 2; }
+
+    /*=============================*\
+    |*   Public Member Functions   *|
+    \*=============================*/
+
+        /*============*\
+        |*   Setter   *|
+        \*============*/
+
+        public void SetZickTime(float zickTime)         { m_zickTime = zickTime; }
+        
+    /*================================*\
+    |*   Protected Member Functions   *|
+    \*================================*/
+
+        /*===============*\
+        |*   Overrides   *|
+        \*===============*/
+
+        protected override Vector3 ComputeDirection(Vector3 formerPosition) { return Vector3.zero; }
+        protected override Vector3 ComputeJitter(Vector3 currentPosition)   
+        { 
+            // Update timer
+            // ------------
+            t += Time.deltaTime;
+
+            // Change direction
+            // ----------------
+		    if (t > m_zickTime)
+		    {
+                // Change direction
+                // ----------------
+			    flyRight = flyRight * -1;
+			    
+                // Reset timer
+                // -----------
+                t = 0;
+		    }
+
+            // Return jitter
+            // -------------
+            return m_modificationTarget.right * flyRight;
+        }
+
+    /*==============================*\
+    |*   Private Member Variables   *|
+    \*==============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        [SerializeField] private float m_zickTime     = 0.5f;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        private int flyRight = 1;
+	    private float t      = 0;
+}

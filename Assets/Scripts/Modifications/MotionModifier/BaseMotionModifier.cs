@@ -4,6 +4,10 @@
 
 using UnityEngine;
 
+/*===============================*\
+|*   CLASS: BaseMotionModifier   *|
+\*===============================*/
+
 public class BaseMotionModifier : MotionModifier
 {
     /*================================*\
@@ -14,6 +18,7 @@ public class BaseMotionModifier : MotionModifier
         |*   Overrides   *|
         \*===============*/
 
-        protected override Vector3 ComputeDirection()                     { return Vector3.forward; }
-        protected override Vector3 ComputeJitter(Vector3 currentPosition) { return Vector3.zero; }
+        protected override Vector3 ComputeDirection()   { return Vector3.forward; }
+        protected override Vector3 ComputeJitter()      { return Vector3.zero; }
+        protected override float ComputeRotation()      { return 0; }
 }
