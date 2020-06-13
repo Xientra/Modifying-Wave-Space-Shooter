@@ -3,88 +3,139 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
-	[SerializeField]
-	private float dropChance = 0.1f;
-	
-	public GameObject onDeathEffect;
+    /*=====================*\
+    |*   Unity Functions   *|
+    \*=====================*/
 
-	public int health;
-
-	public float acceleration = 0.1f;
-	public float maxSpeed = 1f;
-	private float defaultMaxSpeed;
-	protected float speed = 0;
-
-	public float rotationSpeed = 0.1f;
-
-	public int collisionDamage;
-
-	protected Player target;
-
-	protected Rigidbody rb;
-
-	private void Awake()
-	{
-		rb = GetComponent<Rigidbody>();
-	}
-
-	protected virtual void Start()
+    protected virtual void Start()
 	{
 		transform.LookAt(target.transform.position);
-		defaultMaxSpeed = maxSpeed;
+		// defaultMaxSpeed = maxSpeed;
 	}
 
-	public void SetTarget(Player target)
-	{
-		this.target = target;
-	}
+    /*============*\
+    |*   Events   *|
+    \*============*/
 
-	protected float DistanceToPlayer()
-	{
-		return (-transform.position + target.transform.position).magnitude;
-	}
-
-	/// <summary>
-	/// Returns true if the damage kills.
-	/// </summary>
-	public bool TakeDamage(int dmg) // TODO: move TakeDamage, Shoot, health, and cooldown in superclass with Player?
-	{
-		health -= dmg;
-		if (health <= 0)
-		{
-			health = 0;
-
-			Die();
-			return true;
-		}
-
-		return false;
-	}
-
-	public void Die()
-	{
-		// chance to spawn a modification
-		float r = Random.value;
-		if (r <= dropChance) {
-			ModPrefab prefab = ModGenerator.Instance.GetRandomPrefab();
-			prefab.transform.position = this.transform.position;
-			prefab.gameObject.SetActive(true);
-		}
-
-		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
-		Destroy(temp, 4);
-		Destroy(this.gameObject);
-	}
-
-	private void OnCollisionEnter(Collision collision)
+	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
 			// deal dmg to player
 			target.TakeDamage(collisionDamage);
 
-			// self destruct
-			this.TakeDamage(health);
+            // self destruct
+            Die();
 		}
 	}
+
+    /*=============================*\
+    |*   Public Member Functions   *|
+    \*=============================*/
+
+        /*============*\
+        |*   Setter   *|
+        \*============*/
+
+        public void SetTarget(Player target)
+	    {
+		    this.target = target;
+	    }
+
+        /*===============*\
+        |*   Utilities   *|
+        \*===============*/
+
+        public void Die()
+	    {
+            // chance to spawn a modification
+		    float r = Random.value;
+		    if (r <= dropChance) {
+			    ModPrefab prefab = ModGenerator.Instance.GetRandomPrefab();
+			    prefab.transform.position = this.transform.position;
+			    prefab.gameObject.SetActive(true);
+		    }
+
+            // Create on Death Effect
+            // ----------------------
+		    GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
+		    
+            // Destroy on Death Effect after 4 secs
+            // ------------------------------------
+            Destroy(temp, 4);
+
+            // Destory this
+            // ------------
+		    Destroy(gameObject);
+	    }
+
+    /*================================*\
+    |*   Protected Member Variables   *|
+    \*================================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+	    [SerializeField] protected float speed = 0;
+	    [SerializeField] protected Rigidbody rb = null;
+        [SerializeField] protected float acceleration  = 0.1f;
+	    [SerializeField] protected float maxSpeed      = 1f;
+	    [SerializeField] protected float rotationSpeed = 0.1f;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        protected Player target = null;
+
+    /*================================*\
+    |*   Protected Member Functions   *|
+    \*================================*/
+
+        /*===============*\
+        |*   Utilities   *|
+        \*===============*/
+
+        protected float DistanceToPlayer()
+	    { return (target.transform.position - transform.position).magnitude; }
+
+        public bool TakeDamage(int dmg)
+	    {
+      //      // Decrease help by damage
+      //      // -----------------------
+		    //health -= dmg;
+		    
+      //      // Early exit (Still alive)
+      //      // -----------------------
+		    //if (health > 0) return false;
+		    
+            // Call Die
+            // --------
+			Die();
+
+            // Return true
+            // -----------
+		    return true;
+	    }
+
+    /*==============================*\
+    |*   Private Member Variables   *|
+    \*==============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        [SerializeField] private GameObject onDeathEffect       = null;
+	    
+        [SerializeField] private float dropChance       = 0.1f;
+        [SerializeField] private int collisionDamage    = 10;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        private float health = 0;
+        // private float defaultMaxSpeed;
 }

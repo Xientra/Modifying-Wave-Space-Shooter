@@ -26,7 +26,14 @@ public class ModificationManager : MonoBehaviour
         // --------------------------
         foreach (Modification mod in m_modifications)
         {
-            if (mod.IsEquipped()) { mod.ApplyModification(); }
+            // Skip (Mod not equipped)
+            // -----------------------
+            if (!mod.IsEquipped()) continue;
+
+            // Apply mod
+            // ---------
+            if      (m_modificationObject is Player     &&  mod.IsPlayerMod()) mod.ApplyModification();
+            else if (m_modificationObject is Projectile && !mod.IsPlayerMod()) mod.ApplyModification();
         }
     }
 
@@ -38,7 +45,11 @@ public class ModificationManager : MonoBehaviour
         |*   Setter   *|
         \*============*/
 
-        public void AddModification(Modification modification)   { m_modifications.Add(modification); }
+        public void AddModification(Modification modification)   
+        {
+            modification.SetModificationTarget(m_modificationObject);
+            m_modifications.Add(modification); 
+        }
         public void RemoveModiciation(Modification modification) { m_modifications.Remove(modification); }
 
         /*============*\
@@ -83,5 +94,6 @@ public class ModificationManager : MonoBehaviour
         |*   Input Memory   *|
         \*==================*/
 
-        [SerializeField] private List<Modification> m_modifications = new List<Modification>();
+        [SerializeField] private List<Modification> m_modifications      = new List<Modification>();
+        [SerializeField] private ModificationObject m_modificationObject = null; 
 }

@@ -27,7 +27,7 @@ public class Modification
         |*   Setter   *|
         \*============*/
 
-        public void SetRemovable(bool removeable)                                { m_removeable = removeable; }
+        public void SetRemovable(bool removeable)                                        { m_removeable = removeable; }
         public virtual void SetEquipped(bool equipped)                                   { m_isEquipped = equipped; }
         public virtual void SetModificationTarget(ModificationObject modificationTarget) { m_modificationTarget = modificationTarget; }
 		public void SetPlayerMod(bool isPlayerMod) { m_isPlayerMod = isPlayerMod; }

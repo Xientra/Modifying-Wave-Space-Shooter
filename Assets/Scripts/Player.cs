@@ -1,36 +1,29 @@
-﻿using System.Collections.Generic;
+﻿/*===================*\
+|*   System Usings   *|
+\*===================*/
+
+using System.Collections.Generic;
+
+/*==================*\
+|*   Unity Usings   *|
+\*==================*/
+
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(Collider))]
+/*===================*\
+|*   CLASS: Player   *|
+\*===================*/
+
 public class Player : ModificationObject, IDamagable
 {
-	public static Player Instance { get; private set; }
+    /*=====================*\
+    |*   Unity Functions   *|
+    \*=====================*/
 
-	public GameObject onDeathEffect;
-
-	[SerializeField]
-	private int maxHealth = 100;
-	private int health;
-	public float shotsPerSecond = 2;
-	public GameObject projectilePrefab;
-
-	public delegate void OnHealthChange(int health);
-	public OnHealthChange onHealthChange;
-	public delegate void OnDeath();
-	public OnDeath onDeath;
-
-	private float cooldown;
-	private Collider coll;
-
-	private AudioSource audioSource;
-
-	[SerializeField]
-	private Inventory inventory;
-	private bool inventoryVisible = false;
-
-	private void Awake() 
+    void Awake() 
 	{
+        // Create Player Singleton
+        // -----------------------
 		if (Instance == null)
 		{
 			Instance = this;
@@ -40,45 +33,30 @@ public class Player : ModificationObject, IDamagable
 		{
 			Destroy(gameObject);
 		}
-		coll = GetComponent<Collider>();
-		audioSource = GetComponent<AudioSource>();
 	}
-	private void Start()
+    void Start()
 	{
+        // Define runtime
+        // --------------
 		health = maxHealth;
 	}
-
-	public bool TakeDamage(int dmg)
-	{
-		health -= ComputeDamage(dmg);
-		audioSource.Play();
-		onHealthChange?.Invoke(health);
-
-		if (health <= 0)
-		{
-			Die();
-			return true;
-		}
-		return false;
-	}
-
-	public void Die()
-	{
-		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
-		Destroy(temp, 4);
-		Destroy(gameObject);
-		onDeath?.Invoke();
-	}
-
 	void Update()
 	{
+        // Update timer
+        // ------------
 		cooldown -= Time.deltaTime;
+
+        // On timer done and fire button pressed
+        // -------------------------------------
 		if (cooldown <= 0 && Input.GetButton("Fire1"))
 		{
 			Shoot();
+
 			cooldown = 1 / shotsPerSecond;
 		}
 
+        // On Inventory ButtonUp
+        // ---------------------
 		if (Input.GetButtonUp("Inventory"))
 		{
 			inventoryVisible ^= true;
@@ -86,15 +64,11 @@ public class Player : ModificationObject, IDamagable
 		}
 	}
 
-	private void Shoot()
-	{
-		Projectile prjt = Instantiate(projectilePrefab, transform.position, transform.rotation).GetComponent<Projectile>();
-		prjt.SetPlayerProjectile(true);
+    /*============*\
+    |*   Events   *|
+    \*============*/
 
-		Physics.IgnoreCollision(prjt.GetComponent<Collider>(), coll);
-	}
-
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Modification"))
 		{
@@ -105,11 +79,125 @@ public class Player : ModificationObject, IDamagable
 		}
 	}
 
-	public int getMaxHealth()
-	{
-		return maxHealth;
-	}
+    /*===============*\
+    |*   Delegates   *|
+    \*===============*/
 
+    public delegate void OnHealthChange(int health);
+	public delegate void OnModPickup(ModPrefab mod);
+    public delegate void OnDeath();
+	
+    /*=============================*\
+    |*   Public Member Variables   *|
+    \*=============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        public OnHealthChange onHealthChange  = null;
+	    public OnModPickup onModPickup        = null;
+        public OnDeath onDeath                = null;
+    
+    /*=============================*\
+    |*   Public Member Functions   *|
+    \*=============================*/
+
+        /*============*\
+        |*   Getter   *|
+        \*============*/
+
+        public int getMaxHealth()
+	    {
+		    return maxHealth;
+	    }
+
+        /*==============*\
+        |*   Virtuals   *|
+        \*==============*/
+
+        public virtual void Die()
+	    {
+            // Create on Death Effect
+            // ----------------------
+		    GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
+		    
+            // Destroy on Death Effect after 4 secs
+            // ------------------------------------
+            Destroy(temp, 4);
+
+            // Destory this
+            // ------------
+		    Destroy(gameObject);
+
+            // Invoke onDeath events
+            // ---------------------
+		    onDeath?.Invoke();
+	    }
+        /*===============*\
+        |*   Utilities   *|
+        \*===============*/
+
+	    public bool TakeDamage(int dmg)
+	    {
+            // Decrease help by damage
+            // -----------------------
+		    health -= ComputeDamage(dmg);
+		    
+            // Play audioclip
+            // ---------------
+            audioSource.Play();
+		    onHealthChange?.Invoke(health);
+
+            // Early exit (Still alive)
+            // -----------------------
+		    if (health > 0) return false;
+		    
+            // Call Die
+            // --------
+			Die();
+
+            // Return true
+            // -----------
+		    return true;
+	    }
+
+    /*=============================*\
+    |*   Public Static Functions   *|
+    \*=============================*/
+
+        /*===============*\
+        |*   Utilities   *|
+        \*===============*/
+
+        public static Player Instance { get; private set; }
+
+    /*==============================*\
+    |*   Private Member Variables   *|
+    \*==============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        [SerializeField] private AudioSource audioSource        = null;
+        [SerializeField] private Collider coll                  = null;
+        [SerializeField] private Inventory inventory            = null;
+        
+    	[SerializeField] private GameObject onDeathEffect       = null;
+	    [SerializeField] private GameObject projectilePrefab    = null;
+
+        [SerializeField] private float shotsPerSecond           = 2;
+	    [SerializeField] private int maxHealth                  = 100;
+
+        /*====================*\
+        |*   Runtime memory   *|
+        \*====================*/
+
+        private bool inventoryVisible = false;
+	    private int health;
+    	private float cooldown;
+	
     /*==============================*\
     |*   Private Member Functions   *|
     \*==============================*/
@@ -132,4 +220,31 @@ public class Player : ModificationObject, IDamagable
             // -------------------------------
             return Mathf.Max(dmg, 0);
         }
+        private void Shoot()
+	    {
+            // Create projectile
+            // -----------------
+		    Projectile prjt = Instantiate(projectilePrefab, transform.position, transform.rotation).GetComponent<Projectile>();
+		    
+            // Flag projectile as player projectile
+            // ------------------------------------
+            prjt.SetPlayerProjectile(true);
+
+            // Add modifiers to projectile
+            // ---------------------------
+            foreach(Modification mod in m_modificationManager.GetModifications())
+            {
+                // Skip (Player mod)
+                // -----------------
+                if (mod.IsPlayerMod()) continue;
+
+                // Write modifier to projectile
+                // ----------------------------
+                prjt.GetModificationManager().AddModification(mod);
+            }
+
+            // Disable player collision
+            // ------------------------
+		    Physics.IgnoreCollision(prjt.GetComponent<Collider>(), coll);
+	    }
 }
