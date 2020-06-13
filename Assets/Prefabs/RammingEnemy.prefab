@@ -297,12 +297,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be0fe89a17e534d85b88bc3cf1174d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
-    type: 3}
-  health: 100
+  speed: 0
+  rb: {fileID: 8412287613573770018}
   acceleration: 0.02
   maxSpeed: 0.4
   rotationSpeed: 0.05
+  onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  projectilePrefab: {fileID: 0}
+  dropChance: 0.1
   collisionDamage: 20
 --- !u!1001 &8883105622793841641
 PrefabInstance:

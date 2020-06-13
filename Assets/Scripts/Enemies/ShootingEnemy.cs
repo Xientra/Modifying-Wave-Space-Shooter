@@ -12,7 +12,7 @@ public class ShootingEnemy : Enemy
 
 	[Header("Shooting:")]
 
-	public GameObject projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab = null;
 
 	public float cooldown = 3f;
 	private float currentCooldown;
