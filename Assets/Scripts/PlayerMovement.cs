@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		input = Vector2.ClampMagnitude(input, 1f);
 
-		velocity += new Vector3(input.x, 0, input.y) * Time.deltaTime * speedFactor;
+		velocity += new Vector3(input.x, 0, input.y) * Time.deltaTime * AccumulateSpeeds();
 
 		Vector3 mouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
 		Vector3 lookTarget = cam.ScreenToWorldPoint(mouse);
@@ -39,4 +39,42 @@ public class PlayerMovement : MonoBehaviour
 		rbody.velocity = velocity;
 		rbody.MoveRotation(lookDirection);
 	}
+
+    /*==============================*\
+    |*   Private Member Variables   *|
+    \*==============================*/
+
+        /*==================*\
+        |*   Input Memory   *|
+        \*==================*/
+
+        [SerializeField] private ModificationObject m_modificationTarget = null;
+
+    /*==============================*\
+    |*   Private Member Functions   *|
+    \*==============================*/
+
+        /*=================*\
+        |*   Auxiliaries   *|
+        \*=================*/
+
+        private float AccumulateSpeeds()
+        {
+            // Define return value
+            // -------------------
+            float finalSpeed = speedFactor;
+
+            // Iterate over ModificationManager
+            // --------------------------------
+            foreach(SpeedModifier modification in m_modificationTarget.GetModificationManager().CollectModifiers<SpeedModifier>())
+            {
+                // Multiply speedModifier with finalSpeed
+                // --------------------------------------
+                finalSpeed *= modification.GetSpeed();
+            }
+
+            // Return final speed
+            // ------------------
+            return finalSpeed;
+        }
 }

@@ -62,7 +62,7 @@ public abstract class MotionModifier : Modification
         |*   Auxiliaries   *|
         \*=================*/
 
-        private float CollectSpeedModifiers()
+        private float AccumulateSpeeds()
         {
             // Define return value
             // -------------------
@@ -70,15 +70,11 @@ public abstract class MotionModifier : Modification
 
             // Iterate over ModificationManager
             // --------------------------------
-            foreach(Modification modification in m_modificationTarget.GetModificationManager().GetModifications())
+            foreach(SpeedModifier modification in m_modificationTarget.GetModificationManager().CollectModifiers<SpeedModifier>())
             {
-                // Skip (No SpeedModifier)
-                // -----------------------
-                if(!(modification is SpeedModifier)) continue;
-
                 // Multiply speedModifier with finalSpeed
                 // --------------------------------------
-                finalSpeed *= (modification as SpeedModifier).GetSpeed();
+                finalSpeed *= modification.GetSpeed();
             }
 
             // Return final speed

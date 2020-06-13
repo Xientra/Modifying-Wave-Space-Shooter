@@ -48,7 +48,7 @@ public class Player : ModificationObject, IDamagable
 
 	public bool TakeDamage(int dmg)
 	{
-		health -= dmg;
+		health -= ComputeDamage(dmg);
 		audioSource.Play();
 		onHealthChange?.Invoke(health);
 
@@ -104,4 +104,27 @@ public class Player : ModificationObject, IDamagable
 	{
 		return maxHealth;
 	}
+
+    /*==============================*\
+    |*   Private Member Functions   *|
+    \*==============================*/
+
+        /*=================*\
+        |*   Auxiliaries   *|
+        \*=================*/
+
+        private int ComputeDamage(int dmg)
+        {
+            // Collect ShieldModifier
+            // ----------------------
+            List<ShieldModifier> shields = m_modificationManager.CollectModifiers<ShieldModifier>();
+
+            // Decrease initial damage by shield value
+            // ---------------------------------------
+            foreach(ShieldModifier shield in shields) dmg -= shield.GetShieldValue();
+
+            // Return resulting damage or zero
+            // -------------------------------
+            return Mathf.Max(dmg, 0);
+        }
 }
