@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
+	public Image iconHolder;
     private Modification mod = null;
     private Sprite icon = null;
 
@@ -20,7 +19,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     void Awake()
     {
-        this.background = this.gameObject.GetComponent<Image>();
+        background = gameObject.GetComponent<Image>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -46,23 +45,24 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }*/
     }
 
-    public void colorNonRemovable()
+    public void ColorNonRemovable()
     {
         background.color = nonRemovableColor;
     }
 
-    public bool isEmpty()
+    public bool IsEmpty()
     {
         return mod == null && icon == null;
     }
 
-    public void setMod(Modification content) 
+    public void SetMod(Modification content) 
     {
         this.mod = content;
     }
 
-    public void setIcon(Sprite icon) 
+    public void SetIcon(Sprite icon) 
     {
         this.icon = icon;
+		iconHolder.sprite = icon;
     }
 }

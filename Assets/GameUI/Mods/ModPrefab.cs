@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ModPrefab : MonoBehaviour
 {
@@ -15,6 +13,6 @@ public class ModPrefab : MonoBehaviour
         this.mod = mod;
     }
 
-    public Sprite getIcon() { return icon; }
-    public Modification getMod() { return mod; }
+    public Sprite GetIcon() { return icon; }
+    public Modification GetMod() { return mod; }
 }
