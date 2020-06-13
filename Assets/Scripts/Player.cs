@@ -243,20 +243,22 @@ public class Player : ModificationObject, IDamagable
 			List<ShieldModifier> exhaustedShields = new List<ShieldModifier>();
 			foreach (ShieldModifier shield in shields)
 			{
-			int val = shield.GetShieldValue();
+				int val = shield.GetShieldValue();
 				if (dmg  < val)
 				{
 					// Shield did absorb all damage
 					shield.SetShieldValue(val - dmg);
-					return 0;
+					Debug.Log(shield + " : " + (val - dmg));
+					break;
 				} else
 				{
 					// Too much damage, shield exhausted
 					dmg -= val;
 					exhaustedShields.Add(shield);
+					Debug.Log("Exhausted!");
 				}
 			}
-			foreach (ShieldModifier shield in shields)
+			foreach (ShieldModifier shield in exhaustedShields)
 			{
 				inventory.RemoveMod(shield);
 			}
