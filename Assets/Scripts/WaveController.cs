@@ -31,6 +31,14 @@ public class WaveController : MonoBehaviour
 
 	private GameObject[] activeEnemies;
 
+	private int score;
+	public int Score { get => score; private set { score = value; onScoreChange?.Invoke(); } }
+	public void AddEnemyKillScore() { Score += 10; }
+	public void AddWaveScore(int waveNumber) { Score += 100 * waveNumber; }
+
+	public delegate void OnScoreChange();
+	public OnScoreChange onScoreChange;
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -85,6 +93,9 @@ public class WaveController : MonoBehaviour
     private void SpawnWave()
 	{
 		waveActive = true;
+
+		// add points for last wave
+		AddWaveScore(waveNumber - 1);
 
 		int enemyCount = (int)(factor * Mathf.Pow(waveNumber, exponent));
 

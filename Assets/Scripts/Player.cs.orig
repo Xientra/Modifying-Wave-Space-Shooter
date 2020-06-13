@@ -4,9 +4,14 @@
 
 using System.Collections.Generic;
 
+<<<<<<< HEAD
 /*==================*\
 |*   Unity Usings   *|
 \*==================*/
+=======
+	public delegate void OnHealthChange(int health);
+	public OnHealthChange onHealthChange;
+>>>>>>> 56b73af9c6a2ad708f0e4fda8b1b5ae6636c4a9e
 
 using UnityEngine;
 

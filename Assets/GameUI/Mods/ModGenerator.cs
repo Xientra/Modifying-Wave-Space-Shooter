@@ -26,12 +26,11 @@ public class ModGenerator : MonoBehaviour
 
     public ModPrefab GetRandomPrefab()
     {
-        var arr = System.Enum.GetValues(typeof(ModType));
-        int idx = Random.Range(0, arr.Length);
-        ModType randomType = (ModType)arr.GetValue(idx);
-
-        ModPrefab prefab = Instantiate(basePrefab, transform);
-        prefab.InitPrefab(GetSprite(randomType), GetModification(randomType));
+		ModDrop drop = drops[Random.Range(0, drops.Length)];
+		ModPrefab prefab = Instantiate(basePrefab, transform);
+		Modification mod = GetModification(drop.typ);
+		mod.SetPlayerMod(drop.playerMod);
+		prefab.InitPrefab(drop.icon, mod);
         return prefab;
     }
 
@@ -81,4 +80,5 @@ class ModDrop
 {
     public ModType typ;
     public Sprite icon;
+	public bool playerMod;
 }
