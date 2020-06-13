@@ -17,6 +17,8 @@ public class Player : ModificationObject, IDamagable
 
 	public delegate void OnHealthChange(int health);
 	public OnHealthChange onHealthChange;
+	public delegate void OnDeath();
+	public OnDeath onDeath;
 
 	private float cooldown;
 	private Collider coll;
@@ -65,6 +67,7 @@ public class Player : ModificationObject, IDamagable
 		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
 		Destroy(temp, 4);
 		Destroy(gameObject);
+		onDeath?.Invoke();
 	}
 
 	void Update()
