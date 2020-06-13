@@ -11,8 +11,8 @@ public class Player : MonoBehaviour, IDamagable
 	public float shotsPerSecond = 2;
 	public GameObject projectilePrefab;
 
-	public delegate void OnLifePointsChange(int lifepoints);
-	public OnLifePointsChange onLifePointsChange;
+	public delegate void OnHealthChange(int health);
+	public OnHealthChange onHealthChange;
 
 	private float cooldown;
 	private Collider coll;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamagable
 	public bool TakeDamage(int dmg)
 	{
 		health -= dmg;
-		onLifePointsChange?.Invoke(health);
+		onHealthChange?.Invoke(health);
 
 		if (health <= 0)
 		{
