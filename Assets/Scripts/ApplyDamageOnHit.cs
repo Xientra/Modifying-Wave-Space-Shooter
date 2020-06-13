@@ -20,10 +20,17 @@ public class ApplyDamageOnHit : MonoBehaviour
         // ----------------------
         if (collision.transform.tag != m_tag) return;
 
-        collision.gameObject.GetComponent<Player>()
+        // Fetch Damageable interface
+        // --------------------------
+        IDamagable damageableInterface = collision.gameObject.GetComponent<IDamagable>();
 
         // Early exit (No IDamageable object)
         // ----------------------------------
+        if (damageableInterface == null) return;
+
+        // Apply damage
+        // ------------
+        damageableInterface.TakeDamage(m_damage);
     }
 
     /*==============================*\
@@ -36,4 +43,5 @@ public class ApplyDamageOnHit : MonoBehaviour
 
         [SerializeField] private Collision m_collider = null;
         [SerializeField] private string m_tag         = "";
+        [SerializeField] private int m_damage         = 3;
 }

@@ -27,7 +27,6 @@ public class Player : ModificationObject, IDamagable
 		if (Instance == null)
 		{
 			Instance = this;
-			DontDestroyOnLoad(gameObject);
 		}
 		else
 		{

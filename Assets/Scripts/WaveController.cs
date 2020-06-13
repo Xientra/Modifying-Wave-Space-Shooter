@@ -45,7 +45,6 @@ public class WaveController : MonoBehaviour
 		if (Instance == null)
 		{
 			Instance = this;
-			DontDestroyOnLoad(gameObject);
 		}
 		else
 		{
@@ -99,9 +98,8 @@ public class WaveController : MonoBehaviour
 		AddWaveScore(waveNumber - 1);
 
 		int enemyCount = Mathf.RoundToInt(factor * Mathf.Pow(waveNumber, exponent) + summand);
-		Debug.Log(enemyCount);
 
-		activeEnemies = new GameObject[10 * waveNumber];
+		activeEnemies = new GameObject[enemyCount];
 
 		int rammingEnemyCount = Random.Range(0, enemyCount + 1);
 

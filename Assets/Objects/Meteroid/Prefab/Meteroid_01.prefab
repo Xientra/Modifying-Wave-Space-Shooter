@@ -13,6 +13,11 @@ GameObject:
   - component: {fileID: 2429997653811720761}
   - component: {fileID: 21639074137572275}
   - component: {fileID: 3766817029316057344}
+  - component: {fileID: 2366429290366530385}
+  - component: {fileID: 401287175556752779}
+  - component: {fileID: 4901379506501657609}
+  - component: {fileID: 1268270252347659089}
+  - component: {fileID: -8414849236606918691}
   m_Layer: 0
   m_Name: Meteroid_01
   m_TagString: Untagged
@@ -113,3 +118,79 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2366429290366530385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_damage: 1
+--- !u!114 &401287175556752779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Enemy
+  m_damage: 1
+--- !u!114 &4901379506501657609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  m_index: 5
+--- !u!114 &1268270252347659089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Enemy
+  m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  m_index: 8
+--- !u!114 &-8414849236606918691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Projectile
+  m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  m_index: 7
