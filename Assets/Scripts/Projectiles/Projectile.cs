@@ -45,9 +45,12 @@ public class Projectile : ModificationObject
 
         /*
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();
+        zickzackModifier.SetJitterStrength(20);
         zickzackModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(zickzackModifier);
+        */
 
+        /*
         HommingMotionModifier hommingModifier = new HommingMotionModifier();
         hommingModifier.SetModificationTarget(this);
         m_modificationManager.AddModification(hommingModifier);
@@ -82,8 +85,9 @@ public class Projectile : ModificationObject
 		if (hit.gameObject.CompareTag(targetTag))
 		{
 			IDamagable target = hit.gameObject.GetComponent<IDamagable>();
-			target.TakeDamage(damage);
-		}
+            if (target.TakeDamage(damage))
+                onKillCallback?.Invoke();
+        }
 
         // create effect
         if (hitEffectPrefab != null)
@@ -104,6 +108,9 @@ public class Projectile : ModificationObject
 
     public delegate void OnHitCallback();
     public OnHitCallback onHitCallback;
+
+    public delegate void OnKillCallback();
+    public OnKillCallback onKillCallback;
 
     /*=============================*\
     |*   Public Member Functions   *|
