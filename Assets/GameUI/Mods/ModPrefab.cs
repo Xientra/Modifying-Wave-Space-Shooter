@@ -10,6 +10,8 @@ public class ModPrefab : MonoBehaviour
     public void InitPrefab(Sprite icon, Modification mod)
     {
         this.icon = icon;
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = icon;
+
         this.mod = mod;
     }
 }

@@ -3,6 +3,9 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
+	[SerializeField]
+	private float dropChance = 0.1f;
+	
 	public GameObject onDeathEffect;
 
 	public int health;
@@ -60,6 +63,14 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
 	public void Die()
 	{
+		// chance to spawn a modification
+		float r = Random.value;
+		if (r <= dropChance) {
+			ModPrefab prefab = ModGenerator.Instance.GetRandomPrefab();
+			prefab.transform.position = this.transform.position;
+			prefab.gameObject.SetActive(true);
+		}
+
 		GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);
 		Destroy(temp, 4);
 		Destroy(this.gameObject);

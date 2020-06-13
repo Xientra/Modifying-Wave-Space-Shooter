@@ -4,11 +4,28 @@ using UnityEngine;
 
 public class ModGenerator : MonoBehaviour
 {
+    public static ModGenerator Instance { get; private set; }
+
     [SerializeField]
     private ModDrop[] drops;
 
     [SerializeField]
     private ModPrefab basePrefab;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        basePrefab.gameObject.SetActive(false);
+    }
 
     public ModPrefab GetRandomPrefab()
     {
@@ -16,7 +33,7 @@ public class ModGenerator : MonoBehaviour
         int idx = Random.Range(0, arr.Length);
         ModType randomType = (ModType)arr.GetValue(idx);
 
-        ModPrefab prefab = Instantiate(basePrefab, transform.position, Quaternion.identity);
+        ModPrefab prefab = Instantiate(basePrefab, transform);
         prefab.InitPrefab(GetSprite(randomType), GetModification(randomType));
         return prefab;
     }
