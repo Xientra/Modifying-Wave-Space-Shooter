@@ -9,7 +9,7 @@ using UnityEngine;
 \*===========================*/
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovementModifier : Modification
+public class PlayerMovement : MonoBehaviour
 {
     /*=====================*\
     |*   Unity Functions   *|
@@ -36,12 +36,13 @@ public class PlayerMovementModifier : Modification
         // VecTowards mouse
         // ----------------
         Vector3 lookTarget = cam.ScreenToWorldPoint(mouse);
-		
-        lookTarget.y  = m_modificationTarget.transform.position.y;
-		lookDirection = Quaternion.LookRotation(lookTarget - m_modificationTarget.transform.position);
-	}
+        lookTarget.y       = transform.position.y;
 
-	private void FixedUpdate()
+        // Compute lookDirection
+        // ---------------------
+		lookDirection = Quaternion.LookRotation(lookTarget - transform.position);
+	}
+    private void FixedUpdate()
 	{
 		// Update velocity
         // ---------------
@@ -51,6 +52,9 @@ public class PlayerMovementModifier : Modification
         // Apply velocity
         // --------------
         rbody.velocity = velocity;
+
+        // Apply move rotation
+        // -------------------
 		rbody.MoveRotation(lookDirection);
 	}
 
@@ -64,11 +68,12 @@ public class PlayerMovementModifier : Modification
 
         [SerializeField] private Rigidbody rbody    = null;
 	    [SerializeField] private Camera cam         = null;
-	    
+	    [SerializeField] private ModificationManager m_modificationManager = null;
+
         [SerializeField] private float m_speed      = 10;
 	    [SerializeField] private float maxSpeed     = 10;
 	    [SerializeField] private float drag         = 1;
-
+        
         /*====================*\
         |*   Runtime memory   *|
         \*====================*/
@@ -92,7 +97,7 @@ public class PlayerMovementModifier : Modification
 
             // Iterate over ModificationManager
             // --------------------------------
-            foreach(Modification modification in m_modificationTarget.GetModificationManager().GetModifications())
+            foreach(Modification modification in m_modificationManager.GetModifications())
             {
                 // Skip (No SpeedModifier)
                 // -----------------------

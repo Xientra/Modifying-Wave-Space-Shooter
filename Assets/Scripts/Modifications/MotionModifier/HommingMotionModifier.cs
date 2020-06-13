@@ -33,6 +33,10 @@ public class HommingMotionModifier : MotionModifier
         protected override Vector3 ComputeJitter()    { return Vector3.zero; }
         protected override float ComputeRotation() 
         {
+            // Early exit (No target specified)
+            // --------------------------------
+            if (m_hommingTarget == null) return 0;
+
             // Compute vecToTarget
             // -------------------
         	Vector3 vecToTarget = m_hommingTarget.position - m_modificationTarget.transform.position;

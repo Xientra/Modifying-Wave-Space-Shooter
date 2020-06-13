@@ -52,7 +52,17 @@ public class WaveController : MonoBehaviour
 		}
 	}
 
-	private void SpawnWave()
+    /*=============================*\
+    |*   Public Member Functions   *|
+    \*=============================*/
+
+        /*============*\
+        |*   Getter   *|
+        \*============*/
+
+        public GameObject[] GetActiveEnemies() { return activeEnemies; }
+
+    private void SpawnWave()
 	{
 		waveActive = true;
 

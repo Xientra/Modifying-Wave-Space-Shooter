@@ -34,7 +34,6 @@ public class Projectile : ModificationObject
 
         HommingMotionModifier hommingModifier = new HommingMotionModifier();
         hommingModifier.SetModificationTarget(this);
-        hommingModifier.SetHommingTarget(target);
         m_modificationManager.AddModification(hommingModifier);
 
         //SpeedModifier speedModifier = new SpeedModifier();
@@ -48,9 +47,7 @@ public class Projectile : ModificationObject
 	{
 		onStartCallback?.Invoke();
 	}
-
-    public Transform target = null;
-
+    
     /*============*\
     |*   Events   *|
     \*============*/

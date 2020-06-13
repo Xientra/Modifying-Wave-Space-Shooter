@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider))]
-public class Player : MonoBehaviour, IDamagable
+public class Player : ModificationObject, IDamagable
 {
 	public static Player Instance { get; private set; }
 

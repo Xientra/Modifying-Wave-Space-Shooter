@@ -20,7 +20,7 @@ public class ModificationManager : MonoBehaviour
     |*   Unity Functions   *|
     \*=====================*/
     
-    void FixedUpdate()
+    void Update()
     {
         // Iterate over Modifications
         // --------------------------
