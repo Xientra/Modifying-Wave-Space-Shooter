@@ -81,12 +81,16 @@ public class HommingTargetManager : MonoBehaviour
 
             // Compute distance to enemy
             // -------------------------
-            float distanceToEnemy = (m_nextTarget.transform.position - m_modificationObject.transform.position).magnitude;
+            float distanceToEnemy = float.MaxValue;
 
             // Find closest enemy
             // ------------------
             foreach(GameObject enemy in activeEnemies)
             {
+                // Skip ( enemy null )
+                // -------------------
+                if (enemy == null) continue;
+
                 // Compute distance to enemy
                 // -------------------------
                 float nextDistanceToEnemy = (enemy.transform.position - m_modificationObject.transform.position).magnitude;
