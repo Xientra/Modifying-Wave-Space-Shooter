@@ -29,6 +29,8 @@ public class ShootingEnemy : Enemy
 
 	private void FixedUpdate()
 	{
+		Vector3 toMove = transform.position;
+
 		if (target != null)
 		{
 			// accelerate if to far away accelerate backwarts if to close
@@ -51,17 +53,12 @@ public class ShootingEnemy : Enemy
 			// Rotate towards point before player
 			transform.forward = Vector3.RotateTowards(transform.forward, (-transform.position + target.transform.position).normalized, rotationSpeed, 0);
 
-			// move to prefferedDistance in player direction
-			Vector3 toMove = transform.position + (transform.forward * speed);
-
 			// start circling if close enougth
 			if (DistanceToPlayer() < maxPreferredDistance)
 			{
 				if (sidewaySpeed > maxSpeed / 2) sidewaySpeed -= acceleration;
 				if (sidewaySpeed < maxSpeed / 2) sidewaySpeed += acceleration;
 
-				// move sideways
-				toMove += transform.right * sidewaySpeed;
 
 				// shoot if cooldown is 0
 				currentCooldown -= Time.fixedDeltaTime;
@@ -75,10 +72,16 @@ public class ShootingEnemy : Enemy
 
 			// always reduce cooldown a little bit
 			currentCooldown -= Time.fixedDeltaTime;
-
-			// apply movement
-			rb.MovePosition(toMove);
 		}
+
+		// move to prefferedDistance in player direction
+		toMove += transform.forward * speed;
+
+		// move sideways
+		toMove += transform.right * sidewaySpeed;
+
+		// apply movement
+		rb.MovePosition(toMove);
 	}
 
 	private void CheckShoot()
