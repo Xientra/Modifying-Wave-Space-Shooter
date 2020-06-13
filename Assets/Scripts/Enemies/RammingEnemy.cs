@@ -13,9 +13,8 @@ public class RammingEnemy : Enemy
 
 			// accelerate
 			if (speed < maxSpeed) speed += acceleration;
-
-			// move towards player
-			rb.MovePosition(transform.position + transform.forward * speed);
 		}
+		// apply movement
+		rb.MovePosition(transform.position + transform.forward * speed);
 	}
 }
