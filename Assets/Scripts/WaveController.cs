@@ -23,7 +23,7 @@ public class WaveController : MonoBehaviour
 
 	void Start()
 	{
-		
+
 	}
 
 	void Update()
@@ -48,30 +48,39 @@ public class WaveController : MonoBehaviour
 
 	private void SpawnWave()
 	{
+		int enemyCount = 10 * waveNumber;
+
 		activeEnemies = new GameObject[10 * waveNumber];
 
-		for (int i = 0; i < 10 * waveNumber; i++)
+		int rammingEnemyCount = Random.Range(0, enemyCount + 1);
+
+		int arrIndex = 0;
+
+		// spawn all ramming enemies
+		for (int i = 0; i < rammingEnemyCount; i++)
 		{
-			float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
-			float rndRotation = Random.Range(0f, 360f);
-
-			// get randomly rotated vector
-			Vector3 rndPos = Quaternion.AngleAxis(rndRotation, Vector3.up) * Vector3.forward;
-
-			// scale vector
-			rndPos *= rndDistance;
-
-			// rndPos relative to Player
-			rndPos += playerObject.transform.position;
-
 			// create enemy
-			//GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, rndPos, shootingEnemyPrefab.transform.rotation);
-			GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, rndPos, rammingEnemyPrefab.transform.rotation);
+			GameObject enemyGO = Instantiate(rammingEnemyPrefab.gameObject, GetRandomPositionAroundPlayer(), rammingEnemyPrefab.transform.rotation);
+			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
+
+			// set enemy to current wave
+			activeEnemies[arrIndex] = enemyGO;
+			arrIndex++;
+		}
+
+		// spawn all shooting enemies
+		for (int i = 0; i < enemyCount - rammingEnemyCount; i++)
+		{
+			// create enemy
+			GameObject enemyGO = Instantiate(shootingEnemyPrefab.gameObject, GetRandomPositionAroundPlayer(), shootingEnemyPrefab.transform.rotation);
 			enemyGO.GetComponent<Enemy>().SetTarget(playerObject);
 
 			// set enemy to current wave
 			activeEnemies[i] = enemyGO;
+			arrIndex++;
 		}
+
+		waveNumber++;
 	}
 
 	private bool NoActiveEnemies()
@@ -83,5 +92,21 @@ public class WaveController : MonoBehaviour
 		}
 
 		return true;
+	}
+
+	private Vector3 GetRandomPositionAroundPlayer() {
+		float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
+		float rndRotation = Random.Range(0f, 360f);
+
+		// get randomly rotated vector
+		Vector3 rndPos = Quaternion.AngleAxis(rndRotation, Vector3.up) * Vector3.forward;
+
+		// scale vector
+		rndPos *= rndDistance;
+
+		// rndPos relative to Player
+		rndPos += playerObject.transform.position;
+
+		return rndPos;
 	}
 }
