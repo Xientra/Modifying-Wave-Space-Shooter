@@ -6,17 +6,24 @@ public class PiercingModifier : Modification
 {
 	private int additionalHits = 2;
 
-	private bool applied = false;
+	Projectile target;
 
-	public override void ApplyModification()
+	public override void SetModificationTarget(ModificationObject modificationTarget)
 	{
-		if (applied == false)
+		base.SetModificationTarget(modificationTarget);
+
+		if (m_modificationTarget is Projectile)
 		{
-			if (m_modificationTarget is Projectile)
-			{
-				((Projectile)m_modificationTarget).hitAmount += additionalHits;
-			}
-			applied = true;
+			target = (Projectile)m_modificationTarget;
+			target.onStartCallback += AddHits;
+		}
+	}
+
+	private void AddHits() {
+		if (m_modificationTarget is Projectile)
+		{
+			target.hitAmount += additionalHits;
+			Debug.Log("addotional hits");
 		}
 	}
 }
