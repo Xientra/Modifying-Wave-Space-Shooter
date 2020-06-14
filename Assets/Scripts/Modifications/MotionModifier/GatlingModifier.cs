@@ -1,8 +1,8 @@
-﻿/*==========================*\
-|*   CLASS: SpeedModifier   *|
-\*==========================*/
+﻿/*============================*\
+|*   CLASS: GatlingModifier   *|
+\*============================*/
 
-public class SpeedModifier : Modification
+public class GatlingModifier : Modification
 {
     /*=============================*\
     |*   Public Member Functions   *|
@@ -28,5 +28,5 @@ public class SpeedModifier : Modification
         |*   Input Memory   *|
         \*==================*/
 
-        private float m_additionalSpeed = 1.5f; 
+        private float m_additionalSpeed = 1; 
 }

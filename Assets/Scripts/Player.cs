@@ -51,7 +51,13 @@ public class Player : ModificationObject, IDamagable
 		{
 			Shoot();
 
-			cooldown = 1 / shotsPerSecond;
+            // Add gatling modifier
+            // --------------------
+            float fireRate = 0;
+            List<GatlingModifier> gatlings = m_modificationManager.CollectModifiers<GatlingModifier>();
+            foreach (GatlingModifier gatling in gatlings) fireRate += gatling.GetSpeed();
+
+			cooldown = 1 / ( shotsPerSecond + fireRate);
 		}
 
         // On Inventory ButtonUp

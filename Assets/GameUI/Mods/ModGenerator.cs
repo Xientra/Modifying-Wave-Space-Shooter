@@ -64,8 +64,11 @@ public class ModGenerator : MonoBehaviour
 			case ModType.Piercing:
                 mod = new PiercingModifier();
                 break;
-			case ModType.Speed:
+            case ModType.Speed:
                 mod = new SpeedModifier();
+                break;
+			case ModType.Gatling:
+                mod = new GatlingModifier();
                 break;
             case ModType.ZickZack:
                 mod = new ZickZackMotionModifier();
@@ -90,7 +93,7 @@ public class ModGenerator : MonoBehaviour
 
 public enum ModType
 {
-    HommingMotion, Piercing, Speed, ZickZack, Shield, ChainHit
+    HommingMotion, Piercing, Speed, Gatling, ZickZack, Shield, ChainHit
 }
 
 [System.Serializable]
