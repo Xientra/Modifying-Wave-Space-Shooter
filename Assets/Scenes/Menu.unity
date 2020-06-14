@@ -2816,8 +2816,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Created during the Summer SemesterGameJam 2020\n\nArt: Feuerschn\xE4pper,
-    Krokogator5\nProgramming: BloodyCannon, Bullzeye, Nat21, Xientra"
+  m_text: "Created during the Summer SemesterGameJam 2020\n\nArt: Feuerschn\xE4pper#9769,
+    krokogator5#6511\nProgramming: BloodyCannon, Bullzeye, Nathalie, Xientra#4441"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2891,10 +2891,10 @@ MonoBehaviour:
   m_margin: {x: 399.96927, y: 53.793655, z: -397.43933, w: 67.23877}
   m_textInfo:
     textComponent: {fileID: 1974870295}
-    characterCount: 132
+    characterCount: 150
     spriteCount: 0
     spaceCount: 14
-    wordCount: 14
+    wordCount: 17
     linkCount: 0
     lineCount: 4
     pageCount: 1
