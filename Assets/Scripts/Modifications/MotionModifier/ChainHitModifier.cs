@@ -29,16 +29,19 @@ public class ChainHitModifier : Modification
 		}
 	}
 
-	private void RotateToNextEnemy(Collision collision)
+	private void RotateToNextEnemy(Projectile theProjectileThatHit, Collision collision)
 	{
-		// get neares enemy to this projectile
-		GameObject nearestEnemy = GetNearesEnemyToPoint(target.transform.position, collision.gameObject);
+		if (target == theProjectileThatHit)
+		{
+			// get neares enemy to this projectile
+			GameObject nearestEnemy = GetNearesEnemyToPoint(target.transform.position, collision.gameObject);
 
-		// then calcualte vector pointing it thats enemy direction and set this projectiles rotation to the new direction
-		if (nearestEnemy != null)
-			target.transform.forward = (-target.transform.position + nearestEnemy.transform.position).normalized;
+			// then calcualte vector pointing it thats enemy direction and set this projectiles rotation to the new direction
+			if (nearestEnemy != null)
+				target.transform.forward = (-target.transform.position + nearestEnemy.transform.position).normalized;
 
-		Physics.IgnoreCollision(target.GetComponent<Collider>(), collision.collider);
+			Physics.IgnoreCollision(target.GetComponent<Collider>(), collision.collider);
+		}
 	}
 
 	public GameObject GetNearesEnemyToPoint(Vector3 point, GameObject notThisOne)
