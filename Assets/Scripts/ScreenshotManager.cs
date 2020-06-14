@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ScreenshotManager : MonoBehaviour
 {
+	public int superSize = 1;
 	private int index = 0;
 
 	private void Update()
@@ -33,7 +34,7 @@ public class ScreenshotManager : MonoBehaviour
 		while (File.Exists(filename));
 
 		Debug.Log("Screenshot done!");
-		ScreenCapture.CaptureScreenshot(filename);
+		ScreenCapture.CaptureScreenshot(filename, superSize);
 	}
 }
 
