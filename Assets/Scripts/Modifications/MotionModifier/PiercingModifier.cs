@@ -23,7 +23,6 @@ public class PiercingModifier : Modification
 		if (m_modificationTarget is Projectile)
 		{
 			target.hitAmount += additionalHits;
-			Debug.Log("addotional hits");
 		}
 	}
 }
