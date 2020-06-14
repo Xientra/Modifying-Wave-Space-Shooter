@@ -12,23 +12,20 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     protected virtual void Start()
 	{
 		transform.LookAt(target.transform.position);
-		// defaultMaxSpeed = maxSpeed;
-	}
+        // defaultMaxSpeed = maxSpeed;
+
+        trailRenderer = trailRendererChildObj.GetComponent<TrailRenderer>();
+    }
 
     private void Update()
     {
 
-        trailRendererChildObj.SetActive(false);
+        
         if ((-transform.position + target.transform.position).magnitude > maxDistanceToPlayer)
         {
             transform.position = WaveController.Instance.GetRandomPositionAroundPlayer();
+            trailRenderer.Clear();
         }
-    }
-
-    private IEnumerator ActivateTralRenderer()
-    {
-        yield return new WaitForEndOfFrame();
-        trailRendererChildObj.SetActive(true);
     }
 
     /*============*\
@@ -109,6 +106,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	    [SerializeField] protected float rotationSpeed = 0.1f;
         [SerializeField] protected float maxDistanceToPlayer = 50f;
         [SerializeField] GameObject trailRendererChildObj;
+        private TrailRenderer trailRenderer;
 
         /*====================*\
         |*   Runtime memory   *|
