@@ -249,6 +249,8 @@ MonoBehaviour:
   acceleration: 0.02
   maxSpeed: 0.4
   rotationSpeed: 0.05
+  maxDistanceToPlayer: 55
+  trailRendererChildObj: {fileID: 351801203743173463}
   onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
   dropChance: 0.1
