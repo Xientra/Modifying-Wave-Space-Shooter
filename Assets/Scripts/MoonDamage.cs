@@ -12,6 +12,11 @@ public class MoonDamage : ApplyDamageOnHit
 		if (t > 0) t -= Time.deltaTime;
 	}
 
+	protected override void OnTriggerEnter(Collider other)
+	{
+		// DO NOTHING
+	}
+
 	protected void OnCollisionEnter(Collision collision)
 	{
 		//collider.attachedRigidbody.velocity;
