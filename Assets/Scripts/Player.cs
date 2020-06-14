@@ -245,8 +245,8 @@ public class Player : ModificationObject, IDamagable
 				{
 					// Shield did absorb all damage
 					shield.SetShieldValue(val - dmg);
-					Debug.Log(shield + " : " + (val - dmg));
-					break;
+					dmg = 0;
+					break; //don't return here -> maybe some shields are exhausted
 				} else
 				{
 					// Too much damage, shield exhausted

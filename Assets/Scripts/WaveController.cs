@@ -101,7 +101,6 @@ public class WaveController : MonoBehaviour
 
 		int enemyCount = Mathf.RoundToInt(factor * Mathf.Pow(waveNumber, exponent) + summand);
         int meteroidCount = enemyCount;
-        Debug.Log(enemyCount);
 		activeEnemies = new GameObject[enemyCount];
 
 		int rammingEnemyCount = UnityEngine.Random.Range(0, enemyCount + 1);
