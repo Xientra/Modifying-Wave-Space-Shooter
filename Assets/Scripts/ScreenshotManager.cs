@@ -14,10 +14,12 @@ public class ScreenshotManager : MonoBehaviour
 		{
 			MakeScreenshot();
 		}
+#if UNITY_EDITOR
 		if (Input.GetMouseButtonDown(1))
 		{
 			EditorApplication.isPaused = !EditorApplication.isPaused;
 		}
+#endif
 	}
 
 	public void MakeScreenshot()
