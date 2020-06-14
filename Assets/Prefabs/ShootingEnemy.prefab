@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 791916207388869078}
   - component: {fileID: 5114810901190869108}
   - component: {fileID: 1802998168665364646}
+  - component: {fileID: 4293807825126567307}
   m_Layer: 8
   m_Name: ShootingEnemy
   m_TagString: Enemy
@@ -215,10 +216,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f41fdd86d66c24f89673420e34c827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4293807825126567307}
+        m_TargetAssemblyTypeName: SpawnOnDestroy, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   rb: {fileID: 5114810901190869108}
   acceleration: 0.05
   maxSpeed: 0.3
   rotationSpeed: 0.1
+  maxDistanceToPlayer: 55
+  trailRendererChildObj: {fileID: 124965787744521836}
   onDeathEffect: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
   dropChance: 0.1
@@ -229,6 +247,20 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4412787295861057012, guid: 298bdeab5c59b2b428f3e14a40a0160c,
     type: 3}
   cooldown: 3
+--- !u!114 &4293807825126567307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802998168665364645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f34982a5a8e1b64ebbc82c41f1afa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 3273246638559541948, guid: 24e3c29917975224fa2e22d03b552f5a,
+    type: 3}
 --- !u!1001 &7986777528394938655
 PrefabInstance:
   m_ObjectHideFlags: 0

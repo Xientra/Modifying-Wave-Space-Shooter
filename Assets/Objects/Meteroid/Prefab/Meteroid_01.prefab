@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1268270252347659089}
   - component: {fileID: -8414849236606918691}
   - component: {fileID: -6485330338732759388}
+  - component: {fileID: -8214739316990939467}
   m_Layer: 0
   m_Name: Meteroid_01
   m_TagString: Untagged
@@ -211,3 +212,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_angle: 0.2
+--- !u!114 &-8214739316990939467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231670120563692524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d10efdc1f62da7469e19d942dc1f82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
