@@ -4,12 +4,16 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
+#pragma warning disable 0649
+
     [SerializeField]
     private GameObject instructions;
     [SerializeField]
     private GameObject menu;
     [SerializeField]
     private GameObject logo;
+
+#pragma warning restore 0649
 
     public void PlayGame()
     {

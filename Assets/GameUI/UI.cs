@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+#pragma warning disable 0649
+
     [SerializeField]
     private GameObject gameOverCanvas;
     [SerializeField]
     private GameObject gameUICanvas;
     [SerializeField]
     private TMPro.TextMeshProUGUI highscore;
+    
+#pragma warning restore 0649
 
     private void Start()
     {

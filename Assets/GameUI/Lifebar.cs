@@ -3,9 +3,11 @@ using UnityEngine.UI;
 
 public class Lifebar : MonoBehaviour
 {
+#pragma warning disable 0649
     [SerializeField]
     private Image image;
     private int maxValue;
+#pragma warning restore 0649
 
     void Start()
     {

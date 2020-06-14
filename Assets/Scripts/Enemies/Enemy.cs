@@ -105,7 +105,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 	    [SerializeField] protected float maxSpeed      = 1f;
 	    [SerializeField] protected float rotationSpeed = 0.1f;
         [SerializeField] protected float maxDistanceToPlayer = 50f;
-        [SerializeField] GameObject trailRendererChildObj;
+        public GameObject trailRendererChildObj;
         private TrailRenderer trailRenderer;
 
         /*====================*\

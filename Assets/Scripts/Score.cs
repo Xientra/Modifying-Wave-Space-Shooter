@@ -53,5 +53,5 @@ public class Score : MonoBehaviour
     
     private float transparency = 0;
     private Vector3 startPosition = default;
-    private bool once = true;
+    //private bool once = true;
 }

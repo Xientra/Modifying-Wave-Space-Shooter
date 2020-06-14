@@ -4,7 +4,6 @@ using UnityEngine;
 public class ChainHitModifier : Modification
 {
 	private int additionalHits = 1;
-	private bool doOnce = true;
 
 	private Projectile target;
 
@@ -27,7 +26,6 @@ public class ChainHitModifier : Modification
 		if (m_modificationTarget is Projectile)
 		{
 			target.hitAmount += additionalHits;
-			Debug.Log("addotional hits");
 		}
 	}
 

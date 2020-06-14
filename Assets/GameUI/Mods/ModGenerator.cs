@@ -4,11 +4,14 @@ public class ModGenerator : MonoBehaviour
 {
     public static ModGenerator Instance { get; private set; }
 
+
+#pragma warning disable 0649
     [SerializeField]
     private ModDrop[] drops;
 
     [SerializeField]
     private ModPrefab basePrefab;
+#pragma warning restore 0649
 
     private void Awake()
     {
@@ -93,7 +96,9 @@ public enum ModType
 [System.Serializable]
 class ModDrop
 {
+#pragma warning disable 0649
     public ModType typ;
     public Sprite icon;
 	public bool playerMod;
+#pragma warning restore 0649
 }
