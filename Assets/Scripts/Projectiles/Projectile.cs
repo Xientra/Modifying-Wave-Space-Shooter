@@ -95,7 +95,7 @@ public class Projectile : ModificationObject
             Destroy(go, 2);
         }
 
-        onHitCallback?.Invoke(hit);
+        onHitCallback?.Invoke(this, hit);
         if (hitAmount == 0)
             Destroy(gameObject);
         else hitAmount--;
@@ -108,7 +108,7 @@ public class Projectile : ModificationObject
 	public delegate void OnStartCallback();
 	public OnStartCallback onStartCallback;
 
-    public delegate void OnHitCallback(Collision collider);
+    public delegate void OnHitCallback(Projectile theOneThatHit, Collision collider);
     public OnHitCallback onHitCallback;
 
     public delegate void OnKillCallback();
