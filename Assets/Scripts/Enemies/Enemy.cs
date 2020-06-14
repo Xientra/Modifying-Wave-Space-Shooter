@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Enemy : MonoBehaviour, IDamagable
@@ -28,6 +29,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             Die();
 		}
 	}
+
+    public UnityEvent onDie;
 
     /*=============================*\
     |*   Public Member Functions   *|
@@ -70,6 +73,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
             // Destory this
             // ------------
+            onDie.Invoke();
 		    Destroy(gameObject);
 	    }
 

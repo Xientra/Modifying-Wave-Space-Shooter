@@ -9,6 +9,7 @@ using System.Collections;
 \*==================*/
 
 using UnityEngine;
+using UnityEngine.Events;
 
 /*=========================*\
 |*   CLASS: ExplodeOnHit   *|
@@ -35,6 +36,7 @@ public class ExplodeOnHit : MonoBehaviour
         // ---------------
         GameObject explosion = Instantiate(m_explosion);
         explosion.transform.position = transform.position;
+        onDestroy.Invoke();
 
         // Destroy this
         // ------------
@@ -53,6 +55,7 @@ public class ExplodeOnHit : MonoBehaviour
         [SerializeField] private string m_tag            = "";
         [SerializeField] private GameObject m_explosion  = null;
         [SerializeField] private bool m_destroyHitObject = true;
+        public UnityEvent onDestroy = null;
 
         /*====================*\
         |*   Runtime memory   *|
