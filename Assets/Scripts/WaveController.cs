@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -14,8 +13,8 @@ public class WaveController : MonoBehaviour
 
 	public Enemy rammingEnemyPrefab;
 	public Enemy shootingEnemyPrefab;
-    public List<GameObject> meteroidPrefabs;
     public TMP_Text m_scoreText = null;
+    public GameObject[] meteroidPrefabs;
 
 	public bool isActive = true;
 
@@ -111,35 +110,32 @@ public class WaveController : MonoBehaviour
 
 		int enemyCount = Mathf.RoundToInt(factor * Mathf.Pow(waveNumber, exponent) + summand);
         int meteroidCount = enemyCount;
-        Debug.Log(enemyCount);
 		activeEnemies = new GameObject[enemyCount];
 
-		int rammingEnemyCount = UnityEngine.Random.Range(0, enemyCount + 1);
+		int rammingEnemyCount = Random.Range(0, enemyCount + 1);
 
 		int arrIndex = 0;
 
 		// spawn all ramming enemies
 		for (int i = 0; i < rammingEnemyCount; i++)
 		{
-			StartCoroutine(SpawnEnemy(rammingEnemyPrefab, UnityEngine.Random.Range(0f, maxSpawnDelay), arrIndex));
+			StartCoroutine(SpawnEnemy(rammingEnemyPrefab, Random.Range(0f, maxSpawnDelay), arrIndex));
 			arrIndex++;
 		}
 
 		// spawn all shooting enemies
 		for (int i = 0; i < enemyCount - rammingEnemyCount; i++)
 		{
-			StartCoroutine(SpawnEnemy(shootingEnemyPrefab, UnityEngine.Random.Range(0f, maxSpawnDelay), arrIndex));
+			StartCoroutine(SpawnEnemy(shootingEnemyPrefab, Random.Range(0f, maxSpawnDelay), arrIndex));
 			arrIndex++;
 		}
 
         // spawn all meteroids
-        var rnd = new System.Random();
         for (int i = 0; i < meteroidCount; i++)
 		{
-            
-            // Select meteroid
-            // ---------------
-            GameObject meteroid         = Instantiate(meteroidPrefabs[rnd.Next(0, meteroidPrefabs.Count)]);
+			// Select meteroid
+			// ---------------
+			GameObject meteroid = Instantiate(meteroidPrefabs.Random());
             meteroid.transform.position = GetRandomPositionAroundPlayer();
 		}
 
@@ -158,8 +154,8 @@ public class WaveController : MonoBehaviour
 	}
 
 	private Vector3 GetRandomPositionAroundPlayer() {
-		float rndDistance = UnityEngine.Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
-		float rndRotation = UnityEngine.Random.Range(0f, 360f);
+		float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
+		float rndRotation = Random.Range(0f, 360f);
 
 		// get randomly rotated vector
 		Vector3 rndPos = Quaternion.AngleAxis(rndRotation, Vector3.up) * Vector3.forward;
