@@ -36,11 +36,11 @@ public class Projectile : ModificationObject
         m_modificationManager.AddModification(pm);
         */
 
-        
+        /*
         ChainHitModifier cm = new ChainHitModifier();
         cm.SetModificationTarget(this);
         m_modificationManager.AddModification(cm);
-        
+        */
 
         /*
         ZickZackMotionModifier zickzackModifier = new ZickZackMotionModifier();

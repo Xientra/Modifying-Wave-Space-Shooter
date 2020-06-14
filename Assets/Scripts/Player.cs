@@ -310,6 +310,13 @@ public class Player : ModificationObject, IDamagable
                 // Write modifier to projectile
                 // ----------------------------
                 prjt.GetModificationManager().AddModification(mod);
+
+				if (mod is ChainHitModifier) 
+				{
+					ChainHitModifier chm = new ChainHitModifier();
+					chm.SetModificationTarget(prjt);
+					prjt.GetModificationManager().AddModification(chm);
+				}
             }
 
             // Disable player collision
