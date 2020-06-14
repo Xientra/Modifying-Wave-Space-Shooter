@@ -317,7 +317,13 @@ public class Player : ModificationObject, IDamagable
 					chm.SetModificationTarget(prjt);
 					prjt.GetModificationManager().AddModification(chm);
 				}
-            }
+				if (mod is PiercingModifier)
+				{
+					PiercingModifier pm = new PiercingModifier();
+					pm.SetModificationTarget(this);
+					prjt.GetModificationManager().AddModification(pm);
+				}
+			}
 
             // Disable player collision
             // ------------------------
