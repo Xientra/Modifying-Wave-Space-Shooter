@@ -22,16 +22,13 @@ public class Player : ModificationObject, IDamagable
 
     void Awake() 
 	{
-        // Create Player Singleton
-        // -----------------------
-		if (Instance == null)
+		// Create Player Singleton
+		// -----------------------
+		if (Instance != null)
 		{
-			Instance = this;
+			Destroy(Instance);
 		}
-		else
-		{
-			Destroy(gameObject);
-		}
+		Instance = this;
 	}
     void Start()
 	{
@@ -255,7 +252,6 @@ public class Player : ModificationObject, IDamagable
 					// Too much damage, shield exhausted
 					dmg -= val;
 					exhaustedShields.Add(shield);
-					Debug.Log("Exhausted!");
 				}
 			}
 			foreach (ShieldModifier shield in exhaustedShields)

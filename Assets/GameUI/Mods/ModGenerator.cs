@@ -12,14 +12,11 @@ public class ModGenerator : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Destroy(Instance);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+		Instance = this;
 
         basePrefab.gameObject.SetActive(false);
     }
