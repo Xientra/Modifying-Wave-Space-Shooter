@@ -153,7 +153,7 @@ public class WaveController : MonoBehaviour
 		return true;
 	}
 
-	private Vector3 GetRandomPositionAroundPlayer() {
+	public Vector3 GetRandomPositionAroundPlayer() {
 		float rndDistance = Random.Range(minSpawnDistanceToPlayer, maxSpawnDistanceToPlayer);
 		float rndRotation = Random.Range(0f, 360f);
 

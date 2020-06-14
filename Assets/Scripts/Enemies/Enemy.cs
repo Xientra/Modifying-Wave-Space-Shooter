@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,11 +15,27 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 		// defaultMaxSpeed = maxSpeed;
 	}
 
+    private void Update()
+    {
+
+        trailRendererChildObj.SetActive(false);
+        if ((-transform.position + target.transform.position).magnitude > maxDistanceToPlayer)
+        {
+            transform.position = WaveController.Instance.GetRandomPositionAroundPlayer();
+        }
+    }
+
+    private IEnumerator ActivateTralRenderer()
+    {
+        yield return new WaitForEndOfFrame();
+        trailRendererChildObj.SetActive(true);
+    }
+
     /*============*\
     |*   Events   *|
     \*============*/
 
-	void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
@@ -90,6 +107,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         [SerializeField] protected float acceleration  = 0.1f;
 	    [SerializeField] protected float maxSpeed      = 1f;
 	    [SerializeField] protected float rotationSpeed = 0.1f;
+        [SerializeField] protected float maxDistanceToPlayer = 50f;
+        [SerializeField] GameObject trailRendererChildObj;
 
         /*====================*\
         |*   Runtime memory   *|
