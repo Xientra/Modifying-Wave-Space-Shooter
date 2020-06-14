@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class WaveController : MonoBehaviour
 	public Enemy rammingEnemyPrefab;
 	public Enemy shootingEnemyPrefab;
     public List<GameObject> meteroidPrefabs;
+    public TMP_Text m_scoreText = null;
 
 	public bool isActive = true;
 
@@ -36,8 +38,16 @@ public class WaveController : MonoBehaviour
 
 	private int score;
 	public int Score { get => score; private set { score = value; onScoreChange?.Invoke(); } }
-	public void AddEnemyKillScore() { Score += 10; }
-	public void AddWaveScore(int waveNumber) { Score += 100 * waveNumber; }
+	public void AddEnemyKillScore() 
+    { 
+        Score += 10;
+        m_scoreText.text = Score.ToString();    
+    }
+	public void AddWaveScore(int waveNumber) 
+    { 
+        Score += 100 * waveNumber; 
+        m_scoreText.text = Score.ToString();    
+    }
 
 	public delegate void OnScoreChange();
 	public OnScoreChange onScoreChange;
@@ -126,6 +136,7 @@ public class WaveController : MonoBehaviour
         var rnd = new System.Random();
         for (int i = 0; i < meteroidCount; i++)
 		{
+            
             // Select meteroid
             // ---------------
             GameObject meteroid         = Instantiate(meteroidPrefabs[rnd.Next(0, meteroidPrefabs.Count)]);

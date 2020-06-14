@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 3630193543898496655}
   - component: {fileID: 8412287613573770018}
   - component: {fileID: 3652564232561651078}
+  - component: {fileID: -4289688833967156474}
   m_Layer: 8
   m_Name: RammingEnemy
   m_TagString: Enemy
@@ -229,7 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be0fe89a17e534d85b88bc3cf1174d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   rb: {fileID: 8412287613573770018}
   acceleration: 0.02
   maxSpeed: 0.4
@@ -239,6 +239,20 @@ MonoBehaviour:
   dropChance: 0.1
   collisionDamage: 20
   health: 100
+--- !u!114 &-4289688833967156474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652564232561651076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f34982a5a8e1b64ebbc82c41f1afa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 3273246638559541948, guid: 24e3c29917975224fa2e22d03b552f5a,
+    type: 3}
 --- !u!1001 &8883105622793841641
 PrefabInstance:
   m_ObjectHideFlags: 0
