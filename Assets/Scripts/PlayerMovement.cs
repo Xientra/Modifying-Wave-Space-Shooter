@@ -68,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
             // --------------------------------
             foreach(SpeedModifier modification in m_modificationTarget.GetModificationManager().CollectModifiers<SpeedModifier>())
             {
+                // Skip (No Player Modifier)
+                // -------------------------
+                if (!modification.IsPlayerMod()) continue;
+
                 // Multiply speedModifier with finalSpeed
                 // --------------------------------------
                 finalSpeed *= modification.GetSpeed();

@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 4412787295861057014}
   - component: {fileID: -4544630952133106881}
   - component: {fileID: 5656825090681105542}
+  - component: {fileID: 4485691325365914504}
   m_Layer: 0
   m_Name: Enemy Projectile
   m_TagString: Untagged
@@ -235,6 +236,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_modifications: []
   m_modificationObject: {fileID: -4544630952133106881}
+--- !u!114 &4485691325365914504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412787295861057012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Moon
+  m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  m_destroyHitObject: 0
+  m_destroyThis: 1
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  m_index: 11
 --- !u!1001 &5563820560104039574
 PrefabInstance:
   m_ObjectHideFlags: 0

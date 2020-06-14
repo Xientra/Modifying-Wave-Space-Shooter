@@ -5,7 +5,7 @@ public static class Utils
 	// Return a random item from an array
 	public static T Random<T>(this T[] arr)
 	{
-		return arr[UnityEngine.Random.Range(0, arr.Length)];
+        return arr[UnityEngine.Random.Range(0, arr.Length)];
 	}
 
 	// Return a random item from a list

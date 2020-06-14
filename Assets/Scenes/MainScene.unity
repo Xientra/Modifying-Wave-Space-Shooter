@@ -1490,6 +1490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8474980744756039903, guid: cca9c71eb984aca4c98e1946592f50a6,
         type: 3}
+      propertyPath: meteroidPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474980744756039903, guid: cca9c71eb984aca4c98e1946592f50a6,
+        type: 3}
       propertyPath: m_scoreText
       value: 
       objectReference: {fileID: 1115201139}
@@ -1498,6 +1503,24 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 618654193}
+    - target: {fileID: 8474980744756039903, guid: cca9c71eb984aca4c98e1946592f50a6,
+        type: 3}
+      propertyPath: meteroidPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4231670120563692524, guid: 2edc4d9a00248a84fab3a846a2ff34b0,
+        type: 3}
+    - target: {fileID: 8474980744756039903, guid: cca9c71eb984aca4c98e1946592f50a6,
+        type: 3}
+      propertyPath: meteroidPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 276307865499777167, guid: 8ab1e7f37de9a9b448c573c83b45a6a8,
+        type: 3}
+    - target: {fileID: 8474980744756039903, guid: cca9c71eb984aca4c98e1946592f50a6,
+        type: 3}
+      propertyPath: meteroidPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8539508476557259946, guid: 6283a7ef562a31c46af0bb87109c9763,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cca9c71eb984aca4c98e1946592f50a6, type: 3}
 --- !u!1 &1115201137
@@ -2347,7 +2370,7 @@ MonoBehaviour:
     playerMod: 0
   - typ: 4
     icon: {fileID: 21300000, guid: db7c370ccbca0f54a95aa4b4df57ef05, type: 3}
-    playerMod: 0
+    playerMod: 1
   - typ: 5
     icon: {fileID: 21300000, guid: c9eb32f4e6b73624684bbb3bcafe8798, type: 3}
     playerMod: 0

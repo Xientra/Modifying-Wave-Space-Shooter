@@ -40,7 +40,7 @@ public class ExplodeOnHit : MonoBehaviour
 
         // Destroy this
         // ------------
-        Destroy(this.gameObject);    
+        if(m_destroyThis) Destroy(this.gameObject);    
     }
 
     /*==============================*\
@@ -55,6 +55,7 @@ public class ExplodeOnHit : MonoBehaviour
         [SerializeField] private string m_tag            = "";
         [SerializeField] private GameObject m_explosion  = null;
         [SerializeField] private bool m_destroyHitObject = true;
+        [SerializeField] private bool m_destroyThis      = true;
         public UnityEvent onDestroy = null;
 
         /*====================*\

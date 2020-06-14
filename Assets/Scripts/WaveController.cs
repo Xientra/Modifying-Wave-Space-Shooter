@@ -65,7 +65,15 @@ public class WaveController : MonoBehaviour
 
 	void Start()
 	{
-
+        // spawn moon
+        // ----------
+        if (m_moonInstance != null)
+        {
+            Destroy(m_moonInstance);
+            m_moonInstance = null;
+        }
+        m_moonInstance = Instantiate(moon);
+        m_moonInstance.transform.position = GetRandomPositionAroundPlayer();
 	}
 
 	void Update()
@@ -141,6 +149,9 @@ public class WaveController : MonoBehaviour
 
 		waveNumber++;
 	}
+
+    public GameObject moon = null;
+    private GameObject m_moonInstance = null;
 
 	private bool NoActiveEnemies()
 	{

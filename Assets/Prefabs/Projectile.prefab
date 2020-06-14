@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2484256607059695305}
   - component: {fileID: 31520503942274841}
   - component: {fileID: 3450453684988079370}
+  - component: {fileID: 848976853187115763}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -210,6 +211,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_waveController: {fileID: 0}
   m_modificationObject: {fileID: -4544630952133106881}
+  m_nextTarget: {fileID: 0}
+--- !u!114 &848976853187115763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412787295861057012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a1552cf55d8c4096180e5e4f1188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Moon
+  m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
+    type: 3}
+  m_destroyHitObject: 0
+  m_destroyThis: 1
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  m_index: 11
 --- !u!1 &7018361882000624180
 GameObject:
   m_ObjectHideFlags: 0
