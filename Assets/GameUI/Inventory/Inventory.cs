@@ -21,6 +21,17 @@ public class Inventory : MonoBehaviour
 		anim.SetBool("Show", show);
 	}
 
+	public void RemoveMod(Modification mod)
+	{
+		for (int i = 0; i < slots.Length; i++)
+		{
+			if (slots[i].GetMod() == mod)
+			{
+				slots[i].Remove();
+			}
+		}
+	}
+
     // won't do anything for a full inventory
     public bool InsertModification(Modification mod, Sprite icon) 
     {

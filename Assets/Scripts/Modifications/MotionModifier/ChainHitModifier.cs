@@ -4,6 +4,7 @@ using UnityEngine;
 public class ChainHitModifier : Modification
 {
 	private int additionalHits = 1;
+	private bool doOnce = true;
 
 	private Projectile target;
 
@@ -17,13 +18,17 @@ public class ChainHitModifier : Modification
 			target = (Projectile)m_modificationTarget;
 			target.onHitCallback += RotateToNextEnemy;
 
-			target.onStartCallback += SetAdditionalHits;
+			target.onStartCallback += AddHits;
 		}
 	}
 
-	private void SetAdditionalHits()
+	private void AddHits()
 	{
-		target.hitAmount += additionalHits;
+		if (m_modificationTarget is Projectile)
+		{
+			target.hitAmount += additionalHits;
+			Debug.Log("addotional hits");
+		}
 	}
 
 	private void RotateToNextEnemy()

@@ -56,6 +56,10 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 			    prefab.gameObject.SetActive(true);
 		    }
 
+            // Add points
+            // ---------
+            WaveController.Instance.AddEnemyKillScore();
+
             // Create on Death Effect
             // ----------------------
 		    GameObject temp = Instantiate(onDeathEffect, transform.position, onDeathEffect.transform.rotation);

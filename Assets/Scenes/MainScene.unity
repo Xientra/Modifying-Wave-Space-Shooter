@@ -1076,19 +1076,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
         type: 3}
-      propertyPath: shotsPerSecond
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
-        type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 64963495}
-    - target: {fileID: 4060497017742268015, guid: ccecd87761a93df419752083a6bde1d4,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 8008776064130603754, guid: ccecd87761a93df419752083a6bde1d4,
         type: 3}
       propertyPath: m_modificationObject
@@ -2671,7 +2661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -125, y: 20}
+  m_AnchoredPosition: {x: -125, y: 15}
   m_SizeDelta: {x: 250, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8872208940244157837
@@ -2818,7 +2808,7 @@ GameObject:
   - component: {fileID: 8872208940952523156}
   - component: {fileID: 8872208940952523157}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

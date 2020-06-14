@@ -22,17 +22,13 @@ public class Player : ModificationObject, IDamagable
 
     void Awake() 
 	{
-        // Create Player Singleton
-        // -----------------------
-		if (Instance == null)
+		// Create Player Singleton
+		// -----------------------
+		if (Instance != null)
 		{
-			Instance = this;
-			DontDestroyOnLoad(gameObject);
+			Destroy(Instance);
 		}
-		else
-		{
-			Destroy(gameObject);
-		}
+		Instance = this;
 	}
     void Start()
 	{
@@ -239,9 +235,29 @@ public class Player : ModificationObject, IDamagable
             // ----------------------
             List<ShieldModifier> shields = m_modificationManager.CollectModifiers<ShieldModifier>();
 
-            // Decrease initial damage by shield value
-            // ---------------------------------------
-            foreach(ShieldModifier shield in shields) dmg -= shield.GetShieldValue();
+			// Decrease initial damage by shield value
+			// ---------------------------------------
+			List<ShieldModifier> exhaustedShields = new List<ShieldModifier>();
+			foreach (ShieldModifier shield in shields)
+			{
+				int val = shield.GetShieldValue();
+				if (dmg  < val)
+				{
+					// Shield did absorb all damage
+					shield.SetShieldValue(val - dmg);
+					Debug.Log(shield + " : " + (val - dmg));
+					break;
+				} else
+				{
+					// Too much damage, shield exhausted
+					dmg -= val;
+					exhaustedShields.Add(shield);
+				}
+			}
+			foreach (ShieldModifier shield in exhaustedShields)
+			{
+				inventory.RemoveMod(shield);
+			}
 
             // Return resulting damage or zero
             // -------------------------------
