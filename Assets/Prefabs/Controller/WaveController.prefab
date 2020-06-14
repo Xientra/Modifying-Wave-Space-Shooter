@@ -48,10 +48,12 @@ MonoBehaviour:
     type: 3}
   shootingEnemyPrefab: {fileID: 1802998168665364646, guid: 00be488f8007daf4aaf16e60fbfd5241,
     type: 3}
+  m_scoreText: {fileID: 0}
+  meteroidPrefabs: []
   isActive: 1
   minSpawnDistanceToPlayer: 40
   maxSpawnDistanceToPlayer: 50
   maxSpawnDelay: 5
-  factor: 0.05
+  factor: 0.5
   exponent: 2
-  summand: 5
+  summand: 2

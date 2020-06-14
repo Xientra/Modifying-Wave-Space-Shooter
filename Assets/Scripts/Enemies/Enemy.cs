@@ -20,12 +20,12 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     private void Update()
     {
 
-        
-        if ((-transform.position + target.transform.position).magnitude > maxDistanceToPlayer)
-        {
-            transform.position = WaveController.Instance.GetRandomPositionAroundPlayer();
-            trailRenderer.Clear();
-        }
+        if (target != null)
+            if ((-transform.position + target.transform.position).magnitude > maxDistanceToPlayer)
+            {
+                transform.position = WaveController.Instance.GetRandomPositionAroundPlayer();
+                trailRenderer.Clear();
+            }
     }
 
     /*============*\
