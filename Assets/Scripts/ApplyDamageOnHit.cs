@@ -14,7 +14,7 @@ public class ApplyDamageOnHit : MonoBehaviour
     |*   Events   *|
     \*============*/
 
-    void OnTriggerEnter(Collider collider)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
         // Early exit (Wrong tag)
         // ----------------------
@@ -41,6 +41,6 @@ public class ApplyDamageOnHit : MonoBehaviour
         |*   Input Memory   *|
         \*==================*/
         
-        [SerializeField] private string m_tag         = "";
-        [SerializeField] private int m_damage         = 3;
+        [SerializeField] protected string m_tag         = "";
+        [SerializeField] protected int m_damage         = 3;
 }

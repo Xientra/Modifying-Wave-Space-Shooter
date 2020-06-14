@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5133470405708430859}
   - component: {fileID: 6541684631294952765}
   - component: {fileID: 7461578638825808803}
-  - component: {fileID: -1397064603984082835}
-  - component: {fileID: 3938879978789782325}
   - component: {fileID: -5080225515344486621}
+  - component: {fileID: -5538870941757287195}
+  - component: {fileID: 2939382054734328909}
   m_Layer: 0
   m_Name: Moon
   m_TagString: Moon
@@ -94,7 +94,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6646534950295478238}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.00980785
@@ -115,34 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-1397064603984082835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646534950295478238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Player
-  m_damage: 10000
---- !u!114 &3938879978789782325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6646534950295478238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Enemy
-  m_damage: 10000
 --- !u!114 &-5080225515344486621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,3 +128,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 100
+--- !u!114 &-5538870941757287195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646534950295478238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935c8f82480750c41be3b415dceb29ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_damage: 200
+  cooldown: 2
+  maxSpeed: 50
+--- !u!135 &2939382054734328909
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646534950295478238}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009
+  m_Center: {x: -0.0000000018626451, y: 0.00045772214, z: -0.000039954662}
