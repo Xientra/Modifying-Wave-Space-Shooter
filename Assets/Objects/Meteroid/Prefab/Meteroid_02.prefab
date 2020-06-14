@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 1789434258208397658}
   - component: {fileID: 1633922914}
   - component: {fileID: 1633922913}
-  - component: {fileID: -5866756797954950361}
   - component: {fileID: 3826261023834174862}
+  - component: {fileID: -5866756797954950361}
   - component: {fileID: 883694009013022954}
   - component: {fileID: -4341444763054942963}
+  - component: {fileID: 7382093021933467395}
   m_Layer: 0
   m_Name: Meteroid_02
   m_TagString: Untagged
@@ -117,6 +118,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3826261023834174862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276307865499777167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_damage: 20
 --- !u!114 &-5866756797954950361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,21 +147,8 @@ MonoBehaviour:
   m_tag: Player
   m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
+  m_destroyHitObject: 0
   m_index: 5
---- !u!114 &3826261023834174862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276307865499777167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Player
-  m_damage: 2
 --- !u!114 &883694009013022954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +164,7 @@ MonoBehaviour:
   m_tag: Enemy
   m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
+  m_destroyHitObject: 1
   m_index: 8
 --- !u!114 &-4341444763054942963
 MonoBehaviour:
@@ -178,4 +181,18 @@ MonoBehaviour:
   m_tag: Projectile
   m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
+  m_destroyHitObject: 1
   m_index: 7
+--- !u!114 &7382093021933467395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276307865499777167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688245de3ee44074698e46836ae1e249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_angle: 0.2

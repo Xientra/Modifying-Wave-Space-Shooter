@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7891029781579191679}
   - component: {fileID: 5745920726351005245}
   - component: {fileID: 7619044791243448008}
-  - component: {fileID: 1773791589511116925}
   - component: {fileID: 5512617397932529713}
+  - component: {fileID: 1773791589511116925}
   - component: {fileID: -7497889341514600132}
+  - component: {fileID: 4691883320588512806}
   m_Layer: 0
   m_Name: Meteroid_03
   m_TagString: Untagged
@@ -116,6 +117,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5512617397932529713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539508476557259946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_damage: 30
 --- !u!114 &1773791589511116925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,21 +146,8 @@ MonoBehaviour:
   m_tag: Projectile
   m_explosion: {fileID: 4012331270809606605, guid: e72960cb6f6ee934b92bead24125ee76,
     type: 3}
+  m_destroyHitObject: 1
   m_index: 7
---- !u!114 &5512617397932529713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539508476557259946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b23c20a20336fe4fa682de43ac08cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Player
-  m_damage: 3
 --- !u!114 &-7497889341514600132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,4 +163,18 @@ MonoBehaviour:
   m_tag: Player
   m_explosion: {fileID: 4925635524806746280, guid: 62bd7f9867ed007429a107ba1cfc39bb,
     type: 3}
+  m_destroyHitObject: 0
   m_index: 5
+--- !u!114 &4691883320588512806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539508476557259946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688245de3ee44074698e46836ae1e249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_angle: 0.2

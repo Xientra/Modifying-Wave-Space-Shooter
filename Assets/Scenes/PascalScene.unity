@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_modifications: []
+  m_modificationObject: {fileID: 0}
 --- !u!54 &166776788 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2560619768858165102, guid: ccecd87761a93df419752083a6bde1d4,

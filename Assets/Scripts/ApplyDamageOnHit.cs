@@ -14,15 +14,15 @@ public class ApplyDamageOnHit : MonoBehaviour
     |*   Events   *|
     \*============*/
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
         // Early exit (Wrong tag)
         // ----------------------
-        if (collision.transform.tag != m_tag) return;
+        if (collider.transform.tag != m_tag) return;
 
         // Fetch Damageable interface
         // --------------------------
-        IDamagable damageableInterface = collision.gameObject.GetComponent<IDamagable>();
+        IDamagable damageableInterface = collider.gameObject.GetComponent<IDamagable>();
 
         // Early exit (No IDamageable object)
         // ----------------------------------
@@ -40,8 +40,7 @@ public class ApplyDamageOnHit : MonoBehaviour
         /*==================*\
         |*   Input Memory   *|
         \*==================*/
-
-        [SerializeField] private Collision m_collider = null;
+        
         [SerializeField] private string m_tag         = "";
         [SerializeField] private int m_damage         = 3;
 }
