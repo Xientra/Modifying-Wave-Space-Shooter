@@ -156,7 +156,7 @@ public class Player : ModificationObject, IDamagable
 			{
 				homing.SetActive(true);
 			} else
-			if (mod is SpeedModifier)
+			if (mod is GatlingModifier)
 			{
 				gatling.SetActive(true);
 			}
@@ -180,9 +180,9 @@ public class Player : ModificationObject, IDamagable
 				if (CountModifiers<HommingMotionModifier>() == 0)
 					homing.SetActive(false);
 			} else
-			if (mod is SpeedModifier)
+			if (mod is GatlingModifier)
 			{
-				if (CountModifiers<SpeedModifier>() == 0)
+				if (CountModifiers<GatlingModifier>() == 0)
 					gatling.SetActive(false);
 			}
 	}

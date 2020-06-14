@@ -2363,7 +2363,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: f396e411ed1643842a8cfcf9f64e331e, type: 3}
     playerMod: 0
   - typ: 2
-    icon: {fileID: 21300000, guid: 90ef3264fc4852b4b8dfd4f827aeab9f, type: 3}
+    icon: {fileID: 21300000, guid: f89a2bef4152c0c46ad774b0c30117c6, type: 3}
     playerMod: 1
   - typ: 3
     icon: {fileID: 21300000, guid: 94daa697f0e0a6a42973cab9a9f14fbd, type: 3}
