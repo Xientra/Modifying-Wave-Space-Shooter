@@ -31,7 +31,7 @@ public class ChainHitModifier : Modification
 		}
 	}
 
-	private void RotateToNextEnemy()
+	private void RotateToNextEnemy(Collision collision)
 	{
 		// get neares enemy to this projectile
 		GameObject nearestEnemy = GetSecondNearesEnemyToPoint(target.transform.position);
@@ -39,6 +39,8 @@ public class ChainHitModifier : Modification
 		// then calcualte vector pointing it thats enemy direction and set this projectiles rotation to the new direction
 		if (nearestEnemy != null)
 			target.transform.forward = (-target.transform.position + nearestEnemy.transform.position).normalized;
+
+		Physics.IgnoreCollision(target.GetComponent<Collider>(), collision.collider);
 	}
 
 	public GameObject GetSecondNearesEnemyToPoint(Vector3 point)
