@@ -98,6 +98,8 @@ public class Player : ModificationObject, IDamagable
 	    public OnModPickup onModPickup        = null;
         public OnDeath onDeath                = null;
 		public GameObject shield;
+		public GameObject gatling;
+		public GameObject homing;
     
     /*=============================*\
     |*   Public Member Functions   *|
@@ -142,19 +144,42 @@ public class Player : ModificationObject, IDamagable
 		{
 			if (mod is ShieldModifier)
 			{
-				ShowShield(true);
+				shield.SetActive(true);
+			} else
+			if (mod is HommingMotionModifier)
+			{
+				homing.SetActive(true);
+			} else
+			if (mod is SpeedModifier)
+			{
+				gatling.SetActive(true);
 			}
+		}
+
+		// Count all active modifications of a type
+		private int CountModifiers<T>() where T : Modification
+		{
+			return m_modificationManager.CollectModifiers<T>().Count;
 		}
 
 		public void ModWasRemoved(Modification mod)
 		{
 			if (mod is ShieldModifier)
 			{
-				var shieldCount = m_modificationManager.CollectModifiers<ShieldModifier>().Count;
-				if (shieldCount == 0)
-					ShowShield(false);
+				if (CountModifiers<ShieldModifier>() == 0)
+					shield.SetActive(false);
+			} else
+			if (mod is HommingMotionModifier)
+			{
+				if (CountModifiers<HommingMotionModifier>() == 0)
+					homing.SetActive(false);
+			} else
+			if (mod is SpeedModifier)
+			{
+				if (CountModifiers<SpeedModifier>() == 0)
+					gatling.SetActive(false);
 			}
-		}
+	}
 
 		public void ShowShield(bool show)
 		{
@@ -285,6 +310,13 @@ public class Player : ModificationObject, IDamagable
                 // Write modifier to projectile
                 // ----------------------------
                 prjt.GetModificationManager().AddModification(mod);
+
+				if (mod is ChainHitModifier) 
+				{
+					ChainHitModifier chm = new ChainHitModifier();
+					chm.SetModificationTarget(prjt);
+					prjt.GetModificationManager().AddModification(chm);
+				}
             }
 
             // Disable player collision

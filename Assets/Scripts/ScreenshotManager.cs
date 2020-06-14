@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using UnityEditor;
 #if UNITY_EDITOR
-using UnityEngine;
+using UnityEditor;
 #endif
+using UnityEngine;
 
 public class ScreenshotManager : MonoBehaviour
 {
@@ -14,10 +14,12 @@ public class ScreenshotManager : MonoBehaviour
 		{
 			MakeScreenshot();
 		}
+#if UNITY_EDITOR
 		if (Input.GetMouseButtonDown(1))
 		{
 			EditorApplication.isPaused = !EditorApplication.isPaused;
 		}
+#endif
 	}
 
 	public void MakeScreenshot()

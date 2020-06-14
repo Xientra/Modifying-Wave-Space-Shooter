@@ -32,7 +32,7 @@ public class ChainHitModifier : Modification
 	private void RotateToNextEnemy(Collision collision)
 	{
 		// get neares enemy to this projectile
-		GameObject nearestEnemy = GetSecondNearesEnemyToPoint(target.transform.position);
+		GameObject nearestEnemy = GetNearesEnemyToPoint(target.transform.position, collision.gameObject);
 
 		// then calcualte vector pointing it thats enemy direction and set this projectiles rotation to the new direction
 		if (nearestEnemy != null)
@@ -41,26 +41,25 @@ public class ChainHitModifier : Modification
 		Physics.IgnoreCollision(target.GetComponent<Collider>(), collision.collider);
 	}
 
-	public GameObject GetSecondNearesEnemyToPoint(Vector3 point)
+	public GameObject GetNearesEnemyToPoint(Vector3 point, GameObject notThisOne)
 	{
 
 		GameObject[] enemies = WaveController.Instance.GetActiveEnemies();
 
-		GameObject nearest = null;
-		GameObject secondNearest = null;
+		GameObject result = null;
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
 			if (enemies[i] != null)
 			{
-				if (nearest == null || (nearest.transform.position - point).sqrMagnitude > (enemies[i].transform.position - point).sqrMagnitude)
+				if (result == null || (result.transform.position - point).sqrMagnitude > (enemies[i].transform.position - point).sqrMagnitude)
 				{
-					secondNearest = nearest;
-					nearest = enemies[i];
+					if (enemies[i].gameObject != notThisOne)
+						result = enemies[i];
 				}
 			}
 		}
 
-		return nearest;
+		return result;
 	}
 }
