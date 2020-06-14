@@ -63,6 +63,6 @@ public class HommingMotionModifier : Modification
         |*   Runtime memory   *|
         \*====================*/
 
-        private float dir = 1;
+        // private float dir = 1;
 }
 
